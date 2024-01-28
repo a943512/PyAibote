@@ -1,0 +1,36 @@
+2024-01-12 02:19:07.670968 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\SendTcpData.py", line 27, in SendData
+    response = self.StarLoadWait(data)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\LoadWait.py", line 29, in StarLoadWait
+    response = self._Send(data)
+               ^^^^^^^^^^^^^^^^
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\LoadWait.py", line 21, in _Send
+    response = self.request.recv(65535)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-01-12 15:42:56.502624 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\SendTcpData.py", line 27, in SendData
+    response = self.StarLoadWait(data)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\LoadWait.py", line 30, in StarLoadWait
+    response = self._Send(data)
+               ^^^^^^^^^^^^^^^^
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\LoadWait.py", line 22, in _Send
+    print(response[1000],'---------------------------------')
+          ~~~~~~~~^^^^^^
+IndexError: index out of range
+
+2024-01-12 15:43:46.559802 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\SendTcpData.py", line 27, in SendData
+    response = self.StarLoadWait(data)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\LoadWait.py", line 31, in StarLoadWait
+    response = self._Send(data)
+               ^^^^^^^^^^^^^^^^
+  File "d:\Project\Coding\PYAIBOTE\PyAibote\WebBotModel\LoadWait.py", line 27, in _Send
+    print(response[1000],'---------------------------------')
+          ~~~~~~~~^^^^^^
+IndexError: string index out of range
+
