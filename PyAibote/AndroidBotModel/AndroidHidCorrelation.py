@@ -3,7 +3,7 @@ import re
 
 
 
-class AndoridHidCorrelation:
+class AndroidHidCorrelation:
     """
         hid相关
         Hid correlation

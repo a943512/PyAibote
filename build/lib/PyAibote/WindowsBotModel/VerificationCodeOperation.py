@@ -6,7 +6,7 @@ class VerificationCodeOperation:
         验证码操作
         Verification code operation
     """
-    def get_captcha(file_path: str, username: str, password: str, soft_id: str, code_type: str,len_min: str = '0') -> dict:
+    def get_captcha(self, file_path: str, username: str, password: str, soft_id: str, code_type: str, len_min: str = '0') -> dict:
         """
             识别验证码
             Identification verification code
@@ -60,7 +60,7 @@ class VerificationCodeOperation:
         result = response.read().decode()
         return json.loads(result)
 
-    def error_captcha(username: str, password: str, soft_id: str, pic_id: str) -> dict:
+    def error_captcha(self, username: str, password: str, soft_id: str, pic_id: str) -> dict:
         """
             识别报错返分
             Identify and report errors and return points
@@ -98,7 +98,7 @@ class VerificationCodeOperation:
         result = response.read().decode()
         return json.loads(result)
 
-    def score_captcha(username: str, password: str) -> dict:
+    def score_captcha(self, username: str, password: str) -> dict:
         """
             查询验证码剩余题分
             Query the remaining questions of verification code
@@ -133,3 +133,4 @@ class VerificationCodeOperation:
         response = request_lib.urlopen(req)
         result = response.read().decode()
         return json.loads(result)
+

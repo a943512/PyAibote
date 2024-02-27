@@ -2,7 +2,7 @@ import time
 import copy
 
 
-class AndoridLoadWait:
+class AndroidLoadWait:
     """
         隐式等待和显示等待
         Implicit waiting and explicit waiting

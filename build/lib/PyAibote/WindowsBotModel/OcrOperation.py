@@ -27,7 +27,7 @@ class OcrOperation:
         """
         return "true" in self.SendData("initOcr", ip, use_angle_model, enable_gpu, enable_tensorrt)
 
-    def ocr_server_by_file(self, image_path: str, region: tuple = (), algorithm: tuple = ()) -> list:
+    def ocr_server_by_file(self, image_path: str, region: tuple = (0, 0, 0, 0), algorithm: tuple = (0, 0, 0)) -> list:
         """
             OCR 服务，通过 OCR 识别图片路径中的文字
             OCR service, which recognizes the characters in the image path through OCR
@@ -42,16 +42,10 @@ class OcrOperation:
             algorithm: (Binary algorithm type, threshold, maximum)
             return: failed to return null, and successfully returned the recognition results in list form: [[[[317,4], [348,4], [348,22], [317,22]]]
         """
-        if not region:
-            region = [0, 0, 0, 0]
 
-        if not algorithm:
-            algorithm_type, threshold, max_val = [0, 0, 0]
-        else:
-            algorithm_type, threshold, max_val = algorithm
-            if algorithm_type in (5, 6):
-                threshold = 127
-                max_val = 255
+        if algorithm_type in (5, 6):
+            threshold = 127
+            max_val = 255
 
         response = self.SendData("ocrByFile", image_path, *region, algorithm_type, threshold, max_val)
         if "/" in response:
@@ -60,7 +54,7 @@ class OcrOperation:
             return []
         return literal_eval(response)
 
-    def ocr_server_by_hwnd(self, hwnd: str, region: tuple = (), algorithm: tuple = (), mode: bool = False) -> list:
+    def ocr_server_by_hwnd(self, hwnd: str, region: tuple = (0, 0, 0, 0), algorithm: tuple = (0, 0, 0), mode: bool = False) -> list:
         """
             OCR 服务，通过 OCR 识别窗口句柄中的文字
             OCR service, which recognizes the characters in the window handle through OCR
@@ -77,16 +71,10 @@ class OcrOperation:
             mode: Operation mode, background true, foreground false. Default foreground operation
             return: failed to return null, and successfully returned the recognition results in list form: [[[[317,4], [348,4], [348,22], [317,22]]]
         """
-        if not region:
-            region = [0, 0, 0, 0]
 
-        if not algorithm:
-            algorithm_type, threshold, max_val = [0, 0, 0]
-        else:
-            algorithm_type, threshold, max_val = algorithm
-            if algorithm_type in (5, 6):
-                threshold = 127
-                max_val = 255
+        if algorithm_type in (5, 6):
+            threshold = 127
+            max_val = 255
 
         response = self.SendData("ocrByHwnd", hwnd, *region, algorithm_type, threshold, max_val, mode)
         if "/" in response:
@@ -95,7 +83,7 @@ class OcrOperation:
             return []
         return literal_eval(response)
 
-    def get_text(self, hwnd_or_image_path: str, region: tuple = (), algorithm: tuple = (), mode: bool = False) -> list:
+    def get_text(self, hwnd_or_image_path: str, region: tuple = (0, 0, 0, 0), algorithm: tuple = (0, 0, 0), mode: bool = False) -> list:
         """
             通过 OCR 识别窗口/图片中的文字，
             Recognize the characters in the window/picture through OCR, and return to the text list
@@ -123,7 +111,7 @@ class OcrOperation:
             text_list.append(text)
         return text_list
 
-    def find_text(self, hwnd_or_image_path: str, text: str, region: tuple = (), algorithm: tuple = (), mode: bool = False) -> list:
+    def find_text(self, hwnd_or_image_path: str, text: str, region: tuple = (0, 0, 0, 0), algorithm: tuple = (0, 0, 0), mode: bool = False) -> list:
         """
             通过 OCR 识别窗口/图片中的文字
             Recognize the characters in the window/picture through OCR, and return the coordinate list
@@ -143,8 +131,6 @@ class OcrOperation:
             mode: operation mode, background true, foreground false, default foreground operation
             return: list of text coordinates
         """
-        if not region:
-            region = [0, 0, 0, 0]
 
         if hwnd_or_image_path.isdigit():
             text_info_list = self.ocr_server_by_hwnd(hwnd_or_image_path, region, algorithm, mode)

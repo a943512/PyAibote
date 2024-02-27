@@ -92,7 +92,7 @@ class ColorOperation:
             return None
         return response
 
-    def find_color(self, hwnd: str, color: str, sub_colors: tuple = (), region: tuple = (),similarity: float = 0.9, mode: bool = False, wait_time: float = 5, interval_time: float = 0.5)  -> tuple:
+    def find_color(self, hwnd: str, color: str, sub_colors: tuple = (), region: tuple = (0, 0, 0, 0),similarity: float = 0.9, mode: bool = False, wait_time: float = 5, interval_time: float = 0.5)  -> tuple:
         """
             获取指定色值的坐标点，返回坐标或者 None
             Gets the coordinate point of the specified color value, and returns the coordinate or None
@@ -119,9 +119,6 @@ class ColorOperation:
             return: returned {x:number, y:number} successfully, and returned None if failed
         """
 
-        if not region:
-            region = [0, 0, 0, 0]
-
         if sub_colors:
             sub_colors_str = ""
             for sub_color in sub_colors:
@@ -144,7 +141,7 @@ class ColorOperation:
 
         return None
 
-    def compare_color(self, hwnd: str, main_x: float, main_y: float, color: str, sub_colors: tuple = (),region: tuple = (), similarity: float = 0.9, mode: bool = False) -> bool:
+    def compare_color(self, hwnd: str, main_x: float, main_y: float, color: str, sub_colors: tuple = (), region: tuple = (0, 0, 0, 0), similarity: float = 0.9, mode: bool = False) -> bool:
         """
             比较指定坐标点的颜色值
             Compare the color values of the specified coordinate points
@@ -169,8 +166,6 @@ class ColorOperation:
             mode: operation mode, background true, foreground false, default foreground operation
             return: True or False
         """
-        if not region:
-            region = [0, 0, 0, 0]
 
         if sub_colors:
             sub_colors_str = ""
@@ -222,7 +217,7 @@ class ColorOperation:
         """
         return "true" in self.SendData("cropImage", image_path, save_path, left, top, rigth, bottom) 
 
-    def find_images(self, hwnd_or_big_image_path: str, image_path: str, region: tuple = (), algorithm: tuple = (), similarity: float = 0.9, mode: bool = False, multi: int = 1, wait_time: float = 5, interval_time: float = 0.5) -> list:
+    def find_images(self, hwnd_or_big_image_path: str, image_path: str, region: tuple = (0, 0, 0, 0), algorithm: tuple = (0, 0, 0), similarity: float = 0.9, mode: bool = False, multi: int = 1, wait_time: float = 5, interval_time: float = 0.5) -> list:
         """
             寻找图片坐标，在当前屏幕中寻找给定图片中心点的坐标，返回坐标列表
             Find picture coordinates, find the coordinates of the center point of a given picture in the current screen, and return to the coordinate list
@@ -270,16 +265,10 @@ class ColorOperation:
                 Threshold threshold, maxval maximum, threshold saves the original image by default. Gray processing when thresh and maxval are both 255
         """
 
-        if not region:
-            region = [0, 0, 0, 0]
 
-        if not algorithm:
-            algorithm_type, threshold, max_val = [0, 0, 0]
-        else:
-            algorithm_type, threshold, max_val = algorithm
-            if algorithm_type in (5, 6):
-                threshold = 127
-                max_val = 255
+        if algorithm_type in (5, 6):
+            threshold = 127
+            max_val = 255
 
         end_time = time.time() + wait_time
         while time.time() < end_time:
@@ -305,7 +294,7 @@ class ColorOperation:
                 return point_list
         return []
 
-    def find_dynamic_image(self, hwnd: str, interval_ti: int, region: tuple = (), mode: bool = False, wait_time: float = 5, interval_time: float = 0.5) -> list:
+    def find_dynamic_image(self, hwnd: str, interval_ti: int, region: tuple = (0, 0, 0, 0), mode: bool = False, wait_time: float = 5, interval_time: float = 0.5) -> list:
         """
             找动态图，对比同一张图在不同时刻是否发生变化，返回坐标列表
             Find the dynamic diagram, compare whether the same diagram has changed at different times, and return the coordinate list
@@ -326,14 +315,6 @@ class ColorOperation:
             interval_time: polling interval; self.interval_timeout is selected by default
             return: single coordinate point [{x:number, y:number}] was successfully returned, and multi-coordinate point [{x1: number, y1: number}, {x2: number, y2: number} ...] failed to return empty []
         """
-        if wait_time is None:
-            wait_time = self.wait_timeout
-
-        if interval_time is None:
-            interval_time = self.interval_timeout
-
-        if not region:
-            region = [0, 0, 0, 0]
 
         end_time = time.time() + wait_time
         while time.time() < end_time:

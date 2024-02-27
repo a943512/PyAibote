@@ -28,7 +28,7 @@ class CookiesOperation:
 
     def get_all_cookies(self) -> list:
         """
-            获取所有的 Cookies
+             获取浏览器所有的Cookies
             Get all the Cookies
 
             return: 列表格式的 cookies
@@ -115,3 +115,8 @@ class CookiesOperation:
             return: bool
         """
         return "true" in self.SendData("clearCache") 
+
+
+
+
+

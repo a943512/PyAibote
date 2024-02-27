@@ -78,7 +78,7 @@ class KeymouseOperation:
         """
         return "true" in self.SendData("moveMouse", point[0], point[1])
 
-    def scroll_mouse(self, point: tuple = (0,0) ,offset_x: float = 0, offset_y: float = 100) -> bool:
+    def scroll_mouse(self, point: tuple = (0,0), offset_x: float = 0, offset_y: float = 100) -> bool:
         """
             滚动鼠标
             Scroll mouse
@@ -94,3 +94,5 @@ class KeymouseOperation:
             return: Boolean value
         """
         return "true" in self.SendData("wheelMouse", offset_x, offset_y, point[0], point[1])
+
+

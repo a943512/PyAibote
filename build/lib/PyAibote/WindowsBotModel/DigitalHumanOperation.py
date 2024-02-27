@@ -7,7 +7,7 @@ class DigitalHumanOperation:
         Digital human
     """
 
-    def init_metahuman(self, metahuman_mde_path: str, metahuman_scale_value: str, is_update_metahuman: bool = False) -> bool:
+    def init_metahuman(self, metahuman_mde_path: str, metahuman_scale_value: int, is_update_metahuman: bool = False) -> bool:
         """
             初始化数字人，第一次初始化需要一些时间
             Initializing digital people, it takes some time to initialize for the first time.
@@ -24,7 +24,7 @@ class DigitalHumanOperation:
         """
         return "true" in self.SendData("initMetahuman", metahuman_mde_path, metahuman_scale_value,is_update_metahuman) 
 
-    def metahuman_speech(self, save_voice_folder: str, text: str, language: str, voice_name: str,quality: int = 0, wait_play_sound: bool = True, speech_rate: int = 0, voice_style: str = "General") -> bool:
+    def metahuman_speech(self, save_voice_folder: str, text: str, language: str, voice_name: str, quality: int = 0, wait_play_sound: bool = True, speech_rate: int = 0, voice_style: str = "General") -> bool:
         """
             数字人说话，此函数需要调用 initSpeechService 初始化语音服务
             Digital people speak, this function needs to call initSpeechService to initialize voice service

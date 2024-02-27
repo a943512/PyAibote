@@ -91,3 +91,7 @@ class WindowOperation:
                     "Android", "7.0", "zh-Hans-CN", "Asia/Shanghai", 31.230416, 121.473701, 1111)
         """
         return "true" in self.SendData("mobileEmulation", width, height, userAgent, platform, platformVersion, acceptLanguage, timezoneId, latitude, longitude,accuracy) 
+
+
+
+        

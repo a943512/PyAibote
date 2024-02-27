@@ -14,8 +14,8 @@ from .VoiceService import  VoiceService
 from .DigitalHumanOperation import  DigitalHumanOperation
 from .VerificationCodeOperation import  VerificationCodeOperation
 from .WinHidCorrelation import  WinHidCorrelation
-
+from ..CommonUse.ChatGenerative import ChatGenerative
 
 __all__ = ["WinLoadWait","DrivingOperation","WindowOperation","KeymouseOperation","ColorOperation","OcrOperation","YoloOperation",
             "ElementOperation","SystemOperation","OtherOperations","ExcelOperation","VoiceService","DigitalHumanOperation",
-            "VerificationCodeOperation","WinHidCorrelation"] 
+            "VerificationCodeOperation","WinHidCorrelation","ChatGenerative"] 

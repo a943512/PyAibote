@@ -39,7 +39,8 @@ class WinBotMain(
         VoiceService,
         DigitalHumanOperation,
         VerificationCodeOperation,
-        WinHidCorrelation
+        WinHidCorrelation,
+        ChatGenerative
     ):
 
     def __init__(self,*args):

@@ -1,4 +1,4 @@
-from .AndoridLoadWait import  AndoridLoadWait
+from .AndroidLoadWait import  AndroidLoadWait
 from .CoordinateOperation import  CoordinateOperation
 from .ElementOperation import  ElementOperation
 from .EquipmentOperation import  EquipmentOperation
@@ -11,9 +11,10 @@ from .UrlRequest import  UrlRequest
 from .ColorFindingOperation import  ColorFindingOperation
 from .MapFindingOperation import  MapFindingOperation
 from .ScreenshotOperation import  ScreenshotOperation
-from .AndoridHidCorrelation import  AndoridHidCorrelation
+from .AndroidHidCorrelation import  AndroidHidCorrelation
+from ..CommonUse.ChatGenerative import ChatGenerative
 
-__all__ = ["AndoridLoadWait","CoordinateOperation","ElementOperation","EquipmentOperation",
+__all__ = ["AndroidLoadWait","CoordinateOperation","ElementOperation","EquipmentOperation",
             "ScreenProjectionOperation","FileTransfer","Control","OcrCorrelation","YoloService",
             "UrlRequest","ColorFindingOperation","MapFindingOperation","ScreenshotOperation",
-            "AndoridHidCorrelation"]
+            "AndroidHidCorrelation","ChatGenerative"]

@@ -15,11 +15,11 @@ class CustomWinScript(WinBotMain):
     # 4. 注意：script_main 此方法是脚本执行入口必须存在此方法
     def script_main(self):
         # 查询所有窗口句柄
-        # result = self.find_windows()
-        # print(result)
+        result = self.find_windows()
+        print(result)
 
 
-        
+
 
 
 

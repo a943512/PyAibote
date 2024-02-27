@@ -34,7 +34,8 @@ class WebBotMain(
         WindowOperation,
         DrivingOperation,
         JSinjection,
-        CookiesOperation
+        CookiesOperation,
+        ChatGenerative
     ):
 
     @abstractmethod

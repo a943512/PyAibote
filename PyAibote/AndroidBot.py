@@ -19,14 +19,14 @@ from multiprocessing import Process
 from abc import ABC, abstractmethod
 import socketserver,socket
 from .Tool import  *
-from .AndoridBotModel import *
+from .AndroidBotModel import *
 
 
-class AndoridBotMain(
+class AndroidBotMain(
         ABC,
         LoggerRecord,
         ThreadingTCPServer, 
-        AndoridLoadWait,
+        AndroidLoadWait,
         Driver,
         SendClientData,
         UniversalFunction,
@@ -42,7 +42,8 @@ class AndoridBotMain(
         ColorFindingOperation,
         MapFindingOperation,
         ScreenshotOperation,
-        AndoridHidCorrelation
+        AndroidHidCorrelation,
+        ChatGenerative
     ):
 
     @abstractmethod

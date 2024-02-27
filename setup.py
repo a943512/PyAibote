@@ -4,12 +4,13 @@ packages = find_packages()
 install_requires = [
     "loguru",
     "psutil",
-    "Pillow"
+    "Pillow",
+    "requests"
 ]
 
 setup(
     name="PyAibote", 
-    version="1.2.0", 
+    version="1.2.1", 
     author="Riven", 
     author_email="wenweiriven@163.com", 
     description="A pure code RPA office automation framework, which supports Android, Browser and Windows", 

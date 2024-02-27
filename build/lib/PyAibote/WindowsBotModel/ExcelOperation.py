@@ -25,7 +25,7 @@ class ExcelOperation:
             return None
         return json.loads(response)
 
-    def open_excel_sheet(self, excel_object: dict, sheet_name: str) -> str:
+    def open_excel_sheet(self, excel_object: object, sheet_name: str) -> str:
         """
             打开excel表格
             Open excel table
@@ -45,7 +45,7 @@ class ExcelOperation:
             return None
         return response
 
-    def save_excel(self, excel_object: dict) -> bool:
+    def save_excel(self, excel_object: object) -> bool:
         """
             保存excel文档
             Save excel document
@@ -58,7 +58,7 @@ class ExcelOperation:
         """
         return "true" in self.SendData("saveExcel", excel_object['book'], excel_object['path']) 
 
-    def write_excel_num(self, excel_object: str, row: int, col: int, value: int) -> bool:
+    def write_excel_num(self, excel_object: object, row: int, col: int, value: int) -> bool:
         """
             写入数字到excel表格
             Write numbers to excel tables
@@ -77,7 +77,7 @@ class ExcelOperation:
         """
         return "true" in self.SendData("writeExcelNum", excel_object, col, row, value) 
 
-    def write_excel_str(self, excel_object: str, row: int, col: int, str_value: str) -> bool:
+    def write_excel_str(self, excel_object: object, row: int, col: int, str_value: str) -> bool:
         """
             写入字符串到excel表格
             Write a string to an excel table
@@ -96,7 +96,7 @@ class ExcelOperation:
         """
         return "true" in self.SendData("writeExcelStr", excel_object, row, col, str_value)
 
-    def read_excel_num(self, excel_object: str, row: int, col: int) -> float:
+    def read_excel_num(self, excel_object: object, row: int, col: int) -> float:
         """
             读取excel表格数字
             Read excel table numbers
@@ -111,7 +111,7 @@ class ExcelOperation:
             response = re.findall(r'/(.*)',response)[0]
         return float(response)
 
-    def read_excel_str(self, excel_object: str, row: int, col: int) -> str:
+    def read_excel_str(self, excel_object: object, row: int, col: int) -> str:
         """
             读取excel表格字符串
             Read excel table string
@@ -126,7 +126,7 @@ class ExcelOperation:
             response = re.findall(r'/(.*)',response)[0]
         return response
 
-    def remove_excel_row(self, excel_object: dict, row_first: int, row_last: int) -> bool:
+    def remove_excel_row(self, excel_object: object, row_first: int, row_last: int) -> bool:
         """
             删除excel表格行
             Delete excel table rows
@@ -143,7 +143,7 @@ class ExcelOperation:
         """
         return "true" in self.SendData("removeExcelRow", excel_object, row_first, row_last)
 
-    def remove_excel_col(self, excel_object: dict, col_first: int, col_last: int) -> bool:
+    def remove_excel_col(self, excel_object: object, col_first: int, col_last: int) -> bool:
         """
             删除excel表格列
             Delete excel table columns

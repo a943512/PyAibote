@@ -41,7 +41,7 @@ class Driver:
                 DriverName = "WindowsDriver.exe"
                 version_info = platform.version()
                 major_version = int(version_info.split('.')[0])
-                if major_version > 10:
+                if major_version < 10:
                     DriverName = "WindowsDriver_win7.exe"
                 print("Debug Model Start WebDriver ...")
                 subprocess.Popen([DriverName, "127.0.0.1", str(Port)])

@@ -1,10 +1,10 @@
 # 1. 导入 AndoridBotMain 类
-from PyAibote import AndoridBotMain
-from PyAibote import WinBotMain
+from PyAibote import AndroidBotMain
+
 
 
 # 2. 自定义一个脚本类，继承 AndoridBotMain
-class CustomAndroidScript(AndoridBotMain):
+class CustomAndroidScript(AndroidBotMain):
 
     # 2. 设置是否终端打印输出 DEBUG：输出， INFO：不输出, 默认打印输出
     Log_Level = "DEBUG" 
@@ -16,22 +16,9 @@ class CustomAndroidScript(AndoridBotMain):
     # 4. 注意：script_main 此方法是脚本执行入口必须存在此方法
     def script_main(self):
         # 显示手机最近任务列表
-        # Hid底层是windows来操作的所以需要windows驱动
-        WinDriving = WinBotMain._build(8888)
-
-        # 初始化hid
-        self.init_hid(WinDriving)
-
-        # 点击坐标
-        result = self.hid_click((235, 2318))
+        # Displays the list of recent tasks of the mobile phone
+        result = self.recent_tasks()
         print(result)
-
-
-
-
-
-
-
 
 
 

@@ -98,8 +98,8 @@ class VoiceService:
 
     def microphone_translation_text(self, source_language: str, target_language: str) -> str:
         """
-            麦克风输入流转换文本
-            Microphone input stream conversion text
+            麦克风音频翻译成目标语言文本
+            Microphone audio is translated into target language text
 
             source_language: 要翻译的语言，参考开发文档 语言和发音人
             target_language: 翻译后的语言，参考开发文档 语言和发音人
