@@ -25,6 +25,8 @@ PyAibote/AndroidBotModel/UrlRequest.py
 PyAibote/AndroidBotModel/VerificationCodeOperation.py
 PyAibote/AndroidBotModel/YoloService.py
 PyAibote/AndroidBotModel/__init__.py
+PyAibote/CommonUse/ChatGenerative.py
+PyAibote/CommonUse/__init__.py
 PyAibote/Tool/DebugStartDriver.py
 PyAibote/Tool/Logger.py
 PyAibote/Tool/SendTcpData.py

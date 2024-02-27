@@ -12,8 +12,9 @@ from .ColorFindingOperation import  ColorFindingOperation
 from .MapFindingOperation import  MapFindingOperation
 from .ScreenshotOperation import  ScreenshotOperation
 from .AndroidHidCorrelation import  AndroidHidCorrelation
+from .CommonUse.ChatGenerative import ChatGenerative
 
 __all__ = ["AndroidLoadWait","CoordinateOperation","ElementOperation","EquipmentOperation",
             "ScreenProjectionOperation","FileTransfer","Control","OcrCorrelation","YoloService",
             "UrlRequest","ColorFindingOperation","MapFindingOperation","ScreenshotOperation",
-            "AndroidHidCorrelation"]
+            "AndroidHidCorrelation","ChatGenerative"]

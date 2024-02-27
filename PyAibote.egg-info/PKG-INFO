@@ -1,10 +1,10 @@
 Metadata-Version: 2.1
 Name: PyAibote
-Version: 1.2.1
+Version: 1.2.3
 Summary: A pure code RPA office automation framework, which supports Android, Browser and Windows
-Home-page: UNKNOWN
+Home-page: https://www.pyaibote.com
 Author: Riven
-Author-email: wenweiriven@163.com
+Author-email: pyaibote@163.com
 License: UNKNOWN
 Platform: UNKNOWN
 Requires-Python: >=3.7,<4.0
