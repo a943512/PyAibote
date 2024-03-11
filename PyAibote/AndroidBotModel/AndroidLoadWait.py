@@ -1,7 +1,6 @@
 import time
 import copy
 
-
 class AndroidLoadWait:
     """
         隐式等待和显示等待
@@ -17,18 +16,20 @@ class AndroidLoadWait:
 
     def _Send(self,data):
         if len(data) > 10000:
-            self.debug(rf"<-<- {data[:100]}......")
+            self.debug(rf"->>> {data[:100]}......")
         else:
-            self.debug(rf"<-<- {data}")
+            self.debug(rf"->>> {data}")
+                    
         self.request.sendall(data)
         response = self.request.recv(65535)
+        response = response.decode('UTF-8')
         if len(response) > 10000:
             self.debug(rf"<-<- {response[:100]}......")
         else:
             self.debug(rf"<-<- {response}")
         if response == b"":
             raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
-        response = response.decode('UTF-8')
+        
         return response
 
     def StarLoadWait(self, data):

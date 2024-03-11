@@ -42,7 +42,7 @@ class OcrOperation:
             algorithm: (Binary algorithm type, threshold, maximum)
             return: failed to return null, and successfully returned the recognition results in list form: [[[[317,4], [348,4], [348,22], [317,22]]]
         """
-
+        algorithm_type, threshold, max_val = algorithm
         if algorithm_type in (5, 6):
             threshold = 127
             max_val = 255
@@ -71,7 +71,7 @@ class OcrOperation:
             mode: Operation mode, background true, foreground false. Default foreground operation
             return: failed to return null, and successfully returned the recognition results in list form: [[[[317,4], [348,4], [348,22], [317,22]]]
         """
-
+        algorithm_type, threshold, max_val = algorithm
         if algorithm_type in (5, 6):
             threshold = 127
             max_val = 255
@@ -166,5 +166,3 @@ class OcrOperation:
                 )
                 text_points.append(text_point)
         return text_points
-
-

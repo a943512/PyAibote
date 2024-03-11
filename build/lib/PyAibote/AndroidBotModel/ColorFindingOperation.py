@@ -31,7 +31,7 @@ class ColorFindingOperation:
             Gets the coordinate point of the specified color value, and returns the coordinate or None
 
             color: 颜色字符串，必须以 # 开头，例如：#008577；
-            sub_colors: 辅助定位的其他颜色；
+            sub_colors: 辅助定位的其他颜色 (偏移x、偏移y、颜色字符串)
             region: 截图区域，默认全屏，``region = (起点x、起点y、终点x、终点y)``，得到一个矩形
             similarity: 相似度，0-1 的浮点数，默认 0.9；
             wait_time: 等待时间，默认取 5秒
@@ -39,7 +39,7 @@ class ColorFindingOperation:
             return: 坐标或者 ()
 
             color: color string, which must start with #, for example: # 008577
-            sub_colors: other colors to assist positioning
+            sub_colors: other colors (offset x, offset y, color string) to assist positioning
             region: screenshot area, full screen by default, `` region = (starting point x, starting point y, ending point x, ending point y) ```, and a rectangle is obtained
             similarity: similarity, floating point number of 0-1, default 0.9
             wait_time: waiting time, which is 5 seconds by default

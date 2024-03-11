@@ -43,7 +43,8 @@ class AndroidBotMain(
         MapFindingOperation,
         ScreenshotOperation,
         AndroidHidCorrelation,
-        ChatGenerative
+        ChatGenerative,
+        DataBaseHandle
     ):
 
     @abstractmethod

@@ -42,7 +42,7 @@ class LoggerRecord:
         """
         current_time = datetime.now()
         formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S.%f")
-        with open(LogFilePath,"a") as w:
+        with open(LogFilePath,"a", encoding="UTF-8") as w:
             w.write(f"{formatted_time} - {Level} : {Info}\n")
 
     def debug(self, Msg) -> None:
@@ -66,3 +66,5 @@ class LoggerRecord:
             self.CheckFile()
             self.Write_logger(self.ERRORLogPath, "ERROR", Msg)
         logger.error(Msg)
+
+        

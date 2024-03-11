@@ -40,7 +40,9 @@ class WinBotMain(
         DigitalHumanOperation,
         VerificationCodeOperation,
         WinHidCorrelation,
-        ChatGenerative
+        ChatGenerative,
+        DataBaseHandle,
+        DataBaseHandle
     ):
 
     def __init__(self,*args):

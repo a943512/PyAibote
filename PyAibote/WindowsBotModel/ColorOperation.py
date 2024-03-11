@@ -265,7 +265,7 @@ class ColorOperation:
                 Threshold threshold, maxval maximum, threshold saves the original image by default. Gray processing when thresh and maxval are both 255
         """
 
-
+        algorithm_type, threshold, max_val = algorithm
         if algorithm_type in (5, 6):
             threshold = 127
             max_val = 255

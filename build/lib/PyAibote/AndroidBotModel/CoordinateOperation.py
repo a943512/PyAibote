@@ -85,6 +85,32 @@ class CoordinateOperation:
 
         return "true" in self.SendData("dispatchGesture", gesture_path_str, duration * 1000) 
 
+    def gestures(self, gestures_path: list) -> bool:
+        """
+            执行多个手势
+            Perform multiple gestures
+
+            [[duration, [x1, y1], [x1, y1]...],[duration, [x1, y1], [x1, y1]...]]  
+            duration:手势执行时长, 单位秒
+            [x1, y1]: 手势路径，由一系列坐标点组成
+            return: Ture 或者 False
+
+            [[duration, [x1, y1], [x1, y1]...],[duration, [x1, y1], [x1, y1]...]]
+            duration: duration of gesture execution, in seconds.
+            [x1, y1]: gesture path, which consists of a series of coordinate points.
+            return: Ture or False
+        """
+
+        gestures_path_str = ""
+        for gesture_path in gestures_path:
+            gestures_path_str += f"{gesture_path[0] * 1000}/"
+            for point in gesture_path[1:len(gesture_path)]:
+                gestures_path_str += f"{point[0]}/{point[1]}/\n"
+            gestures_path_str += "\r\n"
+        gestures_path_str = gestures_path_str.strip()
+
+        return "true" in self.SendData("dispatchGestures", gestures_path_str) 
+
     def press(self, point: tuple, duration: float) -> bool:
         """
             手指按下

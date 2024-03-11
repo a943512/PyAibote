@@ -27,6 +27,7 @@ class Driver:
         
         try:
             print("Debug Model Start WebDriver ...")
+            print(["WebDriver.exe", default_params])
             subprocess.Popen(["WebDriver.exe", default_params])
             print("Start WebDriver Successful，Execute Script")
         except FileNotFoundError as e:

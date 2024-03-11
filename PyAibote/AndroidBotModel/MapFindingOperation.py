@@ -66,6 +66,7 @@ class MapFindingOperation:
         """
         if not image_name.startswith("/storage/emulated/0/"):
             image_name = "/storage/emulated/0/" + image_name
+    
         algorithm_type, threshold, max_val = algorithm
         if algorithm_type in (5, 6):
             threshold = 127
