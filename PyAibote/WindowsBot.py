@@ -41,7 +41,6 @@ class WinBotMain(
         VerificationCodeOperation,
         WinHidCorrelation,
         ChatGenerative,
-        DataBaseHandle,
         DataBaseHandle
     ):
 

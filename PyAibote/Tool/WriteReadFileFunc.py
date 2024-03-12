@@ -1,66 +1,94 @@
 """
     读写文件类
+    WriteReadFile
 """
+
 from .LoggerFunc import LoggerRecord
 import os,json,time
 import traceback
 
 class WriteReadFile(LoggerRecord):
-    def WriteFile(self,path,data):
+    def WriteFile(self, path, data):
         """
+            写入文件
+            WriteFile
+
             path: 需要写入的文件路径
             data: 需要写入的数据
+            return: 成功返回True or 失败返回False
 
             path: the file path that needs to be written
             data: data to be written
+            return: Returns True or success or False on failure
         """
+
         try:
             with open(path,'w',encoding='UTF-8') as w:
                 w.write(data)
-            return "Ok"
+            return True
         except Exception as e:
             LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
-            return "Error"
+            return False
 
     def ReadFile(self,path):
         """
+            读取文件
+            ReadFile
+
             path: 需要读取的文件路径
-            Path: the file path to be read.
+            return: 成功返回文件数据, 失败返回False
+
+            path: the file path to be read
+            return: file data is returned successfully, and False is returned if it fails
         """
+
         try:
             with open(path,'r',encoding='UTF-8') as r:
                 Data = r.read()
             return Data
         except Exception as e:
             LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
-            return "Error"
+            return False
 
     def WriteFileAddTo(self,path,data):
         """
+            追加写入文件
+            Additional write file
+
             path: 需要追加写入的文件路径
             data: 需要追加写入的数据
+            return: 成功返回True, 失败返回False
 
             path: the file path that needs additional writing
             data: data that needs to be written additionally
+            return: file data is returned successfully, and False is returned if it fails
         """
+
         try:
             with open(path,'a',encoding='UTF-8') as w:
                 w.write(data)
-            return "Ok"
+            return True
         except Exception as e:
             LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
-            return "Error"
+            return False
 
-    def ReadJsonFile(self,path,key=None,Key2=None,Key3=None,Key4=None,Key5=None):
+    def ReadJsonFile(self, path, key=None, Key2=None, Key3=None, Key4=None, Key5=None):
         """
-            key: 读取key根目录路径信息
-            Key2: 读取key二级目录路径信息
-            默认读取所有文件信息
+            读取json文件
+            Read json file
 
-            key: read the key root directory path information
-            key2: read the path information of key secondary directory
-            read all file information by default
+            key: 读取一级嵌套路径信息
+            Key2: 读取key二级嵌套路径信息
+            ....  最多支持五级嵌套路径, 默认读取所有json文件内的信息
+            return: 成功返回json文件字典数据, 失败返回False
+            
+
+            Key: Read the first-level nested path information
+            Key2: read the second-level nested path information of key
+            ... supports up to five nested paths, and reads the information in all json files by default
+            return: json file data is returned successfully, and False is returned if it fails
         """
+
         try:
             ResultData = self.ReadFile(path)
             ResultData = json.loads(ResultData)
@@ -77,7 +105,7 @@ class WriteReadFile(LoggerRecord):
             return ResultData
         except Exception as e:
             LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
-            return "Error"
+            return False
 
 
 if __name__ == '__main__':

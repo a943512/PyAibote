@@ -52,12 +52,13 @@ if __name__ == '__main__':
     # 7. 启动脚本，监听 9999 号端口, 默认使用 Chrome 浏览器
 
     # 7.1. Debug=True 时，是本地运行脚本，会自动启动 WebDriver.exe 驱动
+    # 7.2. 打开终端输入：start chrome.exe --remote-debugging-port=8989 即可创建一个8989的端口浏览器， "debugPort" 参数改为8989即可接管浏览器操作
     # 在远端部署脚本时，请设置 Debug=False，手动启动 WebDriver.exe，启动 WebDriver.exe 时需指定远端 IP 或端口号
 
-    # 7.2. 如本地部署脚本，需要传递 WebDriver 启动参数时，参考下面方式，如不需传递启动参数，则忽略：
+    # 7.3. 如本地部署脚本，需要传递 WebDriver 启动参数时，参考下面方式，如不需传递启动参数，则忽略：
     driver_params = {
         "browserName": "chrome",
-        "debugPort": 8989,
+        "debugPort": 9999,
         "userDataDir": "./UserData",
         "browserPath": None,
         "argument": None,
@@ -66,5 +67,3 @@ if __name__ == '__main__':
     CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params)
 
 
-
-# start chrome.exe --remote-debugging-port=8989

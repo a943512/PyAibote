@@ -8,7 +8,7 @@ from .WriteReadFileFunc import  WriteReadFile
 import traceback
 
 class DataBaseHandle(WriteReadFile):
-	def database_init(self):
+	def init_mysql(self):
 		self.Path = f"{os.getcwd()}/ConfigFile.json"
 		if not os.path.exists(self.Path):
 			with open(self.Path,"w",encoding='UTF-8') as w:
@@ -23,6 +23,7 @@ class DataBaseHandle(WriteReadFile):
 		# 打开数据库连接
 		try:
 			self.db = pymysql.connect(host=self.host,user=self.USERNAME,password=self.PASSWORD,database=self.DB,port=self.port,cursorclass=pymysql.cursors.DictCursor)
+			return True
 		except Exception as e:
 			print("""请在ConfigFile.json 中配置你的数据库信息示例：
 			 		{
@@ -36,7 +37,7 @@ class DataBaseHandle(WriteReadFile):
 					}
 				""")
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
-			
+			return False
 
 	def Checkconnect(self):
 		try:
@@ -45,10 +46,16 @@ class DataBaseHandle(WriteReadFile):
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
 
 
-	def insertDB(self,sql):
+	def insert_mysql(self,Sql):
 		"""
-			插入数据库操作
-			Insert database operation
+			新增一条MySql数据库数据
+			Add a MySql database data
+
+			Sql: sql语句
+			return: 成功返回True, 失败返回False
+
+			Sql: sql statement
+			return: Returns True on success and False on failure
 		"""
 		try:
 			self.Checkconnect()
@@ -56,96 +63,111 @@ class DataBaseHandle(WriteReadFile):
 			result = cursor.execute(sql)
 			self.db.commit()
 			if result ==1:
-				return 'Ok'
+				return True
 			else:
-				return 'Error'
+				return False
 		except Exception as e:
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
-			return 'Error'
+			return False
 
-	def insertDBPathLoss(self,sql):
-		"""
-			插入数据库操作
-			Insert database operation
-		"""
 
+	def insertmany_mysql(self,Sql,Data):
+		"""
+			新增多条MySql数据库数据
+			Add multiple MySql database data
+
+			Sql: sql语句
+			Data: 数据列表
+			return: 成功返回True, 失败返回False
+
+			Sql: sql statement
+			Data: data list
+			return: Returns True on success and False on failure
+		"""
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.execute(sql)
-			InsertId = int(cursor.lastrowid)
-			result = self.db.commit()
-			return InsertId
+			cursor.executemany(Sql,Data)
+			self.db.commit()
+			return True
 		except Exception as e:
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
-			return 'Error'
+			return False
 			
-	def insertmanyDB(self,sql,data):
+	def delete_mysql(self,Sql):
 		"""
-			插入多笔数据到数据库
-			Insert multiple data into the database
+			删除MySql数据库数据
+			Delete multiple MySql database data
+
+			Sql: sql语句
+			return: 成功返回True, 失败返回False
+
+			Sql: sql statement
+			return: True on success and False on failure
 		"""
+
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.executemany(sql,data)
+			cursor.execute(Sql)
 			self.db.commit()
-			return 'Ok'
+			return True
 		except Exception as e:
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
-			return 'Error'
-			
-	def deleteDB(self,sql):
+			return False
+
+	def update_mysql(self,Sql):
 		"""
-			删除操作
-			Delete database operation
+			更新MySql数据库数据
+			Update multiple MySql database data
+
+			Sql: sql语句
+			return: 成功返回True, 失败返回False
+
+			Sql: sql statement
+			return: True on success and False on failure
 		"""
 
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.execute(sql)
+			cursor.execute(Sql)
 			self.db.commit()
+			return True
 		except Exception as e:
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
-			return 'Error'
+			return False
 
-	def updateDB(self,sql):
+	def select_mysql(self,Sql):
 		"""
-			更新操作操作
-		"""
+			查询MySql数据库数据
+			Query MySql database data
 
-		try:
-			self.Checkconnect()
-			cursor = self.db.cursor()
-			cursor.execute(sql)
-			self.db.commit()
-			return 'Ok'
-		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
-			return 'Error'
+			Sql: sql语句
+			return: 成功返回字典数据，失败返回Error
 
-	def selectDB(self,sql):
-		"""
-			查询动作
+			Sql: sql statement
+			return: dictionary data is returned successfully, and Error is returned if it fails
 		"""
 
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.execute(sql)
+			cursor.execute(Sql)
 			data=cursor.fetchall()
 			return data
 
 		except Exception as e:
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
-			return 'Error'
+			return False
 
 			
-	def close(self):
+	def close_mysql(self):
 		try:
 			if self.db:
 				self.db.close()
+			return True
 		except Exception as e:
 			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			return False
 

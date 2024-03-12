@@ -26,3 +26,4 @@ class SendClientData:
             return response
         except Exception as e:
             self.error("send/read tcp data error: " + str(traceback.format_exc()))
+            raise e

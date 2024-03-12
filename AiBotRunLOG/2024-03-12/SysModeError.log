@@ -1,0 +1,107 @@
+😄😄 2024-03-12 13:20:32,281 - LoggerFunc.py[line:55] - DEBUG : Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\DatabaseFunc.py", line 76, in insertmanyDB
+    cursor.executemany(sql,data)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 191, in executemany
+    self.rowcount = sum(self.execute(query, arg) for arg in args)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 191, in <genexpr>
+    self.rowcount = sum(self.execute(query, arg) for arg in args)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 151, in execute
+    query = self.mogrify(query, args)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 129, in mogrify
+    query = query % self._escape_args(args, conn)
+TypeError: not all arguments converted during string formatting
+ 😄😄
+Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\DatabaseFunc.py", line 76, in insertmanyDB
+    cursor.executemany(sql,data)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 191, in executemany
+    self.rowcount = sum(self.execute(query, arg) for arg in args)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 191, in <genexpr>
+    self.rowcount = sum(self.execute(query, arg) for arg in args)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 151, in execute
+    query = self.mogrify(query, args)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 129, in mogrify
+    query = query % self._escape_args(args, conn)
+TypeError: not all arguments converted during string formatting
+😄😄 2024-03-12 13:41:33,262 - LoggerFunc.py[line:55] - DEBUG : Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\DatabaseFunc.py", line 120, in update_mysql
+    cursor.execute(sql)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHRTR UserName=PyAibote' at line 1")
+ 😄😄
+Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\DatabaseFunc.py", line 120, in update_mysql
+    cursor.execute(sql)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.ProgrammingError: (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHRTR UserName=PyAibote' at line 1")
+😄😄 2024-03-12 13:42:13,241 - LoggerFunc.py[line:55] - DEBUG : Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\DatabaseFunc.py", line 120, in update_mysql
+    cursor.execute(sql)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'PyAibote' in 'where clause'")
+ 😄😄
+Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\DatabaseFunc.py", line 120, in update_mysql
+    cursor.execute(sql)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 558, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 822, in _read_query_result
+    result.read()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 1200, in read
+    first_packet = self.connection._read_packet()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\connections.py", line 772, in _read_packet
+    packet.raise_for_error()
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\protocol.py", line 221, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "E:\InstallFile\Python\lib\site-packages\pymysql\err.py", line 143, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1054, "Unknown column 'PyAibote' in 'where clause'")
