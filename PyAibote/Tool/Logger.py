@@ -1,3 +1,7 @@
+"""
+    写DEBUG调试LOG
+    Write DEBUG debug LOG
+"""
 import os
 import time
 from loguru import logger
@@ -32,13 +36,13 @@ class LoggerRecord:
             将LOG信息写入文件
             Write LOG information to a file.
 
-            :LogFilePath: LOG文件路径
-            :Info: LOG的信息
-            :return:
+            LogFilePath: LOG文件路径
+            Info: LOG的信息
+            return: 空
 
-            :LogFilePath: LOG file path
-            :Info: LOG information
-            :return:
+            LogFilePath: LOG file path
+            Info: LOG information
+            return: None
         """
         current_time = datetime.now()
         formatted_time = current_time.strftime("%Y-%m-%d %H:%M:%S.%f")

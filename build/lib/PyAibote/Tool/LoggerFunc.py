@@ -1,6 +1,6 @@
 """
-	写LOG文件
-    LoggerRecord
+	写自定义LOG文件
+    Write a custom LOG file
 """
 
 import logging
@@ -8,8 +8,7 @@ import os
 from loguru import logger as lg
 
 class LoggerRecord(object):
-    
-    def Custom_Write_logger(self, LogName, FileDirName, LogFileName, Log_Print, Info):
+    def Custom_Write_logger(self, LogName, FileDirName, LogFileName, Log_Print, Info)  -> bool:
         """
             自定义写Log文件
             Custom write Log file

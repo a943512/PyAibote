@@ -44,7 +44,8 @@ class AndroidBotMain(
         ScreenshotOperation,
         AndroidHidCorrelation,
         ChatGenerative,
-        DataBaseHandle
+        DataBaseHandle,
+        Sqlite3DataBaseHandle
     ):
 
     @abstractmethod

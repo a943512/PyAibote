@@ -33,6 +33,7 @@ PyAibote/Tool/Logger.py
 PyAibote/Tool/LoggerFunc.py
 PyAibote/Tool/SendTcpData.py
 PyAibote/Tool/SocketServer.py
+PyAibote/Tool/Sqlite3DataBase.py
 PyAibote/Tool/UniversalFunction.py
 PyAibote/Tool/WriteReadFileFunc.py
 PyAibote/Tool/__init__.py

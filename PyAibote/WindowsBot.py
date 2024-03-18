@@ -41,7 +41,8 @@ class WinBotMain(
         VerificationCodeOperation,
         WinHidCorrelation,
         ChatGenerative,
-        DataBaseHandle
+        DataBaseHandle,
+        Sqlite3DataBaseHandle
     ):
 
     def __init__(self,*args):

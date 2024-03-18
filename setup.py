@@ -6,12 +6,13 @@ install_requires = [
     "loguru",
     "psutil",
     "Pillow",
-    "requests"
+    "requests",
+    "pymysql"
 ]
 
 setup(
     name="PyAibote", 
-    version="1.2.6", 
+    version="1.3.0", 
     author="Riven", 
     author_email="pyaibote@163.com", 
     description="A pure code RPA office automation framework, which supports Android, Browser and Windows", 

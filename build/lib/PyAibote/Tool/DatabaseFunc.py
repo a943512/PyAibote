@@ -8,7 +8,7 @@ from .WriteReadFileFunc import  WriteReadFile
 import traceback
 
 class DataBaseHandle(WriteReadFile):
-	def init_mysql(self):
+	def init_mysql(self)  -> bool:
 		self.Path = f"{os.getcwd()}/ConfigFile.json"
 		if not os.path.exists(self.Path):
 			with open(self.Path,"w",encoding='UTF-8') as w:
@@ -36,25 +36,25 @@ class DataBaseHandle(WriteReadFile):
 						}
 					}
 				""")
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 			return False
 
-	def Checkconnect(self):
+	def Checkconnect(self)  -> None:
 		try:
 			self.db.ping()
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 
 
-	def insert_mysql(self,Sql):
+	def insert_mysql(self,sql) -> bool:
 		"""
 			新增一条MySql数据库数据
 			Add a MySql database data
 
-			Sql: sql语句
+			sql: sql语句
 			return: 成功返回True, 失败返回False
 
-			Sql: sql statement
+			sql: sql statement
 			return: Returns True on success and False on failure
 		"""
 		try:
@@ -67,107 +67,107 @@ class DataBaseHandle(WriteReadFile):
 			else:
 				return False
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 			return False
 
 
-	def insertmany_mysql(self,Sql,Data):
+	def insertmany_mysql(self,sql,Data)  -> bool:
 		"""
 			新增多条MySql数据库数据
 			Add multiple MySql database data
 
-			Sql: sql语句
+			sql: sql语句
 			Data: 数据列表
 			return: 成功返回True, 失败返回False
 
-			Sql: sql statement
+			sql: sql statement
 			Data: data list
 			return: Returns True on success and False on failure
 		"""
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.executemany(Sql,Data)
+			cursor.executemany(sql,Data)
 			self.db.commit()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 			return False
 			
-	def delete_mysql(self,Sql):
+	def delete_mysql(self,sql) -> bool:
 		"""
 			删除MySql数据库数据
 			Delete multiple MySql database data
 
-			Sql: sql语句
+			sql: sql语句
 			return: 成功返回True, 失败返回False
 
-			Sql: sql statement
+			sql: sql statement
 			return: True on success and False on failure
 		"""
 
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.execute(Sql)
+			cursor.execute(sql)
 			self.db.commit()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 			return False
 
-	def update_mysql(self,Sql):
+	def update_mysql(self,sql)  -> bool:
 		"""
 			更新MySql数据库数据
 			Update multiple MySql database data
 
-			Sql: sql语句
+			sql: sql语句
 			return: 成功返回True, 失败返回False
 
-			Sql: sql statement
+			sql: sql statement
 			return: True on success and False on failure
 		"""
 
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.execute(Sql)
+			cursor.execute(sql)
 			self.db.commit()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 			return False
 
-	def select_mysql(self,Sql):
+	def select_mysql(self,sql)  -> dict:
 		"""
 			查询MySql数据库数据
 			Query MySql database data
 
-			Sql: sql语句
+			sql: sql语句
 			return: 成功返回字典数据，失败返回Error
 
-			Sql: sql statement
+			sql: sql statement
 			return: dictionary data is returned successfully, and Error is returned if it fails
 		"""
 
 		try:
 			self.Checkconnect()
 			cursor = self.db.cursor()
-			cursor.execute(Sql)
+			cursor.execute(sql)
 			data=cursor.fetchall()
 			return data
 
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 			return False
 
 			
-	def close_mysql(self):
+	def close_mysql(self)  -> bool:
 		try:
 			if self.db:
 				self.db.close()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
 			return False
 

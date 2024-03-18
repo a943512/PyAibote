@@ -1,0 +1,9 @@
+2024-03-18 10:28:57.080987 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 32, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 21, in _Send
+    response = self.request.recv(65535)
+ConnectionAbortedError: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。
+

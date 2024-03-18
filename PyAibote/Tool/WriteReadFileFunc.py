@@ -1,5 +1,5 @@
 """
-    读写文件类
+    读写文件
     WriteReadFile
 """
 
@@ -8,7 +8,7 @@ import os,json,time
 import traceback
 
 class WriteReadFile(LoggerRecord):
-    def WriteFile(self, path, data):
+    def WriteFile(self, path, data) -> bool:
         """
             写入文件
             WriteFile
@@ -27,10 +27,10 @@ class WriteReadFile(LoggerRecord):
                 w.write(data)
             return True
         except Exception as e:
-            LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
             return False
 
-    def ReadFile(self,path):
+    def ReadFile(self,path) -> str or bool:
         """
             读取文件
             ReadFile
@@ -47,10 +47,10 @@ class WriteReadFile(LoggerRecord):
                 Data = r.read()
             return Data
         except Exception as e:
-            LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
             return False
 
-    def WriteFileAddTo(self,path,data):
+    def WriteFileAddTo(self,path,data)  -> bool:
         """
             追加写入文件
             Additional write file
@@ -69,10 +69,10 @@ class WriteReadFile(LoggerRecord):
                 w.write(data)
             return True
         except Exception as e:
-            LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
             return False
 
-    def ReadJsonFile(self, path, key=None, Key2=None, Key3=None, Key4=None, Key5=None):
+    def ReadJsonFile(self, path, key=None, Key2=None, Key3=None, Key4=None, Key5=None) -> str or bool:
         """
             读取json文件
             Read json file
@@ -104,14 +104,10 @@ class WriteReadFile(LoggerRecord):
                 ResultData = ResultData[key]
             return ResultData
         except Exception as e:
-            LoggerRecord.Custom_Write_logger(self,"",f"{os.getcwd()}/SysMdelLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log","")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
             return False
 
 
-if __name__ == '__main__':
-    wr = WriteReadFile()
-    result = wr.ReadJsonFile(f"{os.getcwd()}/ConfigFile.json","LinkDatabaseInfo")
-    print(result)
 
 
 
