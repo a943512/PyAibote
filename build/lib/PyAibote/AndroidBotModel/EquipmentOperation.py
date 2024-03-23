@@ -55,6 +55,58 @@ class EquipmentOperation:
             return []
         return resp.split("|")
 
+    def get_title(self) -> str:
+        """
+            获取投屏标题
+            Get the title of the projection screen
+
+            return: app上的标题信息
+            return: Title information on the app
+        """
+        response = self.SendData("getTitle")
+        if "/" in response:
+            response = re.findall(r'/(.*)',response)[0]
+        return response
+
+    def get_group(self) -> str:
+        """
+            获取投屏组号
+            Get the projection group number
+
+            return: app上的投屏组号
+            return: Projection group number on the app
+        """
+        response = self.SendData("getGroup")
+        if "/" in response:
+            response = re.findall(r'/(.*)',response)[0]
+        return response
+
+    def get_identifier(self) -> str:
+        """
+            获取投屏编号
+            Get the projection number
+
+            return: app上的投屏编号
+            return: Projection number on the app
+        """
+        response = self.SendData("getIdentifier")
+        if "/" in response:
+            response = re.findall(r'/(.*)',response)[0]
+        return response
+
+    def activate_frame(self, secret_key) -> bool:
+        """
+            激活安卓框架
+            Activate Android framework
+
+            secret_key：激活框架的秘钥
+            secret_key：Key to activate the frame
+
+            return: 成功返回True失败返回False
+            return: Returns True successfully and False if it fails
+        """
+        return "true" in self.SendData("activateFrame", secret_key) 
+
     def get_device_ip(self) -> str:
         """
             获取设备IP地址

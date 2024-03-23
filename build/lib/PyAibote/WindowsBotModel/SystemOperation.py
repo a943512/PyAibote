@@ -50,19 +50,19 @@ class SystemOperation:
         """
         return "true" in self.SendData("startProcess", cmd, show_window, is_wait)
 
-    def execute_command(self, command: str, wait_timeout: int = 3000) -> str:
+    def execute_command(self, command: str, wait_timeout: int = 3) -> str:
         """
             执行cmd命令
             Execute cmd command
 
             command: cmd命令，不能含 "cmd"字串
-            wait_timeout: 可选参数，等待结果返回超时，单位毫秒，默认3000毫秒
+            wait_timeout: 可选参数，等待结果返回超时，单位毫秒，默认3秒
             return: cmd执行结果
 
             Command: cmd command, which cannot contain "cmd" string.
             Wait_timeout: optional parameter, waiting for the result to return timeout, in milliseconds, the default is 300 milliseconds.
             Return: cmd execution result
         """
-        return  self.SendData("executeCommand", command, wait_timeout)
+        return  self.SendData("executeCommand", command, wait_timeout*1000)
 
 
