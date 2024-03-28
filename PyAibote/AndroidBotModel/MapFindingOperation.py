@@ -83,7 +83,7 @@ class MapFindingOperation:
                 point_list = []
                 for point_str in image_points:
                     x, y = point_str.split("|")
-                    point_list.append((x,y))
+                    point_list.append((float(x),float(y)))
                 return point_list
         return []
 
@@ -116,7 +116,7 @@ class MapFindingOperation:
                 point_list = []
                 for point_str in image_points:
                     x, y = point_str.split("|")
-                    point_list.append((x, y))
+                    point_list.append((float(x), float(y)))
                 return point_list
         return []
 

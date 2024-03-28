@@ -12,7 +12,7 @@ install_requires = [
 
 setup(
     name="PyAibote", 
-    version="1.3.1", 
+    version="1.3.2", 
     author="Riven", 
     author_email="pyaibote@163.com", 
     description="A pure code RPA office automation framework, which supports Android, Browser and Windows", 

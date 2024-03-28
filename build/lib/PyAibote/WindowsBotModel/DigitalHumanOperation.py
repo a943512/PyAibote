@@ -49,7 +49,7 @@ class DigitalHumanOperation:
             voice_style: voice style, the default General style, and other styles refer to the development document language and speaker
             return: True or False
         """
-        return  "true" in self.SendData("metahumanSpeech", save_voice_folder, text, language, voice_name, quality,wait_play_sound, speech_rate, voice_style) 
+        return  "false" not in self.SendData("metahumanSpeech", save_voice_folder, text, language, voice_name, quality,wait_play_sound, speech_rate, voice_style) 
 
     def metahuman_speech_cache(self, save_voice_folder: str, text: str, language: str, voice_name: str, quality: int = 0, wait_play_sound: bool = True, speech_rate: int = 0, voice_style: str = "General") -> bool:
         """
@@ -171,3 +171,129 @@ class DigitalHumanOperation:
             return: True or False
         """
         return "true" in self.SendData("makeMetahumanVideo", save_video_folder, text, language, voice_name, bg_file_path, sim_value, voice_style, quality, speech_rate) 
+
+    def init_speech_clone_service(self, api_key: str, voice_id: str) -> bool:
+        """
+            初始化数字人声音克隆服务(不支持win 7系统)  声音克隆服务卡密获取网站：elevenlabs.io
+            Initialize the digital human voice cloning service (win 7 system is not supported). The voice cloning service card is obtained from the website: elevenlabs.io
+
+            api_key: API密钥
+            voice_id: 声音ID
+            return: True或者False
+
+            api_key: API key
+            clone_val: Voice ID
+            return: True or False
+        """
+        return "true" in self.SendData("initSpeechCloneService", api_key, voice_id) 
+
+    def metahuman_speech_clone(self, save_audio_path: str, text: str, language: str = "zh-cn", wait_play_sound: bool = True) -> bool:
+        """
+            数字人使用克隆声音说话，此函数需要调用 initSpeechCloneService 初始化语音服务
+            Generate digital human speech file (voice clone), and automatically generate MP3 file and lab file
+
+            save_audio_path: 保存的发音文件路径, 这里是文件路径，不是目录！
+            text: 要转换语音的文本
+            language: 语言，中文：zh-cn，其他语言：other-languages
+            wait_play_sound: 等待音频播报完毕，默认为 true等待
+            return: True或者False
+
+            save_audio_path: the path of the saved pronunciation file, here is the file path, not the directory!
+            text: the text to be converted into speech
+            language: language, Chinese: zh-cn, other languages: other-languages
+            wait_play_sound: Wait until the audio broadcast is finished; the default value is true
+            return: True or False
+        """
+        return "true" in self.SendData("metahumanSpeechClone", save_audio_path, text, language, wait_play_sound) 
+
+    def make_metahuman_video_clone(self, save_video_folder: str, text: str, language: str = "zh-cn", bg_file_path: str = "", sim_value: int = 0) -> bool:
+        """
+            使用克隆声音生成数字人短视频，此函数需要调用 initSpeechCloneService 初始化语音服务
+            Using cloned voice to generate short video of digital people, this function needs to call initSpeechCloneService to initialize voice service
+
+            save_video_folder: 保存的视频和音频文件目录
+            text: 要转换语音的文本
+            language: 语言，语言，中文：zh-cn，其他语言：other-languages
+            bg_file_path: 数字人背景 图片/视频 路径，扣除绿幕会自动获取绿幕的RGB值，null 则不替换背景。仅替换绿幕背景的数字人模型
+            sim_value: 相似度，默认为0。此处参数用作绿幕扣除微调RBG值。取值应当大于等于0
+            return: True或者False
+
+            save_video_folder: directory of saved video and audio files
+            text: the text to be converted into speech
+            language: language, language, Chinese: zh-cn, other languages: other-languages
+            bg_file_path: the background picture/video path of the digital person. If the green screen is subtracted, the RGB value of the green screen will be automatically obtained; if it is null,
+                          the background will not be replaced. Digital human model only replacing green screen background
+            sim_value: similarity, which defaults to 0. Here, the parameter is used as the RBG value of green screen subtraction fine tuning. Value should be greater than or equal to 0
+            return: True or False
+        """
+        return "true" in self.SendData("makeMetahumanVideoClone", save_video_folder, text, language, bg_file_path, sim_value) 
+
+
+    def make_metahuman_speech_file_clone(self, save_audio_path: str, text: str, language: str = "zh-cn") -> bool:
+        """
+            生成数字人说话文件(声音克隆)，生成MP3文件和 lab文件，提供给 metahumanSpeechByFile 和使用
+            Generate digital human speech file (voice clone), MP3 file and lab file, and provide them to metahumanSpeechByFile and use it
+
+            save_audio_path: 保存的发音文件路径。这里是路径，不是目录！
+            text: 要转换语音的文本
+            language: 语言，中文：zh-cn，其他语言：other-languages
+            return: True或者False
+
+            save_audio_path: the path of the saved pronunciation file. This is a path, not a directory!
+            text: the text to be converted into speech
+            language: language, Chinese: zh-cn, other languages: other-languages
+            return: True or False
+        """
+        return "true" in self.SendData("makeMetahumanSpeechFileClone", save_audio_path, text, language) 
+
+    def metahuman_speech_byFile(self, audio_path: str, wait_play_sound : bool = True) -> bool:
+        """
+            数字人说话文件缓存模式
+            Cache mode of digital human speech file
+
+            audio_path: 音频路径， 同名的 .lab文件需要和音频文件在同一目录下
+            wait_play_sound: 是否等待播报完毕，默认为true 等待
+            return: True或者False
+
+            audio_path: Audio path. lab file with the same name needs to be in the same directory as the audio file
+            wait_play_sound: whether to wait for the broadcast, the default value is true
+            return: True or False
+        """
+        return "true" in self.SendData("metahumanSpeechByFile", audio_path, wait_play_sound) 
+
+    def metahuman_speech_break(self) -> bool:
+        """
+            打断数字人说话，一般用作人机对话场景。metahumanSpeech和metahumanSpeechCache的 waitPlaySound 参数 设置为false时，此函数才有意义
+            Interrupting a digital person's speech is generally used as a human-computer conversation scene. 
+            This function only makes sense when the waitPlaySound parameter of metahumanSpeech and metahumanSpeechCache is set to false
+
+            return: 返回true打断正在说话， 返回false 则为未说话状态
+            return true to interrupt talking, return false to be silent
+        """
+        return "true" in self.SendData("metahumanSpeechBreak") 
+
+
+    def make_metahuman_speech_file(self, save_audio_path: str, text: str, language: str = "zh-cn", voice_name: str = "", quality: int = 0, speech_rate: int = 0, voice_style: str = "General") -> bool:
+        """
+            生成数字人说话文件，生成MP3文件和 lab文件，提供给 metahumanSpeechByFile 和使用
+            Generate digital human speech files, MP3 files and lab files, and provide them to metahumanSpeechByFile and use
+
+            save_audio_path: 保存的音频文件路径，扩展为.MP3格式。同名的 .lab文件需要和音频文件在同一目录下
+            text: 要转换语音的文本
+            language: 语言，参考开发文档 语言和发音人
+            voice_name: 发音人，参考开发文档 语言和发音人
+            quality: 音质，0低品质  1中品质  2高品质， 默认为0低品质
+            speech_rate: 语速，默认为0，取值范围 -100 至 200
+            voice_style: 语音风格，默认General常规风格，其他风格参考开发文档 语言和发音人
+            return: True或者False
+
+            save_audio_path: the path of the saved audio file, expanded to .mp3 format. The. lab file with the same name needs to be in the same directory as the audio file
+            text: the text to be converted into speech
+            language: language, reference development document language and speaker
+            voice_name: speaker, refer to the development document language and speaker
+            quality: sound quality, 0 low quality 1 medium quality 2 high quality, and 0 low quality by default
+            speech_rate: speech speed, which is 0 by default, and the value range is -100 to 200
+            voice_style: voice style, the default General style, and other styles refer to the development document language and speaker
+            return: True or False
+        """
+        return "true" in self.SendData("makeMetahumanSpeechFile", save_audio_path, text, language, voice_name, quality, speech_rate, voice_style) 
