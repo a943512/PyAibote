@@ -32,7 +32,7 @@ class CustomWebScript(WebBotMain):
     Implicit_Waiting_Throwing = False
 
 
-    # 6. 注意：此方法是脚本执行入口 
+    # 6. 注意：此方法是脚本执行入口
     # 6. Note: This method is a script execution portal.
     def script_main(self):
         result = self.goto("https://baidu.com")
