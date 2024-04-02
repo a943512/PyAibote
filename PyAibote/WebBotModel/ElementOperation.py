@@ -285,3 +285,20 @@ class ElementOperation:
         if path:
             self.SaveBase64Png(response,path)
         return response
+
+    def show_xpath(self) -> bool:
+        """
+            显示元素xpath路径，页面加载完毕再调用。
+            调用此函数后，可在页面移动鼠标会显示元素区域。移动并按下ctrl键，会在浏览器控制台打印相对xpath 和 绝对xpath路径
+            ifrmae 内的元素，需要先调用 switchFrame 切入进去，再调用showXpath函数
+
+            return: 总是True
+
+            Displays the xpath path of the element, and then calls it after the page is loaded.
+            After calling this function, you can move the mouse on the page to display the element area. 
+            Moving and pressing the ctrl key will print the relative xpath and absolute xpath paths on the browser console.
+            Elements in ifrmae need to be cut in by calling switchFrame first, and then calling the showXpath function.
+
+            return: always True
+        """
+        return "true" in self.SendData("showXpath")

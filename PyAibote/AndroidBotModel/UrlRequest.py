@@ -30,3 +30,23 @@ class UrlRequest:
         if response == "null":
             return None
         return response
+
+    def download_file(self, url: str, savePath: str) -> bool:
+        """
+            下载下载网络文件到手机
+            Download download network files to your mobile phone
+
+            url: 请求网络文件的地址
+            savePath: 文件保存到手机哪个位置(默认手机根目录)
+            return: Ture 或者 False
+
+            url: the address of the requested network file.
+            savePath: where the file is saved to the mobile phone (default mobile phone root directory)
+            return: Ture or False
+        """
+
+        if not savePath.startswith("/storage/emulated/0/"):
+            savePath = "/storage/emulated/0/" + savePath
+            
+        return "true" in self.SendData("downloadFile", url, savePath) 
+
