@@ -32,7 +32,7 @@ class CustomWebScript(WebBotMain):
     Implicit_Waiting_Throwing = False
 
 
-    # 6. 注意：此方法是脚本执行入口 
+    # 6. 注意：此方法是脚本执行入口
     # 6. Note: This method is a script execution portal.
     def script_main(self):
         result = self.goto("https://baidu.com")
@@ -51,7 +51,7 @@ class CustomWebScript(WebBotMain):
 
         # 6.1 结束显示等待,也是自定义结束局部等待此时如果设置的全局隐式等待后面的代码将按全局隐式等待的设置来执行
         # 6.1 Ending display waiting is also a custom ending local waiting. At this time, if the global implicit waiting is set, the code behind it will be executed according to the setting of global implicit waiting
-        self.EndShowWait()
+        self.EndShowWait() 
 
 
 

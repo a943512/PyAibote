@@ -1,0 +1,5 @@
+2024-04-04 21:34:17.649185 - DEBUG : <-<- Client connection at 127.0.0.1: 59912
+2024-04-04 21:34:17.652312 - DEBUG : ->>> b'4/17\ngotohttps://baidu.com'
+2024-04-04 21:34:18.505343 - DEBUG : <-<- 4/true
+2024-04-04 21:34:18.507346 - DEBUG : ---- Enter the display waiting mode waiting time：10s
+2024-04-04 21:34:18.508343 - DEBUG : ->>> b'4/14\ngotohttps://qq.com'

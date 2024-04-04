@@ -1,4 +1,4 @@
-2024-04-02 19:07:09.420681 - ERROR : send/read tcp data error: Traceback (most recent call last):
+2024-04-04 21:34:19.864139 - ERROR : send/read tcp data error: Traceback (most recent call last):
   File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
     response = self.StarLoadWait(data)
   File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 32, in StarLoadWait
