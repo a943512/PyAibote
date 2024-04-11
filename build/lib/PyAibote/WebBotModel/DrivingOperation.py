@@ -15,3 +15,20 @@ class DrivingOperation:
             return: bool
         """
         return "true" in self.SendData("closeDriver") 
+
+
+    def get_extend_param(self) -> str:
+        """
+            获取驱动程序命令行参数(不包含ip和port)
+            Get the driver command line parameters (excluding ip and port)
+
+            return: 成功返回参数，失败返回None
+            return: parameter is returned successfully, and None is returned on failure.
+        """
+
+        response = self.SendData("getExtendParam")
+        if "/" in response:
+            response = re.findall(r'/(.*)',response)[0]
+        if response == "null":
+            return None
+        return response

@@ -454,6 +454,46 @@ class EquipmentOperation:
             remote_path = "/storage/emulated/0/" + remote_path
         return "true" in self.SendData("deleteAndroidFile", remote_path) 
 
+    def coordinate_transform(self, coordinate: tuple, resolution_a: tuple, resolution_b: tuple) -> tuple:
+        """
+            根据屏幕分辨率缩放比例，进行不同分辨率坐标转换
+            According to the screen resolution scaling, coordinate conversion with different resolutions is carried out.
+
+            coordinate: 需要装换的坐标可以是x,y坐标，也可以是矩形坐标 x1, y1, x2, y2
+            resolution_a: 你抓取过坐标的设备标准分辨率
+            resolution_b：你需要转换的设备分辨率
+            retrun: 元祖
+
+            coordinate: the coordinates to be replaced can be x,y coordinates or rectangular coordinates x1, y1, x2, y2
+            resolution_a: The standard resolution of the device for which you have grabbed the coordinates
+            resolution_b: The device resolution you need to convert
+            retrun: Yuanzu
+        """
+        
+        def convert_coordinates(x, y, resolution_a, resolution_b):
+            W_A, H_A = resolution_a  
+            W_B, H_B = resolution_b 
+            
+
+            scale_x = W_B / W_A
+            scale_y = H_B / H_A
+            
+
+            x_b = x * scale_x
+            y_b = y * scale_y
+            
+            return (x_b, y_b)
+
+        if len(coordinate) == 2:
+            result = convert_coordinates(coordinate[0], coordinate[1], resolution_a, resolution_b)
+            return result
+
+        if len(coordinate) == 4:
+            result = convert_coordinates(coordinate[0], coordinate[1], resolution_a, resolution_b)
+            result2 = convert_coordinates(coordinate[2], coordinate[3], resolution_a, resolution_b)
+            return (result[0], result[1], result2[0], result2[1])
+        return ()
+
     def close_driver(self):
         """
             关闭连接

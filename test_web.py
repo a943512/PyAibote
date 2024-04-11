@@ -78,7 +78,7 @@ if __name__ == '__main__':
         "debugPort": 0,
         "userDataDir": "./UserData",
         "browserPath": None,
-        "argument": None,
+        "argument": None   # 无头模式(后台运行浏览器)启动参数: --headless   浏览器版本大于112 的无头模式:--headless=new，多个启动参数空格隔开，示例: "argument": "--headless=new"
     }
 
     CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params)
