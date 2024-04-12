@@ -29,7 +29,7 @@ class DrivingOperation:
         os.system('taskkill /f /t /im  "WindowsDriver.exe"')
         return True 
 
-    def activate_frame(self, secret_key) -> str:
+    def activate_frame(self, secret_key) -> bool:
         """
             激活Windows框架
             Activate Windows framework
@@ -40,7 +40,7 @@ class DrivingOperation:
             return: 成功返回True失败返回False
             return: Returns True successfully and False if it fails
         """
-
+        return "true" in self.SendData("activateFrame", secret_key) 
         response = self.SendData("activateFrame", secret_key) 
         if "/" in response:
             response = re.findall(r'/(.*)',response)[0]

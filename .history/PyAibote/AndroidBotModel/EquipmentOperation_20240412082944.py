@@ -94,7 +94,7 @@ class EquipmentOperation:
             response = re.findall(r'/(.*)',response)[0]
         return response
 
-    def activate_frame(self, secret_key) -> str:
+    def activate_frame(self, secret_key) -> bool:
         """
             激活安卓框架
             Activate Android framework
@@ -109,7 +109,6 @@ class EquipmentOperation:
         if "/" in response:
             response = re.findall(r'/(.*)',response)[0]
         return response
-
     def get_device_ip(self) -> str:
         """
             获取设备IP地址

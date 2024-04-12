@@ -116,6 +116,7 @@ class OcrCorrelation:
         text_point = ()
         for text_info in text_info_list:
             if text in text_info[-1][0]:
+
                 points, words_list = text_info
                 left, top, right, bottom = points
                 start_x = left[0]

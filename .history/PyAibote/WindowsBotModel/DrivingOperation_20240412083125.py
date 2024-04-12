@@ -29,7 +29,7 @@ class DrivingOperation:
         os.system('taskkill /f /t /im  "WindowsDriver.exe"')
         return True 
 
-    def activate_frame(self, secret_key) -> str:
+    def activate_frame(self, secret_key) -> bool:
         """
             激活Windows框架
             Activate Windows framework

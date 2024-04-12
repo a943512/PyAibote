@@ -23,6 +23,7 @@ class CustomWinScript(WinBotMain):
         result = self.find_windows()
         print(result)
 
+        self.activate_frame()
 
 
 
