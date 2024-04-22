@@ -23,8 +23,8 @@ class WinLoadWait:
         if response == b"":
             raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
         data_length, data = response.split(b"/", 1)
-        while int(data_length) > len(response):
-            response += self.request.recv(87654)
+        while int(data_length) > len(data):
+            data += self.request.recv(87654)
 
         response = response.decode('UTF-8')
         if len(response) > 10000:

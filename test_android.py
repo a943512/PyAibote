@@ -1,7 +1,7 @@
 # 1. 导入 AndroidBotMain 类
 # 1. Import AndroidBotMain class
 from PyAibote import AndroidBotMain
-
+import time
 
 
 # 2. 自定义一个脚本类，继承 AndroidBotMain
