@@ -27,8 +27,6 @@ class DrivingOperation:
         """
 
         response = self.SendData("getExtendParam")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response

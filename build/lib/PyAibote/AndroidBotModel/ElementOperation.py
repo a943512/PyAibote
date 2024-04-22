@@ -27,8 +27,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getElementRect", xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1|-1|-1|-1":
                 time.sleep(interval_time)
             else:
@@ -79,8 +77,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getElementDescription", xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "null":
                 time.sleep(interval_time)
             else:
@@ -106,8 +102,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getElementText", xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "null":
                 time.sleep(interval_time)
             else:

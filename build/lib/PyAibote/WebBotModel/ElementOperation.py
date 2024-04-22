@@ -60,8 +60,6 @@ class ElementOperation:
             return: HTML tagged text
         """
         response = self.SendData("getElementOuterHTML", xpath)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -78,8 +76,6 @@ class ElementOperation:
             return: HTML tagged text
         """
         response = self.SendData("getElementInnerHTML", xpath)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -96,8 +92,6 @@ class ElementOperation:
             return: element text string or None
         """
         response = self.SendData("getElementText", xpath)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if "null" in response:
             return None
         return response
@@ -116,8 +110,6 @@ class ElementOperation:
             return: string
         """
         response = self.SendData("getElementAttribute", xpath, attr_name)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -275,8 +267,6 @@ class ElementOperation:
             return: Element rectangular coordinates or None
         """
         response = self.SendData("getElementRect", xpath)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         Coordinate = json.loads(response)
@@ -305,8 +295,6 @@ class ElementOperation:
             response = self.SendData("takeScreenshot")
         else:
             response = self.SendData("takeScreenshot", xpath)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         if path:

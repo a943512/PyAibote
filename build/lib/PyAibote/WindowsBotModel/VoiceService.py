@@ -36,8 +36,6 @@ class VoiceService:
             return: converted audio text or None
         """
         response = self.SendData("audioFileToText", file_path, language)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -54,8 +52,6 @@ class VoiceService:
             return: converted audio text or None
         """
         response = self.SendData("microphoneToText", language)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -110,8 +106,6 @@ class VoiceService:
             return: converted audio text or None
         """
         response = self.SendData("microphoneTranslationText", source_language, target_language)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -132,8 +126,6 @@ class VoiceService:
             return: converted audio text or None
         """
         response = self.SendData("audioFileTranslationText", audio_path, source_language, target_language)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response

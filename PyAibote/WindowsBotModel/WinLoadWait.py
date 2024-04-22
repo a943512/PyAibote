@@ -26,7 +26,7 @@ class WinLoadWait:
         while int(data_length) > len(data):
             data += self.request.recv(87654)
 
-        response = response.decode('UTF-8')
+        response = data.decode('UTF-8')
         if len(response) > 10000:
             self.debug(rf"<-<- {response[:100]}......")
         else:

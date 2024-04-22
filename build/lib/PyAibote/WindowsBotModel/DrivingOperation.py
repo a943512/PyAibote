@@ -42,8 +42,6 @@ class DrivingOperation:
         """
 
         response = self.SendData("activateFrame", secret_key) 
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_extend_param(self) -> str:
@@ -56,8 +54,6 @@ class DrivingOperation:
         """
 
         response = self.SendData("getExtendParam")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response

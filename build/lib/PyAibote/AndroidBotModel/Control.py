@@ -122,8 +122,6 @@ class Control:
             return: control data submitted by the user.
         """
         response = self.SendData("getScriptParam")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         try:

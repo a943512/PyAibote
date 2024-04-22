@@ -74,8 +74,6 @@ class MapFindingOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("findImage", image_name, *region, similarity, algorithm_type, threshold, max_val, multi)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1.0|-1.0":
                 time.sleep(interval_time)
             else:
@@ -107,8 +105,6 @@ class MapFindingOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("findAnimation", interval_ti, *region)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1.0|-1.0":
                 time.sleep(interval_time)
             else:

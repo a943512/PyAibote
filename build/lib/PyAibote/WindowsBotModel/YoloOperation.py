@@ -38,8 +38,6 @@ class YoloOperation:
             return: Failed to return empty [], successfully returned the recognition result in the form of array. 0~3 Target Rectangular Position 4 Target Category 5 Confidence
         """
         response = self.SendData("yoloByHwnd", hwnd, mode)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return []
         return json.loads(response)
@@ -58,8 +56,6 @@ class YoloOperation:
             return:  Failed to return empty [], successfully returned the recognition result in the form of array. 0~3 Target Rectangular Position 4 Target Category 5 Confidence
         """
         response = self.SendData("yoloByFile", file_path, mode)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return []
         return json.loads(response)

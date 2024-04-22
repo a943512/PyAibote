@@ -30,8 +30,6 @@ class PopUpWindow:
             return: Return: warning box text string
         """
         response = self.SendData("getAlertText")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response

@@ -29,8 +29,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getElementName", hwnd, xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "null":
                 time.sleep(interval_time)
                 continue
@@ -58,8 +56,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getElementValue", hwnd, xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "null":
                 time.sleep(interval_time)
                 continue
@@ -94,8 +90,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getElementRect", hwnd, xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1|-1|-1|-1":
                 time.sleep(interval_time)
                 continue
@@ -125,8 +119,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getElementWindow", hwnd, xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "null":
                 time.sleep(interval_time)
                 continue
@@ -157,8 +149,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData('clickElement', hwnd, xpath, typ)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "false":
                 time.sleep(interval_time)
                 continue
@@ -187,8 +177,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData('invokeElement', hwnd, xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "false":
                 time.sleep(interval_time)
                 continue
@@ -217,8 +205,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData('setElementFocus', hwnd, xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "false":
                 time.sleep(interval_time)
                 continue
@@ -248,8 +234,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData('setElementValue', hwnd, xpath, value)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "false":
                 time.sleep(interval_time)
                 continue
@@ -282,8 +266,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData('setElementScroll', hwnd, xpath, horizontal, vertical)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "false":
                 time.sleep(interval_time)
                 continue
@@ -311,8 +293,6 @@ class ElementOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData('isSelected', hwnd, xpath)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "false":
                 time.sleep(interval_time)
                 continue

@@ -26,8 +26,6 @@ class WinHidCorrelation:
             return: Android ID of successfully activated hid mobile phone
         """
         response = self.SendData("getHidData")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "":
             return []
         return response.split("|")

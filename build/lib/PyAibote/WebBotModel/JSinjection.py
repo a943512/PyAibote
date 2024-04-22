@@ -23,8 +23,6 @@ class JSinjection:
                 result = execute_script('(()=>alert(123))()')
         """
         response = self.SendData("executeScript", script)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response

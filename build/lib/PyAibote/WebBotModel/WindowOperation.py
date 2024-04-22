@@ -17,9 +17,8 @@ class WindowOperation:
         """
 
         response = self.SendData("getWindowPos")
-        if "/" in response:
-            response = response.replace("\n","").replace("\t","")
-            response = re.findall(r'/(.*)',response)[0]
+        response = response.replace("\n","").replace("\t","")
+
         if response == "null":
             return None
         response = json.loads(response)

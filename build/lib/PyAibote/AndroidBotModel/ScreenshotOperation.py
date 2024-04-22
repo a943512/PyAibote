@@ -107,8 +107,6 @@ class ScreenshotOperation:
             return: picture address (in mobile phone) or None
         """
         response = self.SendData("getElementRect", xpath)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "-1|-1|-1|-1":
              return None
         start_x, start_y, end_x, end_y = response.split("|")

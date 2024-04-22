@@ -1,0 +1,49 @@
+2024-04-22 21:51:32.418340 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 41, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 28, in _Send
+    data = re.findall(r'/(.*)',response)[0]
+NameError: name 're' is not defined
+
+2024-04-22 21:51:45.082168 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 41, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 28, in _Send
+    data = re.findall(r'/(.*)',response)[0]
+  File "E:\InstallFile\Python\lib\re.py", line 241, in findall
+    return _compile(pattern, flags).findall(string)
+TypeError: cannot use a string pattern on a bytes-like object
+
+2024-04-22 21:52:21.052340 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 41, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 33, in _Send
+    response = data.decode('UTF-8')
+AttributeError: 'str' object has no attribute 'decode'
+
+2024-04-22 21:53:00.073953 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 41, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 28, in _Send
+    data = re.findall(r'/(.*)',response)[0]
+  File "E:\InstallFile\Python\lib\re.py", line 241, in findall
+    return _compile(pattern, flags).findall(string)
+TypeError: cannot use a string pattern on a bytes-like object
+
+2024-04-22 22:10:46.664892 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+

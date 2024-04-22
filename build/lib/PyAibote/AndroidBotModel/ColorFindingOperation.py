@@ -19,8 +19,6 @@ class ColorFindingOperation:
             return: color value string (for example: #008577) or None
         """
         response = self.SendData("getColor", point[0], point[1])
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -57,8 +55,6 @@ class ColorFindingOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("findColor", color, sub_colors_str, *region, similarity)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1.0|-1.0":
                 time.sleep(interval_time)
             else:

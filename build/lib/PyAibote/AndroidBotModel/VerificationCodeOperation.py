@@ -41,8 +41,6 @@ class VerificationCodeOperation:
             file_path = "/storage/emulated/0/" + file_path
 
         response = self.SendData("getCaptcha", file_path, username, password, soft_id, code_type, len_min)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return json.loads(response)
 
     def error_captcha(self, username: str, password: str, soft_id: str, pic_id: str) -> dict:
@@ -67,8 +65,6 @@ class VerificationCodeOperation:
                 err_str, (string) the return information described in Chinese
         """
         response = self.SendData("errorCaptcha", username, password, soft_id, pic_id)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return json.loads(response)
 
     def score_captcha(self, username: str, password: str) -> dict:
@@ -93,8 +89,6 @@ class VerificationCodeOperation:
                 tifen_lock, (numerical value) locks the score
         """
         response = self.SendData("scoreCaptcha", username, password)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return json.loads(response)
 
 

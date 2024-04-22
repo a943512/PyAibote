@@ -15,8 +15,6 @@ class ScreenProjectionOperation:
             return: group number
         """
         response = self.SendData("getGroup")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_identifier(self) -> str:
@@ -28,8 +26,6 @@ class ScreenProjectionOperation:
             return: number
         """
         response =  self.SendData("getIdentifier")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_title(self) -> str:
@@ -41,8 +37,6 @@ class ScreenProjectionOperation:
             return: title
         """
         response = self.SendData("getTitle")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
 

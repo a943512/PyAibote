@@ -48,8 +48,6 @@ class OcrOperation:
             max_val = 255
 
         response = self.SendData("ocrByFile", image_path, *region, algorithm_type, threshold, max_val)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null" or response == "":
             return []
         return literal_eval(response)
@@ -77,8 +75,6 @@ class OcrOperation:
             max_val = 255
 
         response = self.SendData("ocrByHwnd", hwnd, *region, algorithm_type, threshold, max_val, mode)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null" or response == "":
             return []
         return literal_eval(response)

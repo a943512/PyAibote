@@ -37,8 +37,6 @@ class YoloService:
             return: failed to return [], successfully returned the recognition result in the form of array, 0~3 target rectangle position 4 target category 5 confidence
         """
         response = self.SendData("yolo", scale)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return []
         return json.loads(response)

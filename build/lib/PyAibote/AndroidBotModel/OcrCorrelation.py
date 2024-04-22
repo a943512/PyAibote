@@ -42,8 +42,6 @@ class OcrCorrelation:
             threshold = 127
             max_val = 255
         response = self.SendData("ocr", *region, algorithm_type, threshold, max_val, scale)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null" or response == "":
             return []
         return eval(response)

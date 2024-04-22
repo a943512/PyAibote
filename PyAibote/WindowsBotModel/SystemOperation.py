@@ -29,8 +29,6 @@ class SystemOperation:
             return: Shear board content
         """
         response = self.SendData("getClipboardText")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return  response
 
     def start_process(self, cmd: str, show_window=True, is_wait=False) -> bool:

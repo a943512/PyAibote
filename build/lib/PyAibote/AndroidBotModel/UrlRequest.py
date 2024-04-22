@@ -25,8 +25,6 @@ class UrlRequest:
             return: {Promise.<string>} returns the requested data content
         """
         response = self.SendData("urlRequest", url, requestType, headers, postData)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response

@@ -64,8 +64,6 @@ class EquipmentOperation:
             return: Title information on the app
         """
         response = self.SendData("getTitle")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_group(self) -> str:
@@ -77,8 +75,6 @@ class EquipmentOperation:
             return: Projection group number on the app
         """
         response = self.SendData("getGroup")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_identifier(self) -> str:
@@ -90,8 +86,6 @@ class EquipmentOperation:
             return: Projection number on the app
         """
         response = self.SendData("getIdentifier")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def activate_frame(self, secret_key) -> str:
@@ -106,8 +100,6 @@ class EquipmentOperation:
             return: Returns True successfully and False if it fails
         """
         response = self.SendData("activateFrame", secret_key) 
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_device_ip(self) -> str:
@@ -129,8 +121,6 @@ class EquipmentOperation:
             return: AndroID device id string
         """
         response = self.SendData("getAndroidId")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_window_size(self) -> dict:
@@ -142,8 +132,6 @@ class EquipmentOperation:
             return: screen size, dictionary format
         """
         response = self.SendData("getWindowSize")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         width, height = response.split("|")
         return {"width": float(width), "height": float(height)}
 
@@ -161,8 +149,6 @@ class EquipmentOperation:
         if not image_path.startswith("/storage/emulated/0/"):
             image_path = "/storage/emulated/0/" + image_path
         response = self.SendData("getImageSize", image_path)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         width, height = response.split("|")
         return {"width": float(width), "height": float(height)}
 
@@ -283,8 +269,6 @@ class EquipmentOperation:
             return: the current UI name of the window
         """
         response = self.SendData("getActivity")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def get_package(self) -> str:
@@ -296,8 +280,6 @@ class EquipmentOperation:
             return: package name: "com.aibot.client"
         """
         response = self.SendData("getPackage")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def set_clipboard_text(self, text: str) -> bool:
@@ -322,8 +304,6 @@ class EquipmentOperation:
             return: Clipboard content
         """
         response = self.SendData("getClipboardText")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def start_activity(self, action: str, uri: str = '', package_name: str = '', class_name: str = '', typ: str = '') -> bool:
@@ -384,8 +364,6 @@ class EquipmentOperation:
             remote_path = "/storage/emulated/0/" + remote_path
 
         response = self.SendData("readAndroidFile", remote_path)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -421,8 +399,6 @@ class EquipmentOperation:
             android_directory = "/storage/emulated/0/" + android_directory
 
         response = self.SendData("getAndroidSubFiles", android_directory)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null" or response == "":
             return []
         return response.split("|")

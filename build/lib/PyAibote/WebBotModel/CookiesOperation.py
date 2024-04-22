@@ -19,9 +19,7 @@ class CookiesOperation:
             return: bool
         """
         response = self.SendData("getCookies", url)
-        if "/" in response:
-            response = response.replace("\n","").replace("\t","")
-            response = re.findall(r'/(.*)',response)[0]
+        response = response.replace("\n","").replace("\t","")
         if response == "null":
             return None
         return json.loads(response)
@@ -35,9 +33,7 @@ class CookiesOperation:
             return: cookies in list format
         """
         response = self.SendData("getAllCookies")
-        if "/" in response:
-            response = response.replace("\n","").replace("\t","")
-            response = re.findall(r'/(.*)',response)[0]
+        response = response.replace("\n","").replace("\t","")
         if response == "null":
             return None
         return json.loads(response)

@@ -60,8 +60,6 @@ class AndroidHidCorrelation:
             return: the angle at which the phone rotates.
         """
         response = self.SendData("getRotationAngle")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return int(response)
 
     def hid_press(self, coordinate: tuple) -> bool:

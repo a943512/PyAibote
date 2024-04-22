@@ -72,8 +72,6 @@ class PagesNavigation:
             return: str or None if not found Page
         """
         response = self.SendData("getCurPageId")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -87,8 +85,6 @@ class PagesNavigation:
             return: all page ID, or an empty list [] if it is not found
         """
         response = self.SendData("getAllPageId")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return []
         return response.split("|")
@@ -125,8 +121,6 @@ class PagesNavigation:
             return: URL of current page or None
         """
         response = self.SendData("getCurrentUrl")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "webdriver error":
             return None
         response = re.findall(r'(http.*)',response)[0]
@@ -141,8 +135,6 @@ class PagesNavigation:
 
         """
         response = self.SendData("getTitle")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "webdriver error":
             return None
         return response

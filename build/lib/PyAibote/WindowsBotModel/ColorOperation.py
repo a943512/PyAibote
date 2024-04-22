@@ -86,8 +86,6 @@ class ColorOperation:
             return: Color value string (#008577) or None
         """
         response = self.SendData("getColor", hwnd, x, y, mode)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -131,8 +129,6 @@ class ColorOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("findColor", hwnd, color, sub_colors_str, *region, similarity, mode)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1.0|-1.0":
                 time.sleep(interval_time)
             else:
@@ -280,8 +276,6 @@ class ColorOperation:
                 response = self.SendData("findImageByFile", hwnd_or_big_image_path, image_path, *region, similarity,
                                             algorithm_type,
                                             threshold, max_val, multi, mode)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response in ["-1.0|-1.0", "-1|-1"]:
                 time.sleep(interval_time)
                 continue
@@ -319,8 +313,6 @@ class ColorOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("findAnimation", hwnd, interval_ti, *region, mode)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1|-1":
                 time.sleep(interval_time)
                 continue

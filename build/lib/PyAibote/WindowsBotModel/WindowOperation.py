@@ -24,8 +24,6 @@ class WindowOperation:
         response = self.SendData("findWindow", class_name, window_name)
         if response == "null":
             return None
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def find_windows(self, class_name: str = None, window_name: str = None) -> str:
@@ -42,8 +40,6 @@ class WindowOperation:
             return: List of window handles
         """
         response = self.SendData("findWindows", class_name, window_name)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return []
         return response.split("|")
@@ -64,8 +60,6 @@ class WindowOperation:
             return: Child window handle or None
         """
         response = self.SendData("findSubWindow", hwnd, class_name, window_name)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -82,8 +76,6 @@ class WindowOperation:
             return: Parent window handle or None
         """
         response = self.SendData("findParentWindow", hwnd)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -97,8 +89,6 @@ class WindowOperation:
             return: Desktop window handle or None
         """
         response = self.SendData("findDesktopWindow")
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -115,8 +105,6 @@ class WindowOperation:
             return: Window name or None
         """
         response = self.SendData("getWindowName", hwnd)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -155,8 +143,6 @@ class WindowOperation:
         end_time = time.time() + wait_time
         while time.time() < end_time:
             response = self.SendData("getWindowPos", hwnd)
-            if "/" in response:
-                response = re.findall(r'/(.*)',response)[0]
             if response == "-1|-1|-1|-1":
                 time.sleep(interval_time)
                 continue

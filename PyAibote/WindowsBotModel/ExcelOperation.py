@@ -19,8 +19,6 @@ class ExcelOperation:
             return: excel object or None
         """
         response = self.SendData("openExcel", excel_path)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return json.loads(response)
@@ -39,8 +37,6 @@ class ExcelOperation:
             Return: the sheet object is returned successfully, and None is returned on failure
         """
         response = self.SendData("openExcelSheet", excel_object['book'], excel_object['path'], sheet_name)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         if response == "null":
             return None
         return response
@@ -107,8 +103,6 @@ class ExcelOperation:
             return: The number read
         """
         response = self.SendData("readExcelNum", excel_object, col, row)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return float(response)
 
     def read_excel_str(self, excel_object: object, row: int, col: int) -> str:
@@ -122,8 +116,6 @@ class ExcelOperation:
             return: Read character
         """
         response = self.SendData("readExcelStr", excel_object, row, col)
-        if "/" in response:
-            response = re.findall(r'/(.*)',response)[0]
         return response
 
     def remove_excel_row(self, excel_object: object, row_first: int, row_last: int) -> bool:
