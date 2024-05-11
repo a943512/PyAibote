@@ -57,3 +57,17 @@ class DrivingOperation:
         if response == "null":
             return None
         return response
+
+    def get_windows_id(self) -> str:
+        """
+            获取Windows 唯一ID用于区分机器
+            Get Windows unique ID to distinguish machines.
+
+            return: 成功返回参数，失败返回None
+            return: Parameter is returned successfully, and None is returned on failure.
+        """
+
+        response = self.SendData("getWindowsId")
+        if response == "null":
+            return None
+        return response

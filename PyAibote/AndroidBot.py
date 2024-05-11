@@ -59,10 +59,7 @@ class AndroidBotMain(
 
 
     @classmethod
-    def execute(self, IP: str, Port: int):
-        if Port < 0 or Port > 65535:
-            raise OSError("`listen_port` must be in 0-65535.")
-
+    def execute(self, IP: str, Port):
         ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
 
 

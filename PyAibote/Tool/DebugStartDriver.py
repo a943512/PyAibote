@@ -44,7 +44,7 @@ class Driver:
                 major_version = int(version_info.split('.')[0])
                 if major_version < 10:
                     DriverName = "WindowsDriver_win7.exe"
-                print("Debug Model Start WebDriver ...")
+                print("Debug Model Start WinDriver ...")
                 subprocess.Popen([DriverName, "127.0.0.1", str(Port)])
                 print("Start WinDriver Successful，Execute Script")
         except FileNotFoundError as e:

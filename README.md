@@ -20,7 +20,7 @@ Any behavior that users engage in by using PyAibote does not represent PyAibote'
 # 1. 导入 AndroidBotMain 类
 # 1. Import AndroidBotMain class
 from PyAibote import AndroidBotMain
-
+import time
 
 
 # 2. 自定义一个脚本类，继承 AndroidBotMain
@@ -70,6 +70,7 @@ if __name__ == '__main__':
 from PyAibote import WinBotMain
 import time,os
 
+
 # 2. 自定义一个脚本类，继承 WinBotMain
 # 2. Customize a script class and inherit WinBotMain.
 class CustomWinScript(WinBotMain):
@@ -102,8 +103,8 @@ if __name__ == '__main__':
     # 3. IP: 0.0.0, listening to port 9999.
     # 3.1. 在远端部署脚本时，请设置 Debug=False，客户端手动启动 WindowsDriver.exe 时需指定远端 IP 或端口号
     # 3.1. When deploying the script remotely, please set Debug=False, and the client needs to specify the remote IP or port number when manually starting the WindowsDriver.exe.
-    # 3.2. 命令行启动示例：WindowsDriver.exe "192.168.1.88" 9999
-    # 3.2. Command line startup example: WindowsDriver.exe "192.168.1.88" 9999
+    # 3.2. 命令行启动示例："127.0.0.1" 9999 {'Name':'PyAibote'}
+    # 3.2. Command line startup example: "127.0.0.1" 9999 {'Name':'PyAibote'}
     CustomWinScript.execute("0.0.0.0", 9999, Debug=True)
 ```
 
@@ -116,6 +117,7 @@ if __name__ == '__main__':
 # 1. 导入 AndoridBotMain 类
 # 1. Import the AndoridBotMain class
 from PyAibote import WebBotMain
+import time
 
 
 # 2. 自定义一个脚本类，继承 WebBotMain
@@ -150,9 +152,13 @@ class CustomWebScript(WebBotMain):
     # 6. 注意：此方法是脚本执行入口
     # 6. Note: This method is a script execution portal.
     def script_main(self):
+    # 使用示例 [Demo]
+
         result = self.goto("https://baidu.com")
         print(result)
-
+        result = self.get_extend_param()
+        result = eval(result)
+        print(type(result))
         # 6.1. 显示等待和隐式等待意思一样, 显示等待可以让你在某个局部代码中自定义设置等待时长
         # 6.1. Displaying waiting means the same as implicit waiting. Displaying waiting allows you to customize the waiting time in a local code.
         # StartShowWait函数后的代码按照等待10秒，每个0.5秒重复加载，False找不到不抛出异常，此时你如果设置的全局隐式等待将不生效直到结束显示等待
@@ -188,13 +194,23 @@ if __name__ == '__main__':
 
     # 7.3. 如本地部署脚本，需要传递 WebDriver 启动参数时，参考下面方式，如不需传递启动参数，则忽略：
     # 7.3. For local deployment scripts, when the WebDriver startup parameters need to be passed, please refer to the following methods. If the startup parameters don't need to be passed, ignore them:
+    
+    # 7.4 终端命令行启动驱动： WebDriver.exe  "{\"serverIp\":\"127.0.0.1\", \"serverPort\":9999, \"browserName\":\"chrome\", \"debugPort\":0, \"userDataDir\":\"./UserData\", \"browserPath\":\"null\", \"argument\":\"null\", \"extendParam\":\"{'Name':'PyAibote'}\"}"
+    # 7.4 Terminal command line start driver:  WebDriver.exe  "{\"serverIp\":\"127.0.0.1\", \"serverPort\":9999, \"browserName\":\"chrome\", \"debugPort\":0, \"userDataDir\":\"./UserData\", \"browserPath\":\"null\", \"argument\":\"null\", \"extendParam\":\"{'Name':'PyAibote'}\"}"
     driver_params = {
         "browserName": "chrome",
         "debugPort": 0,
         "userDataDir": "./UserData",
         "browserPath": None,
-        "argument": None   # 无头模式(后台运行浏览器)启动参数: --headless   浏览器版本大于112 的无头模式:--headless=new，多个启动参数空格隔开，示例: "argument": "--headless=new"
+        "argument": None,   # 无头模式(后台运行浏览器)启动参数: --headless   浏览器版本大于112 的无头模式:--headless=new，多个启动参数空格隔开，示例: "argument": "--headless=new"
+        "extendParam":"{'Name':'PyAibote'}"  
     }
+    # browserName 浏览器名称，默认 chrome 浏览器。edge和chrome会自动寻找浏览器路径，其他浏览器需要指定browserPath。
+    # debugPort 调试端口。默认 0 随机端口。指定端口则接管已打开的浏览器。启动浏览器指定的参数 --remote-debugging-port=19222 --user-data-dir=C:\\Users\\电脑用户名\\AppData\\Local\\Google\\Chrome\\User Data
+    # userDataDir 用户数据目录。多进程同时操作多个浏览器数据目录不能相同。部分操作系统edge浏览器必须指定用户数据目录。第一次指定数据目录路径会进入浏览器欢迎界面，第二次恢复正常操作
+    # browserPath 浏览器路径
+    # argument 浏览器启动参数。例如：设置代理：--proxy-server=127.0.0.1:8080  无头模式: --headless   浏览器版本>112 的无头模式:--headless=new，多个启动参数空格隔开
+    # extendParam 扩展参数，一般用作脚本远程部署场景，WebDriver.exe驱动程序传递参数给脚本服务端。使用 await webBot.getExtendParam(); 函数获取
 
     CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params)
 ```

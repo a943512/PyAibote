@@ -24,16 +24,17 @@ class WindowOperation:
         response = json.loads(response)
         return response
 
-    def set_window_pos(self, status, left: float = 0, top: float = 0, width: float = 0, height: float = 0) -> bool:
+    def set_window_pos(self, status: str = "normal", left: float = 0, top: float = 0, width: float = 0, height: float = 0) -> bool:
         """
             设置窗口位置和窗口大小窗口状态
             Set window position and window size window state
 
+            status: 正常:"normal"  最小化:"minimized"  最大化:"maximized"  全屏:"fullscreen"
             left:   浏览器相对于与Windows窗口左上角X坐标点     可选参数，浏览器窗口位置，此参数仅 status 值为 "normal" 时有效
             top:    浏览器相对于与Windows窗口左上角Y坐标点     可选参数，浏览器窗口位置，此参数仅 status 值为 "normal" 时有效
             width:  浏览器本身宽度                           可选参数，浏览器窗口位置，此参数仅 status 值为 "normal" 时有效
             height: 浏览器本身高度                           可选参数，浏览器窗口位置，此参数仅 windowState 值为 "normal" 时有效
-            status: 正常:"normal"  最小化:"minimized"  最大化:"maximized"  全屏:"fullscreen"
+            
             return: 布尔值
 
             left: an optional parameter, browser window position, relative to the X coordinate point in the upper left corner of the Windows window. This parameter is only valid when the status value is "normal"

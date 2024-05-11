@@ -12,9 +12,19 @@ class ThreadingTCPServer(socketserver.BaseRequestHandler):
     
     @classmethod
     def StartThreadingTCPServer(self, cls, IP, Port) -> None:
-        server = socketserver.ThreadingTCPServer((IP,Port),cls)   #创建socket链接
-        print(f"Server Stared on {IP}: {Port}")
-        server.serve_forever()
+        if type(Port)==int:
+            server = socketserver.ThreadingTCPServer((IP,Port),cls)   #创建socket链接
+            print(f"Server Stared on {IP}: {Port}")
+            server.serve_forever()
+            
+        if type(Port)==list:
+            for Pr in Port:
+                server = socketserver.ThreadingTCPServer((IP,Pr),cls)   #创建socket链接
+                print(f"Server Stared on {IP}: {Pr}")
+                # 创建一个线程来启动每个服务器
+                thread = threading.Thread(target=server.serve_forever)
+                # 启动线程
+                thread.start()
 
 
 

@@ -30,3 +30,19 @@ class DrivingOperation:
         if response == "null":
             return None
         return response
+
+
+    def activate_frame(self, secret_key) -> str:
+        """
+            激活Web框架
+            Activate Web framework
+
+            secret_key：激活框架的秘钥
+            secret_key：Key to activate the frame
+
+            return: 成功返回True失败返回False
+            return: Returns True successfully and False if it fails
+        """
+
+        response = self.SendData("activateFrame", secret_key) 
+        return response

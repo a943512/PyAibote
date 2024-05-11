@@ -7,13 +7,14 @@ class DigitalHumanOperation:
         Digital human
     """
 
-    def init_metahuman(self, metahuman_mde_path: str, metahuman_scale_value: int, is_update_metahuman: bool = False) -> bool:
+    def init_metahuman(self, metahuman_mde_path: str, metahuman_scale_width: int, metahuman_scale_height: int, is_update_metahuman: bool = False) -> bool:
         """
             初始化数字人，第一次初始化需要一些时间
             Initializing digital people, it takes some time to initialize for the first time.
 
             metahuman_mde_path: 数字人模型路径
-            metahuman_scale_value: 数字人缩放倍数，1为原始大小。为0.5时放大一倍，2则缩小一半
+            metahuman_scale_width: 数字人宽度缩放倍数，1为原始大小。为2时放大一倍，0.5则缩小一半
+            metahuman_scale_height: 数字人高度缩放倍数，1为原始大小。为2时放大一倍，0.5则缩小一半
             is_update_metahuman: 是否强制更新，默认fasle。为true时强制更新会拖慢初始化速度
             return: True或者False
 
@@ -22,7 +23,7 @@ class DigitalHumanOperation:
             is_update_metahuman: Whether to force update, fasle by default. When true, forcing the update will slow down the initialization speed
             return: True or False
         """
-        return "true" in self.SendData("initMetahuman", metahuman_mde_path, metahuman_scale_value,is_update_metahuman) 
+        return "true" in self.SendData("initMetahuman", metahuman_mde_path, metahuman_scale_width, metahuman_scale_height, is_update_metahuman) 
 
     def metahuman_speech(self, save_voice_folder: str, text: str, language: str, voice_name: str, quality: int = 0, wait_play_sound: bool = True, speech_rate: int = 0, voice_style: str = "General") -> bool:
         """

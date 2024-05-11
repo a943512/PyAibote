@@ -1,0 +1,81 @@
+2024-05-08 09:16:51.354402 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:22:51.703436 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:24:37.793862 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:25:16.582673 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:27:42.321951 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:28:55.826000 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:32:55.804580 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:33:14.167662 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
+2024-05-08 09:33:39.745137 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 39, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WebBotModel\WebLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionResetError: [WinError 10054] 远程主机强迫关闭了一个现有的连接。
+
