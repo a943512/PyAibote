@@ -273,7 +273,6 @@ class DigitalHumanOperation:
         """
         return "true" in self.SendData("metahumanSpeechBreak") 
 
-
     def make_metahuman_speech_file(self, save_audio_path: str, text: str, language: str = "zh-cn", voice_name: str = "", quality: int = 0, speech_rate: int = 0, voice_style: str = "General") -> bool:
         """
             生成数字人说话文件，生成MP3文件和 lab文件，提供给 metahumanSpeechByFile 和使用
@@ -298,3 +297,38 @@ class DigitalHumanOperation:
             return: True or False
         """
         return "true" in self.SendData("makeMetahumanSpeechFile", save_audio_path, text, language, voice_name, quality, speech_rate, voice_style) 
+
+    def switch_action(self, call_apiKey: str, action_video_or_image: str) -> bool:
+        """
+            切换新的人物形象动作，此函数无需训练数字人模型，直接切换各种人物形象动作和场景
+            Switch new character movements. This function can directly switch various character movements and scenes without training digital human models
+
+            call_apiKey: 调用函数的密钥
+            action_video_or_image: 闭嘴的人物视频或者图片
+            return: True或者False
+
+            call_apiKey: String, the key of the calling function
+            action_video_or_image: a string, shut-up character video or picture
+            return: True or False
+        """
+        return "true" in self.SendData("switchAction", call_apiKey, action_video_or_image) 
+
+    def train_human_model(self, call_apiKey: str, train_video_or_image: str, src_metahuman_model_path: str, save_human_model_folder: str) -> bool:
+        """
+            训练数字人，训练时长为10-30分钟
+            Train digital people for 10-30 minutes
+
+            call_apiKey: 调用函数的密钥
+            train_video_or_image: 闭嘴的人物视频或者图片 素材
+            src_metahuman_model_path: 预训练数字人模型路径
+            save_human_model_folder: 保存训练完成的模型目录
+            return: True或者False
+
+            call_apiKey: the key of the calling function
+            train_video_or_image: shut up the character video or picture material
+            src_metahuman_model_path: the path of pre-training digital human model
+            save_human_model_folder: save the model directory after training
+            return: True or False
+        """
+        return "true" in self.SendData("trainHumanModel", call_apiKey, train_video_or_image, src_metahuman_model_path, save_human_model_folder) 
+

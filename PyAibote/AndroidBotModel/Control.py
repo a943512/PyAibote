@@ -71,14 +71,14 @@ class Control:
         """
         return "true" in self.SendData("createCheckBox", _id, text, coordinate[0], coordinate[1], width, height, is_select) 
 
-    def create_list_text(self, _id: int, hint_text: str, list_text: list, coordinate: tuple = (400,500), width: int = 400, height: int = 400) -> bool:
+    def create_list_text(self, _id: int, hint_text: str, list_text: str, coordinate: tuple = (400,500), width: int = 400, height: int = 400) -> bool:
         """
             创建ListText控件
             Create ListText control
 
             _id:  控件ID，不可与其他控件重复
             hint_text:  提示文本
-            list_text:  列表文本
+            list_text:  下拉列表中的文本以逗号分割
             coordinate: x,y坐标 默认 (400,500)
             width:  控件宽度
             height:  控件高度
