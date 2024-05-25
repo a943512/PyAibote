@@ -37,7 +37,8 @@ class WebBotMain(
         CookiesOperation,
         ChatGenerative,
         DataBaseHandle,
-        Sqlite3DataBaseHandle
+        Sqlite3DataBaseHandle,
+        IframeOperation
     ):
 
     @abstractmethod

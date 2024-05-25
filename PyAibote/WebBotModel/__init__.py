@@ -9,5 +9,6 @@ from .WindowOperation import  WindowOperation
 from .DrivingOperation import  DrivingOperation
 from .JSinjection import  JSinjection
 from ..CommonUse.ChatGenerative import ChatGenerative
+from .IframeOperation import IframeOperation
 
-__all__ = ["CookiesOperation","WebLoadWait","PagesNavigation","ElementOperation","KeymouseOperation","PopUpWindow","WindowOperation","DrivingOperation","JSinjection","ChatGenerative"]
+__all__ = ["CookiesOperation","WebLoadWait","PagesNavigation","ElementOperation","KeymouseOperation","PopUpWindow","WindowOperation","DrivingOperation","JSinjection","ChatGenerative","IframeOperation"]
