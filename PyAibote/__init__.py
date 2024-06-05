@@ -1,6 +1,6 @@
 import sys
 
-if sys.version_info < (3, 7):
+if sys.version_info < (3, 5):
     raise RuntimeError("最低支持 Python3.7 版本，请升级！")
 
 from .WebBot import WebBotMain

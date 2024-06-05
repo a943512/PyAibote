@@ -20,7 +20,9 @@ class WinLoadWait:
 
         self.request.sendall(data)
         response = self.request.recv(87654)
+        
         if response == b"":
+            self.request.close()
             raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
         data_length, data = response.split(b"/", 1)
         while int(data_length) > len(data):
@@ -32,6 +34,7 @@ class WinLoadWait:
         else:
             self.debug(rf"<-<- {response}")
         if response == b"":
+            self.request.close()
             raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
         
         return response

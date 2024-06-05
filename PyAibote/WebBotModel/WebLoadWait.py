@@ -21,6 +21,7 @@ class WebLoadWait:
         self.request.sendall(data)
         response = self.request.recv(87654)
         if response == b"":
+            self.request.close()
             raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
         data_length, data = response.split(b"/", 1)
         while int(data_length) > len(data):
@@ -32,6 +33,7 @@ class WebLoadWait:
         else:
             self.debug(rf"<-<- {response}")
         if response == b"":
+            self.request.close()
             raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
         return response
 
@@ -52,6 +54,7 @@ class WebLoadWait:
                     time.sleep(self.Implicit_Waiting_Frequency)
             if self.Implicit_Waiting_Throwing:
                 if 'false' in response or 'webdriver error' in response:
+                    self.request.close()
                     raise "Unable to find the specified element"
         return response
 

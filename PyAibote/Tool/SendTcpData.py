@@ -25,5 +25,6 @@ class SendClientData:
             response = self.StarLoadWait(data)
             return response
         except Exception as e:
+            self.request.close()
             self.error("send/read tcp data error: " + str(traceback.format_exc()))
             raise e

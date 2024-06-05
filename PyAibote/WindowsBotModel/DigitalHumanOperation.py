@@ -332,3 +332,21 @@ class DigitalHumanOperation:
         """
         return "true" in self.SendData("trainHumanModel", call_apiKey, train_video_or_image, src_metahuman_model_path, save_human_model_folder) 
 
+    def make_metahuman_video_by_file(self, audio_path: str, bg_file_path: str, sim_value: str = 0) -> bool:
+        """
+            通过音频文件生成数字人短视频， 此函数依赖 initMetahuman 函数运行，否则程序会崩溃
+            Switch new character movements. This function can directly switch various character movements and scenes without training digital human models
+
+            audio_path: 字符串型，音频路径， 同名的 .lab文件需要和音频文件在同一目录下
+            bg_file_path: 字符串型，数字人背景 图片/视频 路径，扣除绿幕会自动获取绿幕的RGB值，null 则不替换背景。仅替换绿幕背景的数字人模型
+            sim_value: 整型，相似度，默认为0。此处参数用作绿幕扣除微调RBG值。取值应当大于等于0
+            return: True or False
+
+            audio_path: String type, audio path, and. lab file with the same name need to be in the same directory as the audio file
+            bg_file_path: String type, background picture/video path of digital person. If the green screen is subtracted, the RGB value of the green screen will be automatically obtained,
+                           and null will not replace the background. Digital human model only replacing green screen background
+            sim_value: Integer, similarity, default is 0. Here, the parameter is used as the RBG value of green screen subtraction fine tuning
+                       Value should be greater than or equal to 0
+            return: True or False
+        """
+        return "true" in self.SendData("makeMetahumanVideoByFile", audio_path, bg_file_path, sim_value) 

@@ -33,6 +33,7 @@ class FileTransfer:
         self.request.sendall(data)
         response = self.request.recv(65535)
         if response == b"":
+            self.request.close()
             raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} 客户端断开链接")
         data_length, data = response.split(b"/", 1)
         while int(data_length) > len(data):
