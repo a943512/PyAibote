@@ -350,3 +350,14 @@ class DigitalHumanOperation:
             return: True or False
         """
         return "true" in self.SendData("makeMetahumanVideoByFile", audio_path, bg_file_path, sim_value) 
+
+    def get_switch_action_state(self) -> bool:
+        """
+            获取切换人物形象动作状态
+            Obtain that action state of switching the character image
+   
+            return: True或者False
+
+            return: True or False
+        """
+        return "true" in self.SendData("getSwitchActionState") 
