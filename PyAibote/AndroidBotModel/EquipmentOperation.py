@@ -480,3 +480,15 @@ class EquipmentOperation:
         """
         self.SendData("closeDriver")
 
+    def set_android_timeout(self, timeout: float = 60):
+        """
+            设置安卓客户端接收超时，默认为永久等待
+            Set the receiving timeout of Android client, and the default is permanent waiting
+
+            timeout: 超时时间，单位毫秒
+            return: 总是True
+
+            timeout: timeout in milliseconds
+            return: always True
+        """
+        self.SendData("setAndroidTimeout", timeout)

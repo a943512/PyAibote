@@ -71,6 +71,29 @@ class Control:
         """
         return "true" in self.SendData("createCheckBox", _id, text, coordinate[0], coordinate[1], width, height, is_select) 
 
+    def create_switch_button(self, _id: int, text: str, coordinate: tuple = (400,500), width: int = 400, height: int = 60,is_select: bool = False) -> bool:
+        """
+            创建SwitchButton控件
+            Create a SwitchButton control
+
+            _id:  控件ID，不可与其他控件重复
+            text:  控件文本
+            coordinate:  x,y坐标 默认 (400,500)
+            width:  控件宽度，默认 400
+            height:  控件高度，默认 60
+            is_select:  是否开/关 默认 关
+            return: True或者False
+
+            _id: control id, which cannot be duplicated with other controls
+            text: control text
+            coordinate: x,y coordinates default (400,500)
+            width: the width of the control, which is 400 by default
+            height: control height, default is 60
+            is_select: Whether to turn on/off the default off？
+            return: True or False
+        """
+        return "true" in self.SendData("createSwitchButton", _id, text, coordinate[0], coordinate[1], width, height, is_select) 
+
     def create_list_text(self, _id: int, hint_text: str, list_text: str, coordinate: tuple = (400,500), width: int = 400, height: int = 400) -> bool:
         """
             创建ListText控件

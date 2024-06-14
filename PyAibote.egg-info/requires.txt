@@ -1,5 +1,0 @@
-loguru
-psutil
-Pillow
-requests
-pymysql

@@ -25,18 +25,20 @@ class YoloService:
         """
         return "true" in self.SendData("initYolo", ip, model_path, classes_path) 
 
-    def yolo(self, scale: float = 1.0) -> list:
+    def yolo(self, region: tuple = (0,0,0,0), scale: float = 1.0) -> list:
         """
             yolo 目标检测
             Yolo target detection
 
             scale: 图片缩放率, 默认为 1.0 原大小。大于 1.0 放大，小于 1.0 缩小，不能为负数。
+            region: 识别区域，默认全屏
             return: 失败返回[]，成功返回数组形式的识别结果， 0~3目标矩形位置  4目标类别  5置信度
 
             scale: the image scaling rate, which defaults to 1.0 original size. Magnification greater than 1.0 and reduction less than 1.0 cannot be negative
+            region: Recognition area, default full screen
             return: failed to return [], successfully returned the recognition result in the form of array, 0~3 target rectangle position 4 target category 5 confidence
         """
-        response = self.SendData("yolo", scale)
+        response = self.SendData("yolo", *region, scale)
         if response == "null":
             return []
         return json.loads(response)
