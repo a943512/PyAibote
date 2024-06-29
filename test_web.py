@@ -3,6 +3,7 @@
 from PyAibote import WebBotMain
 import time
 
+
 # 2. 自定义一个脚本类，继承 WebBotMain
 # 2. Customize a script class and inherit WebBotMain
 class CustomWebScript(WebBotMain):
@@ -35,8 +36,7 @@ class CustomWebScript(WebBotMain):
     # 6. 注意：此方法是脚本执行入口
     # 6. Note: This method is a script execution portal.
     def script_main(self):
-    # 使用示例 [Demo]
-
+        # 使用示例 [Demo]
         result = self.goto("https://baidu.com")
         print(result)
         result = self.get_extend_param()

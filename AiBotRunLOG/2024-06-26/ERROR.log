@@ -1,0 +1,81 @@
+2024-06-26 18:51:33.866622 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 18:55:03.504315 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 18:55:29.229324 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 18:59:30.804673 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 19:04:17.332033 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 19:05:25.384949 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 19:10:43.952807 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 19:11:12.735085 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+
+2024-06-26 19:43:29.951530 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 23, in _Send
+    self.websocket.send(response)
+AttributeError: 'CustomWinScript' object has no attribute 'websocket'
+

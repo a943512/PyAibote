@@ -1,0 +1,18 @@
+2024-06-25 21:21:08.412764 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionAbortedError: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。
+
+2024-06-25 21:21:09.712873 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 43, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\WindowsBotModel\WinLoadWait.py", line 22, in _Send
+    response = self.request.recv(87654)
+ConnectionAbortedError: [WinError 10053] 你的主机中的软件中止了一个已建立的连接。
+

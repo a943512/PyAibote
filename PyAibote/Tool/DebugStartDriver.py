@@ -1,5 +1,5 @@
 import json
-import subprocess
+import subprocess,os
 import random
 import platform
 
@@ -27,7 +27,6 @@ class Driver:
         
         try:
             print("Debug Model Start WebDriver ...")
-            print(["WebDriver.exe", default_params])
             subprocess.Popen(["WebDriver.exe", default_params])
             print("Start WebDriver Successful，Execute Script")
         except FileNotFoundError as e:
@@ -45,7 +44,7 @@ class Driver:
                 if major_version < 10:
                     DriverName = "WindowsDriver_win7.exe"
                 print("Debug Model Start WinDriver ...")
-                subprocess.Popen([DriverName, "127.0.0.1", str(Port)])
+                os.popen(f"{DriverName} 127.0.0.1 {Port}")
                 print("Start WinDriver Successful，Execute Script")
         except FileNotFoundError as e:
             err_msg = "\nStart local WinDriver.exe fail Exception elimination step：\n1. Check WebDriver.exe Path；\n2. WebDriver.exe Add to system environment variable?"

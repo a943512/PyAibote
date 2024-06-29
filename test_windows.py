@@ -3,6 +3,7 @@
 from PyAibote import WinBotMain
 import time,os
 
+
 # 2. 自定义一个脚本类，继承 WinBotMain
 # 2. Customize a script class and inherit WinBotMain.
 class CustomWinScript(WinBotMain):
@@ -35,6 +36,6 @@ if __name__ == '__main__':
     # 3. IP: 0.0.0, listening to port 9999.
     # 3.1. 在远端部署脚本时，请设置 Debug=False，客户端手动启动 WindowsDriver.exe 时需指定远端 IP 或端口号
     # 3.1. When deploying the script remotely, please set Debug=False, and the client needs to specify the remote IP or port number when manually starting the WindowsDriver.exe.
-    # 3.2. 命令行启动示例： WindowsDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
-    # 3.2. Command line startup example: WindowsDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
+    # 3.2. 命令行启动示例："127.0.0.1" 9999 {'Name':'PyAibote'}
+    # 3.2. Command line startup example: "127.0.0.1" 9999 {'Name':'PyAibote'}
     CustomWinScript.execute("0.0.0.0", 9999, Debug=True)

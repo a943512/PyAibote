@@ -485,10 +485,10 @@ class EquipmentOperation:
             设置安卓客户端接收超时，默认为永久等待
             Set the receiving timeout of Android client, and the default is permanent waiting
 
-            timeout: 超时时间，单位毫秒
+            timeout: 超时时间，单位秒
             return: 总是True
 
             timeout: timeout in milliseconds
             return: always True
         """
-        self.SendData("setAndroidTimeout", timeout)
+        self.SendData("setAndroidTimeout", timeout*1000)

@@ -35,6 +35,6 @@ class CustomAndroidScript(AndroidBotMain):
 if __name__ == '__main__':
     # 3. 注意：此处监听的端口号，必须和手机端的脚本端口号一致
     # 3. Note: The port number monitored here must be consistent with the script port number of the mobile phone.
-    # 3.1 监听 8888 号端口, 如果你想启动多个端口号给一个列表比如： [8888,7777,6666,5555]
-    # 3.1 Listening to Port 8888, If you want to enable multiple port numbers to a list, for example: [8888,7777,6666,5555]
+    # 3.1 监听 8888 号端口
+    # 3.1 Listening to Port 8888
     CustomAndroidScript.execute("0.0.0.0", 8888)

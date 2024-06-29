@@ -11,13 +11,15 @@
 """
 
 
-import os
+import os,sys
 import time
 import subprocess
 from abc import ABC, abstractmethod
 import socketserver,socket
 from .Tool import  *
 from .WindowsBotModel import  *
+import threading
+
 
 
 class WinBotMain(
@@ -58,8 +60,10 @@ class WinBotMain(
         else:
             super().__init__(*args)
 
+
+            
     @classmethod
-    def _build(self, listen_port: int, Debug: bool = True) -> object:
+    def _build(self, listen_ip:str, listen_port: int, Debug: bool = True) -> object:
         """
             使用安卓hid模式时需要启动windows驱动
             Windows driver needs to be started when using Android hid mode.
@@ -77,11 +81,12 @@ class WinBotMain(
 
         if Debug:
             try:
-                subprocess.Popen(["WindowsDriver.exe", "127.0.0.1", str(listen_port)])
+                os.popen(f"WindowsDriver.exe {listen_ip} {listen_port}")
                 print("Debug Model Start WinDriver ...")
             except FileNotFoundError as e:
                 err_msg = "\nStart local WinDriver.exe fail Exception elimination step：\n1. Check WebDriver.exe Path；\n2. WebDriver.exe Add to system environment variable?"
                 self.error(f"{err_msg}: " + str(e))
+
         return WinBotMain(listen_port)
 
     # @abstractmethod
@@ -95,12 +100,16 @@ class WinBotMain(
 
     @classmethod
     def execute(self, IP: str, Port: int, Debug: bool = True):
-        if Port < 0 or Port > 65535:
-            raise OSError("`listen_port` must be in 0-65535.")
-        
-        if Debug:
-            Driver.WindowsDriverStart(IP, Port)
-        ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
+        try:
+            if Port < 0 or Port > 65535:
+                raise OSError("`listen_port` must be in 0-65535.")
+            
+            if Debug:
+                Driver.WindowsDriverStart(IP, Port)
+
+            ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
+        except KeyboardInterrupt as e:
+            sys.exit(self)
 
 
 
