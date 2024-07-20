@@ -1,0 +1,45 @@
+2024-07-10 19:17:02.390276 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 40, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 27, in _Send
+    raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
+ConnectionAbortedError: 192.168.31.20:37240 Client disconnects
+
+2024-07-10 20:06:59.238577 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 42, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 27, in _Send
+    raise ConnectionAbortedError(f"{self.client_address[0]}:{self.client_address[1]} Client disconnects")
+ConnectionAbortedError: 192.168.31.20:41810 Client disconnects
+
+2024-07-10 20:24:52.290102 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 42, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 23, in _Send
+    self.request.sendall(data)
+OSError: [WinError 10038] 在一个非套接字上尝试了一个操作。
+
+2024-07-10 20:25:08.982283 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 42, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 30, in _Send
+    data_length, data = response.split(b"/", 1)
+ValueError: not enough values to unpack (expected 2, got 1)
+
+2024-07-10 20:28:01.091853 - ERROR : send/read tcp data error: Traceback (most recent call last):
+  File "d:\Project\Coding\PyAibote\PyAibote\Tool\SendTcpData.py", line 25, in SendData
+    response = self.StarLoadWait(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 44, in StarLoadWait
+    response = self._Send(data)
+  File "d:\Project\Coding\PyAibote\PyAibote\AndroidBotModel\AndroidLoadWait.py", line 32, in _Send
+    data_length, data = response.split(b"/", 1)
+ValueError: not enough values to unpack (expected 2, got 1)
+

@@ -361,3 +361,40 @@ class DigitalHumanOperation:
             return: True or False
         """
         return "true" in self.SendData("getSwitchActionState") 
+
+    def make_clone_audio(self, clone_server_ip: str, refer_audio_path: str, refer_text: str, clone_text: str, save_audio_path: str) -> bool:
+        """
+            克隆声音，需要部署服务端
+            To clone sound, you need to deploy the server.
+
+            clone_server_ip: 克隆声音服务端IP
+            refer_audio_path: 参考音频路径，10-40秒，推荐25秒左右的参考音频
+            refer_text: 参考音频对应的文本
+            clone_text: 要克隆的文本
+            save_audio_path: 保存克隆声音的路径
+            return: True或者False
+
+            clone_server_ip: clone voice server IP
+            refer_audio_path: Reference audio path, 10-40 seconds, 25 seconds is recommended
+            refer_text: the text corresponding to the reference audio
+            clone_text: the text to be cloned
+            save_audio_path: the path to save the cloned sound
+            return: True or False
+        """
+        return "true" in self.SendData("makeCloneAudio", clone_server_ip, refer_audio_path, refer_text, clone_text, save_audio_path)
+
+
+    def make_clone_lab(self, lab_server_ip: str, audio_path: str) -> bool:
+        """
+            生成lab文件，需要部署服务端
+            To generate lab files, you need to deploy the server.
+
+            lab_server_ip: 保存的发音文件路径。这里是路径，不是目录！
+            audio_path: 要转换语音的文本
+            return: True或者False
+
+            lab_server_ip: saved pronunciation file path. This is a path, not a directory
+            audio_path: the text to be converted into speech
+            return: True or False
+        """
+        return "true" in self.SendData("makeCloneLab", lab_server_ip, audio_path) 

@@ -36,12 +36,10 @@ class AndroidHidCorrelation:
             Win_driver: windowsDriver instance, which is the return value of calling build_win_driver
             return: True or False
         """
-        self.angle = self.get_rotation_angle()
+        
         self.android_id = self.get_android_id()
         self.win_driver = win_driver
         if not self.win_driver:
-            return False
-        if not self.win_driver.init_hid():
             return False
         if not self.__init_accessory():
             return False
@@ -74,7 +72,7 @@ class AndroidHidCorrelation:
             coordinate x, y: abscissa
             return: True or False
         """
-        
+        self.angle = self.get_rotation_angle()
         return  self.win_driver.hid_press(self.android_id, self.angle, coordinate[0], coordinate[1]) 
 
     def hid_release(self) -> bool:
@@ -85,7 +83,7 @@ class AndroidHidCorrelation:
             return: True或者False
             return: True or False.
         """
-
+        self.angle = self.get_rotation_angle()
         return self.win_driver.hid_release(self.android_id, self.angle) 
 
     def hid_move(self, coordinate: tuple, duration: float) -> bool:
@@ -101,7 +99,7 @@ class AndroidHidCorrelation:
             duration: moving duration, seconds (the script should be kept running during the moving time)
             return: True or False
         """
-
+        self.angle = self.get_rotation_angle()
         return self.win_driver.hid_move(self.android_id, self.angle, coordinate[0], coordinate[1], duration) 
 
     def hid_click(self, coordinate: tuple) -> bool:
@@ -115,7 +113,7 @@ class AndroidHidCorrelation:
             coordinate: x, y abscissa
             return: True or False
         """
-
+        self.angle = self.get_rotation_angle()
         return self.win_driver.hid_click(self.android_id, self.angle, coordinate[0], coordinate[1]) 
 
     def hid_double_click(self, coordinate: tuple) -> bool:
@@ -129,7 +127,7 @@ class AndroidHidCorrelation:
             coordinate: x,y abscissa
             return: True or False
         """
-
+        self.angle = self.get_rotation_angle()
         return self.win_driver.hid_double_click(self.android_id, self.angle, coordinate[0], coordinate[1]) 
 
     def hid_long_click(self, coordinate: tuple, duration: float) -> bool:
@@ -145,7 +143,7 @@ class AndroidHidCorrelation:
             duration: press duration, seconds (the script should be kept running during the press duration)
             return: True or False
         """
-
+        self.angle = self.get_rotation_angle()
         return  self.win_driver.hid_long_click(self.android_id, self.angle, coordinate[0], coordinate[1], duration) 
 
     def hid_swipe(self, Startcoordinate: tuple,Endcoordinate: tuple, duration: float) -> bool:
@@ -163,7 +161,7 @@ class AndroidHidCorrelation:
             duration: sliding duration, seconds (the script needs to be kept running during sliding time)
             return: True or False
         """
-
+        self.angle = self.get_rotation_angle()
         return self.win_driver.hid_swipe(self.android_id, self.angle, Startcoordinate[0], Startcoordinate[1], Endcoordinate[0], Endcoordinate[1], duration) 
 
     def hid_gesture(self, gesture_path: list, duration: float) -> bool:
@@ -179,7 +177,7 @@ class AndroidHidCorrelation:
             duration: the duration of gesture execution, in seconds (the script should be kept running during the execution time)
             return: True or False
         """
-
+        self.angle = self.get_rotation_angle()
         return self.win_driver.hid_gesture(self.android_id, self.angle, gesture_path, duration) 
 
     def hid_back(self) -> bool:
