@@ -31,6 +31,23 @@ class CustomAndroidScript(AndroidBotMain):
 
 
 
+        # 2.4. 主函数死循环时手机app连接断开异常捕获跳出死循环demo示例代码
+        # while True:
+        #     try:
+        #         # 死循环中必须加入aibote函数代码
+        #         self.get_installed_packages()
+        #         print("我是个死循环")       
+        #         time.sleep(2)
+
+        #     # 服务端捕获客户端断开异常跳出线程循环结束连接
+        #     except OSError as e:
+        #         break
+            
+        #     # 捕获其他非连接断开异常
+        #     except Exception as e:
+        #         print(e)
+
+
 
 if __name__ == '__main__':
     # 3. 注意：此处监听的端口号，必须和手机端的脚本端口号一致

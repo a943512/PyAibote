@@ -23,7 +23,8 @@ class Driver:
         }
         if Driver_Params:
             default_params.update(Driver_Params)
-        default_params = json.dumps(default_params)
+        default_params = json.dumps(default_params, ensure_ascii=False)
+
         
         try:
             print("Debug Model Start WebDriver ...")

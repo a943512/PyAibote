@@ -298,20 +298,21 @@ class DigitalHumanOperation:
         """
         return "true" in self.SendData("makeMetahumanSpeechFile", save_audio_path, text, language, voice_name, quality, speech_rate, voice_style) 
 
-    def switch_action(self, call_apiKey: str, action_video_or_image: str) -> bool:
+    def switch_action(self, call_apiKey: str, action_video_or_image: str, user_simValue: bool) -> bool:
         """
             切换新的人物形象动作，此函数无需训练数字人模型，直接切换各种人物形象动作和场景
             Switch new character movements. This function can directly switch various character movements and scenes without training digital human models
 
             call_apiKey: 调用函数的密钥
             action_video_or_image: 闭嘴的人物视频或者图片
+            user_simValue: 是否使用近似值加速(影响精度)，默认不加速
             return: True或者False
 
             call_apiKey: String, the key of the calling function
             action_video_or_image: a string, shut-up character video or picture
             return: True or False
         """
-        return "true" in self.SendData("switchAction", call_apiKey, action_video_or_image) 
+        return "true" in self.SendData("switchAction", call_apiKey, action_video_or_image, user_simValue) 
 
     def train_human_model(self, call_apiKey: str, train_video_or_image: str, src_metahuman_model_path: str, save_human_model_folder: str) -> bool:
         """
@@ -398,3 +399,43 @@ class DigitalHumanOperation:
             return: True or False
         """
         return "true" in self.SendData("makeCloneLab", lab_server_ip, audio_path) 
+
+    def clone_audio_to_text(self, lab_server_ip: str, audio_path: str) -> bool:
+        """
+            语音识别，需要部署服务端
+            Speech recognition requires the deployment of the server.
+
+            lab_server_ip: lab服务端IP
+            audio_path: 音频文件
+            return: 失败返回None, 成功返回识别到的内容
+
+            lab_server_ip: lab server IP
+            audio_path: audio file
+            return: None is returned in case of failure, and the recognized content is returned successfully
+        """
+        return "true" in self.SendData("cloneAudioToText", lab_server_ip, audio_path)
+    
+    def text_to_audio_and_lab_file(self, save_audio_path: str, text: str, language: str = "zh-cn", voice_name: str = "", quality: int = 0, speech_rate: int = 0, voice_style: str = "General") -> bool:
+        """
+            文本合成语音保存到本地音频文件
+            Text synthesis speech is saved to a local audio file
+
+            save_audio_path: 保存的音频文件路径，扩展为.MP3格式。同名的 .lab文件需要和音频文件在同一目录下
+            text: 要转换语音的文本
+            language: 语言，参考开发文档 语言和发音人
+            voice_name: 发音人，参考开发文档 语言和发音人
+            quality: 音质，0低品质  1中品质  2高品质， 默认为0低品质
+            speech_rate: 语速，默认为0，取值范围 -100 至 200
+            voice_style: 语音风格，默认General常规风格，其他风格参考开发文档 语言和发音人
+            return: True或者False
+
+            save_audio_path: the path of the saved audio file, expanded to .mp3 format. The. lab file with the same name needs to be in the same directory as the audio file
+            text: the text to be converted into speech
+            language: language, reference development document language and speaker
+            voice_name: speaker, refer to the development document language and speaker
+            quality: sound quality, 0 low quality 1 medium quality 2 high quality, and 0 low quality by default
+            speech_rate: speech speed, which is 0 by default, and the value range is -100 to 200
+            voice_style: voice style, the default General style, and other styles refer to the development document language and speaker
+            return: True or False
+        """
+        return "true" in self.SendData("textToAudioAndLabFile", save_audio_path, text, language, voice_name, quality, speech_rate, voice_style)

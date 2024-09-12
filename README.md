@@ -50,6 +50,23 @@ class CustomAndroidScript(AndroidBotMain):
 
 
 
+        # 2.4. 主函数死循环时手机app连接断开异常捕获跳出死循环demo示例代码
+        # while True:
+        #     try:
+        #         # 死循环中必须加入aibote函数代码
+        #         self.get_installed_packages()
+        #         print("我是个死循环")       
+        #         time.sleep(2)
+
+        #     # 服务端捕获客户端断开异常跳出线程循环结束连接
+        #     except OSError as e:
+        #         break
+            
+        #     # 捕获其他非连接断开异常
+        #     except Exception as e:
+        #         print(e)
+
+
 
 if __name__ == '__main__':
     # 3. 注意：此处监听的端口号，必须和手机端的脚本端口号一致
@@ -103,7 +120,7 @@ if __name__ == '__main__':
     # 3. IP: 0.0.0, listening to port 9999.
     # 3.1. 在远端部署脚本时，请设置 Debug=False，客户端手动启动 WindowsDriver.exe 时需指定远端 IP 或端口号
     # 3.1. When deploying the script remotely, please set Debug=False, and the client needs to specify the remote IP or port number when manually starting the WindowsDriver.exe.
-    # 3.2. 命令行启动示例："127.0.0.1" 9999 {'Name':'PyAibote'}
+    # 3.2. 命令行启动示例：WindowsDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
     # 3.2. Command line startup example: "127.0.0.1" 9999 {'Name':'PyAibote'}
     CustomWinScript.execute("0.0.0.0", 9999, Debug=True)
 ```
