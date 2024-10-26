@@ -1,5 +1,5 @@
-# 1. 导入 WinBotMain 类
-# 1. Import WinBotMain class
+# # 1. 导入 WinBotMain 类
+# # 1. Import WinBotMain class
 from PyAibote import WinBotMain
 import time,os
 

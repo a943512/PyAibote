@@ -8,7 +8,7 @@ import os
 from loguru import logger as lg
 
 class LoggerRecord(object):
-    def Custom_Write_logger(self, LogName, FileDirName, LogFileName, Log_Print, Info)  -> bool:
+    def Custom_Write_logger(self, LogName, FileDirName, LogFileName, Log_Print, LogType, Info)  -> bool:
         """
             自定义写Log文件
             Custom write Log file
@@ -18,6 +18,7 @@ class LoggerRecord(object):
             LogFileName: log文件名称
             Info: log的信息
             Log_Print: 是否通过终端打印log信息
+            LogType: log的类型 error, info
             return: 成功返回True or 失败返回False
 
             LogName: the type name distinguishes which kind of log
@@ -36,7 +37,11 @@ class LoggerRecord(object):
             fh.setLevel(logging.DEBUG)
             fh_formatter = logging.Formatter('%(asctime)s - %(filename)s[line:%(lineno)d] - %(levelname)s : %(message)s')
             if Log_Print:
-                lg.info(Info)
+                if LogType == "error":
+                    lg.error(Info)
+                elif LogType == "info":
+                    lg.info(Info)
+
             fh.setFormatter(fh_formatter)
             logger.addHandler(fh)
             logger.debug(Info)

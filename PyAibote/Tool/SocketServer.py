@@ -29,8 +29,12 @@ class ThreadingTCPServer(socketserver.BaseRequestHandler):
                 thread.start()
 
 
-
-
+    def stop_server(self):
+        try:
+            self.server.shutdown()
+            self.server.server_close()
+        except Exception as e:
+            print(f"Server Close")
 
 
 

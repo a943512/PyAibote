@@ -363,26 +363,28 @@ class DigitalHumanOperation:
         """
         return "true" in self.SendData("getSwitchActionState") 
 
-    def make_clone_audio(self, clone_server_ip: str, refer_audio_path: str, refer_text: str, clone_text: str, save_audio_path: str) -> bool:
+    def make_clone_audio(self, clone_server_ip: str, save_audio_path: str, refer_audio_path: str, refer_text: str, clone_text: str, speed_factor: float) -> bool:
         """
             克隆声音，需要部署服务端
             To clone sound, you need to deploy the server.
 
             clone_server_ip: 克隆声音服务端IP
+            save_audio_path: 保存克隆声音的路径
             refer_audio_path: 参考音频路径，10-40秒，推荐25秒左右的参考音频
             refer_text: 参考音频对应的文本
             clone_text: 要克隆的文本
-            save_audio_path: 保存克隆声音的路径
+            speed_factor: 语速（0.5为半速，1.0为正常速度，1.5为1.5倍速，以此类推）。默认为1.0 正常语速
             return: True或者False
 
             clone_server_ip: clone voice server IP
+            save_audio_path: the path to save the cloned sound
             refer_audio_path: Reference audio path, 10-40 seconds, 25 seconds is recommended
             refer_text: the text corresponding to the reference audio
             clone_text: the text to be cloned
-            save_audio_path: the path to save the cloned sound
+            speed_factor: speech speed (0.5 is half speed, 1.0 is normal speed, 1.5 is 1.5 times speed, and so on). The default is 1.0 normal speech speed
             return: True or False
         """
-        return "true" in self.SendData("makeCloneAudio", clone_server_ip, refer_audio_path, refer_text, clone_text, save_audio_path)
+        return "true" in self.SendData("makeCloneAudio", clone_server_ip ,save_audio_path, refer_audio_path, refer_text, clone_text, speed_factor)
 
 
     def make_clone_lab(self, lab_server_ip: str, audio_path: str) -> bool:
@@ -439,3 +441,35 @@ class DigitalHumanOperation:
             return: True or False
         """
         return "true" in self.SendData("textToAudioAndLabFile", save_audio_path, text, language, voice_name, quality, speech_rate, voice_style)
+    
+
+    def switch_clone_audio_model(self, clone_server_ip: str, gpt_weights_path: str, sovits_weights_path: str) -> bool:
+        """
+            切换声音克隆模型，需要部署服务端(切换到与原模型无关音色的模型，切记更换参考音频和文本)
+            To switch the voice cloning model, you need to deploy the server
+
+            clone_server_ip: 克隆声音服务端
+            gpt_weights_path: gpt 模型权重路径。指克隆服务所在的电脑/服务器 路径
+            sovits_weights_path: sovits 模型权重路径。指克隆服务所在的电脑/服务器 路径
+            return: 成功返回True，失败返回False
+
+            clone_server_ip: clone the sound server
+            gpt _ weights _ path: the weight path of GPT model. Refers to the computer/server path where the cloning service is located
+            sovits _ weights _ path: the weight path of Sovits model. Refers to the computer/server path where the cloning service is located
+            return: Returns True on success and False on failure
+        """
+        return "true" in self.SendData("switchCloneAudioModel", clone_server_ip, gpt_weights_path, sovits_weights_path)
+    
+
+    def restart_clone_audio_server(self, clone_server_ip: str) -> bool:
+        """
+            重启声音克隆服务，需要部署服务端
+            To restart the voice cloning service, the server needs to be deployed
+
+            clone_server_ip: 克隆声音服务端
+            return: 成功返回True，失败返回False
+
+            clone_server_ip: clone the sound server
+            return: Returns True on success and False on failure
+        """
+        return "true" in self.SendData("restartCloneAudioServer", clone_server_ip)

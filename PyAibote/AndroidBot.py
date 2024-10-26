@@ -13,7 +13,7 @@
 """
 
 
-import os
+import os,sys
 import time
 from multiprocessing import Process
 from abc import ABC, abstractmethod
@@ -43,6 +43,7 @@ class AndroidBotMain(
         MapFindingOperation,
         ScreenshotOperation,
         AndroidHidCorrelation,
+        VerificationCodeOperation,
         ChatGenerative,
         DataBaseHandle,
         Sqlite3DataBaseHandle
@@ -61,8 +62,6 @@ class AndroidBotMain(
     @classmethod
     def execute(self, IP: str, Port):
         ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
-
-
 
 
 
