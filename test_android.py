@@ -28,8 +28,7 @@ class CustomAndroidScript(AndroidBotMain):
 
 
 
-        # self.stop_server()
-        # self.Custom_Write_logger("找图功能",f"./MyLog/2030-05-03/",f"Run.log", True, f'正在查找图片')
+
 
 
         # 2.4. 主函数死循环时手机app连接断开异常捕获跳出死循环demo示例代码
