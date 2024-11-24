@@ -7,7 +7,7 @@ class DigitalHumanOperation:
         Digital human
     """
 
-    def init_metahuman(self, metahuman_mde_path: str, metahuman_scale_width: int, metahuman_scale_height: int, is_update_metahuman: bool = False) -> bool:
+    def init_metahuman(self, metahuman_mde_path: str, metahuman_scale_width: int, metahuman_scale_height: int, is_update_metahuman: bool = False, enable_random_image: bool = False ) -> bool:
         """
             初始化数字人，第一次初始化需要一些时间
             Initializing digital people, it takes some time to initialize for the first time.
@@ -16,14 +16,17 @@ class DigitalHumanOperation:
             metahuman_scale_width: 数字人宽度缩放倍数，1为原始大小。为2时放大一倍，0.5则缩小一半
             metahuman_scale_height: 数字人高度缩放倍数，1为原始大小。为2时放大一倍，0.5则缩小一半
             is_update_metahuman: 是否强制更新，默认fasle。为true时强制更新会拖慢初始化速度
+            enable_random_image: 是否启用随机对比度、亮度和形变 参数，默认Fasle
             return: True或者False
 
-            metahuman_mde_path: Digital human model path
-            metahuman_scale_value: Digital people zoom multiple, 1 is the original size. When it is 0.5, it is doubled, and when it is 2, it is halved
-            is_update_metahuman: Whether to force update, fasle by default. When true, forcing the update will slow down the initialization speed
+            metahuman_mde_path: the path of digital human model
+            metahuman_scale_width: the scaling factor of the digital person width, where 1 is the original size. When it is 2, it is doubled, and when it is 0.5, it is halved
+            metahuman_scale_height: the scaling factor of the digital person height, where 1 is the original size. When it is 2, it is doubled, and when it is 0.5, it is halved
+            is_update_metahuman: whether to force the update, the default is fasle. When true, forcing the update will slow down the initialization speed
+            enable_random_image: whether to enable random contrast, brightness and deformation parameters, the default is Fasle
             return: True or False
         """
-        return "true" in self.SendData("initMetahuman", metahuman_mde_path, metahuman_scale_width, metahuman_scale_height, is_update_metahuman) 
+        return "true" in self.SendData("initMetahuman", metahuman_mde_path, metahuman_scale_width, metahuman_scale_height, is_update_metahuman, enable_random_image) 
 
     def metahuman_speech(self, save_voice_folder: str, text: str, language: str, voice_name: str, quality: int = 0, wait_play_sound: bool = True, speech_rate: int = 0, voice_style: str = "General") -> bool:
         """
@@ -473,3 +476,19 @@ class DigitalHumanOperation:
             return: Returns True on success and False on failure
         """
         return "true" in self.SendData("restartCloneAudioServer", clone_server_ip)
+
+
+    def play_audio(self, audio_path: str, is_wait: bool = True) -> bool:
+        """
+            播报音频文件 不需要lab文件
+            Broadcast audio file
+
+            audio_path: 音频文件路径
+            is_wait: 是否等待，为True时，等待播放完毕
+            return: 成功返回True，失败返回False
+
+            audio_path: audio file path
+            is_wait: whether to wait, if True, wait for the playback to finish
+            return: Returns True on success and False on failure
+        """
+        return "true" in self.SendData("playAudio", audio_path, is_wait)
