@@ -492,3 +492,41 @@ class DigitalHumanOperation:
             return: Returns True on success and False on failure
         """
         return "true" in self.SendData("playAudio", audio_path, is_wait)
+    
+
+    def play_media(self, video_path: str, video_sacle: float = 1.0, isLoop_play: bool = False, enable_random_param: bool = False, is_wait: bool = True) -> bool:
+        """
+            播报视频频文件 (多个视频切换播放 视频和音频编码必须一致)
+            Broadcast video frequency files (video and audio coding must be consistent when playing multiple videos)
+
+            video_path: 视频文件路径
+            video_sacle: 视频缩放（0.5缩小一半，1.0为原始大小）
+            isLoop_play: 是否循环播放
+            enable_random_param: 是否启用随机去重参数
+            is_wait: 是否等待播报完毕。值为false时，不等待播放结束。未播报结束前再次调用此函数 会终止前面的播报内容
+            return: 成功返回True，失败返回False
+
+            video_path: video file path
+            video_sacle: video scaling (0.5 is reduced by half, 1.0 is the original size)
+            isLoop_play: whether to loop or not
+            enable_random_param: whether to enable the random deduplication parameter
+            is_wait: whether to wait for the broadcast to finish. When the value is false, do not wait for the end of playback. Calling this function again before the broadcast ends will terminate the previous broadcast content
+            return: Returns True on success and False on failure
+        """
+
+        return "true" in self.SendData("playMedia", video_path, video_sacle, isLoop_play, enable_random_param, is_wait)
+    
+
+    def extract_audio(self, video_path: str) -> bool:
+        """
+            复制视频中的音频为mp3文件
+            Copy the audio in the video as an mp3 file.
+
+            video_path: 视频文件路径 音频文件保存为mp3和视频在一个目录
+            return: 成功返回True，失败返回False
+
+            video_path: video file path. Audio files are saved as mp3 and videos are in one directory
+            return: Returns True on success and False on failure
+        """
+        
+        return "true" in self.SendData("extractAudio", video_path)

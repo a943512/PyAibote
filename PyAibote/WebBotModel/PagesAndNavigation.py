@@ -123,8 +123,11 @@ class PagesNavigation:
         response = self.SendData("getCurrentUrl")
         if response == "webdriver error":
             return None
-        response = re.findall(r'(http.*)',response)[0]
-        return response
+        response = re.findall(r'(http.*)',response)
+        if response:
+            return response[0]
+        else:
+            return None
 
     def get_current_title(self) -> str:
         """
