@@ -496,7 +496,7 @@ class DigitalHumanOperation:
 
     def play_media(self, video_path: str, video_sacle: float = 1.0, isLoop_play: bool = False, enable_random_param: bool = False, is_wait: bool = True) -> bool:
         """
-            播报视频频文件 (多个视频切换播放 视频和音频编码必须一致)
+            播报视频文件 (多个视频切换播放 视频和音频编码必须一致)
             Broadcast video frequency files (video and audio coding must be consistent when playing multiple videos)
 
             video_path: 视频文件路径
