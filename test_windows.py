@@ -30,7 +30,6 @@ class CustomWinScript(WinBotMain):
 
 
 
-
 if __name__ == '__main__':
     # 3. IP为:0.0.0.0, 监听 9999 号端口
     # 3. IP: 0.0.0, listening to port 9999.
@@ -38,4 +37,6 @@ if __name__ == '__main__':
     # 3.1. When deploying the script remotely, please set Debug=False, and the client needs to specify the remote IP or port number when manually starting the WindowsDriver.exe.
     # 3.2. 命令行启动示例：WindowsDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
     # 3.2. Command line startup example: "127.0.0.1" 9999 {'Name':'PyAibote'}
-    CustomWinScript.execute("0.0.0.0", 9999, Debug=True)
+    # 3.3 Qt 使用线程启动时传递的Qt对象用来和Qt UI窗口通信
+    # 3.3 Qt Use the Qt object passed when the Qt thread starts to communicate with the Qt UI window
+    CustomWinScript.execute("0.0.0.0", 9999, Debug=True, Qt = None)

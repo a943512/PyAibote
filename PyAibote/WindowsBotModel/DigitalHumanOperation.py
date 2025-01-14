@@ -530,3 +530,58 @@ class DigitalHumanOperation:
         """
         
         return "true" in self.SendData("extractAudio", video_path)
+
+
+    def set_media_volume_scale(self, volume_scale: float) -> bool:
+        """
+            调节 playMedia 音量大小(底层用的内存共享，支持多进程控制)
+            Adjust the volume of playMedia (memory sharing for the bottom layer, supporting multi-process control)
+
+            volume_scale: 浮点型，音量缩放（0.5调低一半，1.0为原始音量大小）。默认为原始大小
+            return: 总是返回True
+
+            volume_scale: floating-point, volume scaling (0.5 is reduced by half, 1.0 is the original volume). Default is the original size
+            return: always returns True
+        """
+        
+        return "true" in self.SendData("setMediaVolumeScale", volume_scale)
+
+
+    def metahuman_speech_by_file_ex(self, audio_path: str, enable_random_param: bool , wait_play_sound: bool = True) -> bool:
+        """
+            数字人说话文件缓存模式(Ex)，不能与 PlayAudioEx 同步执行
+            Digital human speech file cache mode (Ex) cannot be synchronized with PlayAudioEx
+
+            audio_path: 音频路径， 同名的 .lab文件需要和音频文件在同一目录下。若.lab文件不存在，则自动生成.lab文件。生成.lab文件产生的费用，请联系管理员
+            enable_random_param: 是否启用随机去重参数
+            wait_play_sound : 是否等待播报完毕，默认为True 等待。为False时 多次调用此函数会添加到队列按顺序播报
+            return: 成功返回True，失败返回False
+
+            audio_path: the audio path. The. lab file with the same name needs to be in the same directory as the audio file. If the. lab file does not exist, the. lab file is automatically generated. Please contact the administrator for the expenses incurred by generating the. lab file
+            enable_random_param: whether to enable the random deduplication parameter
+            wait_play_sound: whether to wait for the broadcast, the default value is True. When False, calling this function multiple times will be added to the queue to broadcast in sequence
+            return: Returns True on success and False on failure
+
+        """
+        
+        return "true" in self.SendData("metahumanSpeechByFileEx", audio_path, enable_random_param, wait_play_sound)
+    
+
+    def play_audio_ex(self, audio_path, enable_random_param, is_wait) -> bool:
+        """
+            播报音频文件(EX)，不能与 metahumanSpeechByFileEx 同步执行
+            Broadcast audio file (EX), which can't be executed synchronously with metahumanSpeechByFileEx
+
+            audio_path: 音频文件路径
+            enable_random_param: 是否启用随机去重参数
+            is_wait : 是否等待。为true时,等待播放完毕
+            return: 总是返回true，函数仅添加播放音频文件到队列不处理返回
+
+            audio_path: the audio path. The. lab file with the same name needs to be in the same directory as the audio file. If the. lab file does not exist, the. lab file is automatically generated. Please contact the administrator for the expenses incurred by generating the. lab file
+            enable_random_param: whether to enable the random deduplication parameter
+            wait_play_sound: whether to wait for the broadcast, the default value is True. When False, calling this function multiple times will be added to the queue to broadcast in sequence
+            return: Returns True on success and False on failure
+
+        """
+        
+        return "true" in self.SendData("playAudioEx", audio_path, enable_random_param, is_wait)

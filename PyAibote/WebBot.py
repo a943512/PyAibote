@@ -101,13 +101,26 @@ class WebBotMain(
         self.script_main()
 
     @classmethod
-    def execute(self, IP: str, Port: int, Debug: bool = True, Driver_Params: dict = None):
+    def execute(self, IP: str, Port: int, Debug: bool = True, Driver_Params: dict = None, Qt = None):
         try:
             if Port < 0 or Port > 65535:
                 raise OSError("`listen_port` must be in 0-65535.")
+
+            if Qt:
+                self.Qt = Qt
 
             if Debug:
                 Driver.WebDriverStart(Port, Driver_Params)
             ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
         except KeyboardInterrupt as e:
             sys.exit(self)
+
+
+    @classmethod
+    def StopSrver(self):
+        try:
+            self.server.shutdown()  # 停止接受新的连接
+            self.server.socket.close()  # 关闭服务器套接字
+        except Exception as e:
+            pass
+    

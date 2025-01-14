@@ -46,3 +46,18 @@ class DrivingOperation:
 
         response = self.SendData("activateFrame", secret_key) 
         return response
+    
+    
+    def set_download_dir(self, dir_name) -> str:
+        """
+            设置浏览器默认下载目录
+            Set the browser default download directory
+
+            dir_name：下载目录
+            dir_name: download directory
+
+            return: 成功返回True失败返回False
+            return: Returns True successfully and False if it fails
+        """
+
+        return "true" in self.SendData("setDownloadDir", dir_name)

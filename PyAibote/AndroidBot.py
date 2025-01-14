@@ -60,11 +60,20 @@ class AndroidBotMain(
 
 
     @classmethod
-    def execute(self, IP: str, Port):
+    def execute(self, IP: str, Port, Qt = None):
+        if Qt:
+            self.Qt = Qt
+
         ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
 
 
-
+    @classmethod
+    def StopSrver(self):
+        try:
+            self.server.shutdown()  # 停止接受新的连接
+            self.server.socket.close()  # 关闭服务器套接字
+        except Exception as e:
+            pass
 
 
 

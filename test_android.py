@@ -54,4 +54,6 @@ if __name__ == '__main__':
     # 3. Note: The port number monitored here must be consistent with the script port number of the mobile phone.
     # 3.1 监听 8888 号端口
     # 3.1 Listening to Port 8888
-    CustomAndroidScript.execute("0.0.0.0", 8888)
+    # 3.2 Qt 使用线程启动时传递的Qt对象用来和Qt UI窗口通信
+    # 3.2 Qt Use the Qt object passed when the Qt thread starts to communicate with the Qt UI window
+    CustomAndroidScript.execute("0.0.0.0", 8888, Qt = None)

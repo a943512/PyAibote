@@ -99,11 +99,14 @@ class WinBotMain(
         self.script_main()
 
     @classmethod
-    def execute(self, IP: str, Port: int, Debug: bool = True):
+    def execute(self, IP: str, Port: int, Debug: bool = True, Qt = None):
         try:
             if Port < 0 or Port > 65535:
                 raise OSError("`listen_port` must be in 0-65535.")
             
+            if Qt:
+                self.Qt = Qt
+
             if Debug:
                 Driver.WindowsDriverStart(IP, Port)
 
@@ -111,9 +114,13 @@ class WinBotMain(
         except KeyboardInterrupt as e:
             sys.exit(self)
 
-
-
-
+    @classmethod
+    def StopSrver(self):
+        try:
+            self.server.shutdown()  # 停止接受新的连接
+            self.server.socket.close()  # 关闭服务器套接字
+        except Exception as e:
+            pass
 
 
 

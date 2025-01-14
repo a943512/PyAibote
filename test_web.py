@@ -95,5 +95,6 @@ if __name__ == '__main__':
     # browserPath 浏览器路径
     # argument 浏览器启动参数。例如：设置代理：--proxy-server=127.0.0.1:8080  无头模式: --headless   浏览器版本>112 的无头模式:--headless=new，多个启动参数空格隔开
     # extendParam 扩展参数，一般用作脚本远程部署场景，WebDriver.exe驱动程序传递参数给脚本服务端。使用 await webBot.getExtendParam(); 函数获取
-
-    CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params)
+    # Qt 使用线程启动时传递的Qt对象用来和Qt UI窗口通信
+    # Qt Use the Qt object passed when the Qt thread starts to communicate with the Qt UI window
+    CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params, Qt = None)
