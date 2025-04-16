@@ -6,6 +6,7 @@ if sys.version_info < (3, 5):
 from .WebBot import WebBotMain
 from .WindowsBot import WinBotMain
 from .AndroidBot import AndroidBotMain
+from .DigitalHumanBot import HumanBotMain
 
 
-__all__ = ["WebBotMain", "WinBotMain","AndroidBotMain"]
+__all__ = ["WebBotMain", "WinBotMain","AndroidBotMain","HumanBotMain"]

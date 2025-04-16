@@ -275,7 +275,7 @@ class ElementOperation:
 
         T = Coordinate.get("top")
         B = Coordinate.get("bottom")
-        response = ((R-L)/2, (B-T)/2)
+        response = (L+(R-L)/2, T+(B-T)/2)
         return response
 
     def save_screenshot(self, xpath: str = None, path: str = 'PyAibote.png') -> str:

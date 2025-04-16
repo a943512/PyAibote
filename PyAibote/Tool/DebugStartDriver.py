@@ -51,3 +51,15 @@ class Driver:
             err_msg = "\nStart local WinDriver.exe fail Exception elimination step：\n1. Check WebDriver.exe Path；\n2. WebDriver.exe Add to system environment variable?"
             self.error(f"{err_msg}: " + str(e))
 
+    @classmethod
+    def DigtalHumanDriverStart(self, IP, Port) -> None:
+        try:
+            system_info = platform.system()
+            if system_info == "Windows":
+                DriverName = "AiDriver.exe"
+                print("Debug Model Start AiDriver ...")
+                os.popen(f"{DriverName} 127.0.0.1 {Port}")
+                print("Start AiDriver Successful，Execute Script")
+        except FileNotFoundError as e:
+            err_msg = "\nStart local WinDriver.exe fail Exception elimination step：\n1. Check WebDriver.exe Path；\n2. WebDriver.exe Add to system environment variable?"
+            self.error(f"{err_msg}: " + str(e))

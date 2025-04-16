@@ -73,7 +73,7 @@ if __name__ == '__main__':
     # 3. Note: The port number monitored here must be consistent with the script port number of the mobile phone.
     # 3.1 监听 8888 号端口
     # 3.1 Listening to Port 8888
-    CustomAndroidScript.execute("0.0.0.0", 8888)
+    CustomAndroidScript.execute("0.0.0.0", 8888, Qt=None)
 ```
 
 
@@ -122,7 +122,7 @@ if __name__ == '__main__':
     # 3.1. When deploying the script remotely, please set Debug=False, and the client needs to specify the remote IP or port number when manually starting the WindowsDriver.exe.
     # 3.2. 命令行启动示例：WindowsDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
     # 3.2. Command line startup example: "127.0.0.1" 9999 {'Name':'PyAibote'}
-    CustomWinScript.execute("0.0.0.0", 9999, Debug=True)
+    CustomWinScript.execute("0.0.0.0", 9999, Debug=True, Qt=None)
 ```
 
 
@@ -134,7 +134,7 @@ if __name__ == '__main__':
 # 1. 导入 AndoridBotMain 类
 # 1. Import the AndoridBotMain class
 from PyAibote import WebBotMain
-import time
+import time,os
 
 
 # 2. 自定义一个脚本类，继承 WebBotMain
@@ -214,10 +214,14 @@ if __name__ == '__main__':
     
     # 7.4 终端命令行启动驱动： WebDriver.exe  "{\"serverIp\":\"127.0.0.1\", \"serverPort\":9999, \"browserName\":\"chrome\", \"debugPort\":0, \"userDataDir\":\"./UserData\", \"browserPath\":\"null\", \"argument\":\"null\", \"extendParam\":\"{'Name':'PyAibote'}\"}"
     # 7.4 Terminal command line start driver:  WebDriver.exe  "{\"serverIp\":\"127.0.0.1\", \"serverPort\":9999, \"browserName\":\"chrome\", \"debugPort\":0, \"userDataDir\":\"./UserData\", \"browserPath\":\"null\", \"argument\":\"null\", \"extendParam\":\"{'Name':'PyAibote'}\"}"
+    UserDataPath = "C:/AppData"
+    if not os.path.exists(UserDataPath):
+        os.mkdir(UserDataPath)
+
     driver_params = {
         "browserName": "chrome",
         "debugPort": 0,
-        "userDataDir": "./UserData",
+        "userDataDir": "C:/AppData/PyAibote",
         "browserPath": None,
         "argument": None,   # 无头模式(后台运行浏览器)启动参数: --headless   浏览器版本大于112 的无头模式:--headless=new，多个启动参数空格隔开，示例: "argument": "--headless=new"
         "extendParam":"{'Name':'PyAibote'}"  
@@ -229,5 +233,61 @@ if __name__ == '__main__':
     # argument 浏览器启动参数。例如：设置代理：--proxy-server=127.0.0.1:8080  无头模式: --headless   浏览器版本>112 的无头模式:--headless=new，多个启动参数空格隔开
     # extendParam 扩展参数，一般用作脚本远程部署场景，WebDriver.exe驱动程序传递参数给脚本服务端。使用 await webBot.getExtendParam(); 函数获取
 
-    CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params)
+    CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params, Qt=None)
+```
+
+
+
+# Web系统RPA示例
+# Web system RPA example
+
+```
+# 1. 导入 HumanBotMain 类
+# 1. Import HumanBotMain class
+from PyAibote import HumanBotMain
+import time,os
+
+
+# 2. 自定义一个脚本类，继承 HumanBotMain
+# 2. Customize a script class and inherit HumanBotMain.
+class CustomWinScript(HumanBotMain):
+
+    # 2.1. 设置是否终端打印输出 DEBUG：输出， INFO：不输出, 默认打印输出
+    # 2.1. Set whether the terminal prints output DEBUG: output, INFO: no output, and print output by default.
+    Log_Level = "DEBUG" 
+
+    # 2.2. 终端打印信息是否存储LOG文件 True： 储存， False：不存储
+    # 2.2. Does the terminal print information store the LOG file? True: yes, False: no.
+    Log_Storage = True  
+
+
+    # 2.3. 注意：script_main 此方法是脚本执行入口必须存在此方法
+    # 2.3. Note: script_main This method must exist in the script execution portal.
+    def script_main(self):
+
+        # 初始化数字人
+        self.init_new_metahuman(r"D:\Project\Aibote\2024-4-11\NewHuman\model", 0.5, False, "")
+
+        # 切换数字人形象
+        self.new_metahuman_switch_action(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Img\666.mp4", 0.5, False)
+
+        # 添加数字人背景
+        self.new_metahuman_add_background(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Backgroun\1.mp4")
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    # 3. IP为:0.0.0.0, 监听 9999 号端口
+    # 3. IP: 0.0.0, listening to port 9999.
+    # 3.1. 在远端部署脚本时，请设置 Debug=False，客户端手动启动 WindowsDriver.exe 时需指定远端 IP 或端口号
+    # 3.1. When deploying the script remotely, please set Debug=False, and the client needs to specify the remote IP or port number when manually starting the WindowsDriver.exe.
+    # 3.2. 命令行启动示例：AiDriver.exe "127.0.0.1" 9999 
+    # 3.2. Command line startup example: AiDriver.exe "127.0.0.1" 9999 
+    # 3.3 Qt 使用线程启动时传递的Qt对象用来和Qt UI窗口通信
+    # 3.3 Qt Use the Qt object passed when the Qt thread starts to communicate with the Qt UI window
+    CustomWinScript.execute("0.0.0.0", 9999, Debug=True, Qt = None)
 ```
