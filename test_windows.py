@@ -27,7 +27,7 @@ class CustomWinScript(WinBotMain):
 
 
 
-
+        self.get_extend_param()
 
 
 

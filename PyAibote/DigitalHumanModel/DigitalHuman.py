@@ -25,7 +25,24 @@ class NewDigitalHumanOperation:
             return: Returns True on success, and returns an error message on failure
         """
         return "true" in self.SendData("initNewHuman", model_folder, scale, is_paly_media_audio, push_stream_url) 
-    
+
+    def new_get_face_data(self, server_ip: str, call_api_key: str, video_path: str) -> bool:
+        """
+            获取脸部数据
+            Get face data
+
+            server_ip: 服务端IP
+            call_api_key: 调用密钥
+            video_path: 人脸视频路径
+            return:  失败返回错误信息，成功返回true。并在videoPath同级目录下生成.pt 后缀的人脸数据文件
+
+            server_ip: server IP
+            call_api_key: call key
+            video_path: face video path
+            return: failure returns an error message, and success returns true. And generate a face data file with. pt suffix in the same level directory of videoPath
+        """
+        return "true" in self.SendData("getFaceData", server_ip, call_api_key, video_path) 
+
     def new_metahuman_switch_action(self, figure_video_path: str, scale: int, is_paly_media_audio: bool) -> bool:
         """
             切换人物形象动作 (使用前需要先调用 init_new_metahuman 初始化数字人)
@@ -79,7 +96,28 @@ class NewDigitalHumanOperation:
 
         """
         return "true" in self.SendData("generateHumanVideo", audio_path) 
-    
+
+    def new_metahuman_generate_human_video_ex(self, server_ip: str, call_api_key: str, audio_path: str, video_path: str, save_video_path: str) -> bool:
+        """
+            云端算力生成短视频
+            Cloud computing generates short videos
+
+            server_ip: 服务端IP
+            call_api_key: 调用密钥
+            audio_path: 驱动口型的音频路径
+            video_path: 原视频路径
+            save_video_path: 保存的合成结果路径
+            return: 失败返回错误信息，成功返回true
+
+            server_ip: server IP
+            call_api_key: call key
+            audio_path: the audio path of the driving mouth
+            video_path: original video path
+            save_video_path: the saved composition result path
+            return: failure returns an error message, and success returns true
+        """
+        return "true" in self.SendData("generateHumanVideoEx", server_ip, call_api_key, audio_path, video_path, save_video_path) 
+
     def new_metahuman_audio_to_lab(self, server_ip: str, audio_path: str) -> bool:
         """
             生成lab文件

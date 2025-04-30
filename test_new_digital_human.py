@@ -3,7 +3,7 @@
 from PyAibote import HumanBotMain
 import time,os
 
-
+# pyinstaller -D -w GenrateHumanVideo.py 
 # 2. 自定义一个脚本类，继承 HumanBotMain
 # 2. Customize a script class and inherit HumanBotMain.
 class CustomWinScript(HumanBotMain):
