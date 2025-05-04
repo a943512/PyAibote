@@ -43,7 +43,7 @@ class NewDigitalHumanOperation:
         """
         return "true" in self.SendData("getFaceData", server_ip, call_api_key, video_path) 
 
-    def new_metahuman_switch_action(self, figure_video_path: str, scale: int, is_paly_media_audio: bool) -> bool:
+    def new_metahuman_switch_action(self, figure_video_path: str, scale: int, is_paly_media_audio: bool, is_swap_color: bool) -> bool:
         """
             切换人物形象动作 (使用前需要先调用 init_new_metahuman 初始化数字人)
             Switch character image action
@@ -51,14 +51,16 @@ class NewDigitalHumanOperation:
             figure_video_path: 人物视频路径
             scale: 缩放，1原始大小，0.5缩小一半
             is_paly_media_audio: 是否播放素材中的音频
+            is_swap_color: 是否更换基础嘴型颜色
             return: 成功返回True，失败返回错误信息
 
             figure_video_path: model folder
             scale: scaling, 1 original size, 0.5 reduced by half
             is_paly_media_audio: whether to play the audio in the material
+            is_swap_color: Do you want to change the basic mouth color
             return: Returns True on success, and returns an error message on failure
         """
-        return "true" in self.SendData("switchAction", figure_video_path, scale, is_paly_media_audio) 
+        return "true" in self.SendData("switchAction", figure_video_path, scale, is_paly_media_audio, is_swap_color) 
 
     def new_metahuman_add_background(self, bg_path: str) -> bool:
         """
@@ -130,7 +132,6 @@ class NewDigitalHumanOperation:
             server_ip: lab server IP
             audio_path: audio file path
             return: failure returns an error message, success returns true, and a lab file with the same name. lab suffix is generated in the same directory of audioPath
-
         """
         return "true" in self.SendData("audioToLab", server_ip, audio_path) 
 
@@ -154,7 +155,6 @@ class NewDigitalHumanOperation:
             text: the text content to be synthesized
             speed_factor: speech speed, which defaults to 1 normal speech speed
             return: failure returns an error message, and success returns true
-
         """
         return "true" in self.SendData("textToAudio", server_ip, save_audio_path, refer_audio_path, refer_text, text, speed_factor) 
     
@@ -165,14 +165,16 @@ class NewDigitalHumanOperation:
 
             server_ip: 语音识别服务端IP
             audio_path: 音频文件路径
-            return: 失败返回"null"，成功返回语音识别的文本内容
+            return: 失败返回"None"，成功返回语音识别的文本内容
 
             server_ip: IP of speech recognition server
             audio_path: audio file path
-            return: "null" is returned in case of failure, and the text content of speech recognition is returned successfully
-
+            return: "None" is returned in case of failure, and the text content of speech recognition is returned successfully
         """
-        return "true" in self.SendData("audioToText", server_ip, audio_path) 
+        response = self.SendData("audioToText", server_ip, audio_path) 
+        if response == "null":
+            return None
+        return response
     
     def new_metahuman_human_speak(self, audio_path: str, wait_play_sound: bool, enable_random_param: bool = False) -> bool:
         """
@@ -188,7 +190,6 @@ class NewDigitalHumanOperation:
             wait_play_sound: Do you want to wait for the broadcast to finish
             enable_random_param: whether to enable random parameters; it is not enabled by default
             return: Returns true on success, and returns an error message on failure
-
         """
         return "true" in self.SendData("humanSpeak", audio_path, wait_play_sound, enable_random_param) 
     
@@ -199,11 +200,10 @@ class NewDigitalHumanOperation:
 
             return: 返回true
             return: Returns true
-
         """
         return "true" in self.SendData("stopSpeak") 
     
-    def new_metahuman_start_record(self, save_audio_path) -> bool:
+    def new_metahuman_start_record(self, save_audio_path: str) -> bool:
         """
             录制麦克风
             Recording microphone
@@ -213,7 +213,6 @@ class NewDigitalHumanOperation:
 
             save_audio_path: record the saved audio path. You need to call stopRecord to end the recording and save it
             return: returns true
-
         """
         return "true" in self.SendData("startRecord", save_audio_path) 
     
@@ -224,6 +223,73 @@ class NewDigitalHumanOperation:
 
             return: 返回true
             return: returns true
-
         """
         return "true" in self.SendData("stopRecord") 
+
+    def train_voice_ex(self, appid: str, token: str, spk_id: str, refer_audio_path: str) -> bool:
+        """
+            云端算力训练声音
+            Cloud computing power training voice
+
+            appid: APP ID
+            token: Access Token
+            spk_id: 声音ID
+            refer_audio_path: 参考音频
+            return: 训练成功返回true，失败返回错误信息
+
+            appid: APP ID
+            token: Access Token
+            spk_ID: sound id
+            reference_audio_path: reference audio
+            return: training success returns true, failure returns an error message
+        """
+        response = self.SendData("trainVoiceEx", appid, token, spk_id, refer_audio_path) 
+        if "true" in response:
+            return True
+        return response
+    
+    def get_train_status_ex(self, appid: str, token: str, spk_id: str) -> str:
+        """
+            获取 trainVoiceEx 训练状态
+            Get the trainVoiceEx training status
+
+            appid: APP ID
+            token: Access Token
+            spk_id: 声音ID
+            return: 返回训练状态"Train Success"、"NotFound"、"Training"、"Failed"、unknow"   
+
+            appid: APP ID
+            token: Access Token
+            spk_ID: sound id
+            return: returns to the Training status of "Train Success", "NotFound", "training", "Failed" and "unknow"
+        """
+        response = self.SendData("getTrainStatusEx", appid, token, spk_id) 
+        return response
+    
+    def text_to_audio_ex(self, appid: str, token: str, spk_id: str, cluster: str, text: str, speed_ratio: str, save_audio_path: str) -> bool:
+        """
+            云端算力文本转语音
+            Cloud computing power text-to-speech
+
+            appid: APP ID
+            token: Access Token
+            spk_id: 声音ID
+            cluster: Cluster ID  声音复刻大模型："volcano_icl"  语音合成大模型："volcano_tts"
+            text: 合成的文本
+            speed_ratio: 语速，正常为1
+            save_audio_path: 保存的音频路径， 同时会在音频同目录下生成lab文件
+            return: 成功返回true，失败返回错误信息
+
+            appid: APP ID
+            token: Access Token
+            spk_ID: sound id
+            cluster: Cluster ID sound reproduction model: "volcano_icl" speech synthesis model: "volcano_tts"
+            text: synthesized text
+            speed_ratio: speech speed, which is normally 1
+            save_audio_path: the saved audio path, and a lab file will be generated in the same audio directory
+            return: Returns true on success, and returns an error message on failure
+        """
+        response = self.SendData("textToAudioEx", appid, token, spk_id, cluster, text, speed_ratio, save_audio_path) 
+        if "true" in response:
+            return True
+        return response

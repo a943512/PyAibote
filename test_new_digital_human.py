@@ -3,7 +3,7 @@
 from PyAibote import HumanBotMain
 import time,os
 
-# pyinstaller -D -w GenrateHumanVideo.py 
+
 # 2. 自定义一个脚本类，继承 HumanBotMain
 # 2. Customize a script class and inherit HumanBotMain.
 class CustomWinScript(HumanBotMain):
@@ -31,8 +31,11 @@ class CustomWinScript(HumanBotMain):
         self.new_metahuman_add_background(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Backgroun\1.mp4")
 
 
-
-
+        # 关闭驱动 方法一
+        # os.popen('taskkill /f /t /im  "AiDriver.exe"')
+        
+        # 关闭驱动 方法二  终端直接输入
+        # taskkill /f /t /im  "AiDriver.exe"
 
 
 

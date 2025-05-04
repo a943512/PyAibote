@@ -111,7 +111,17 @@ class CustomWinScript(WinBotMain):
 
 
 
+        # 关闭驱动 方法一  终端命令杀死驱动
+        # self.close_driver_local()
 
+        # 关闭驱动 方法二  驱动自动断开连接
+        # self.close_driver()
+
+        # 关闭驱动 方法三  终端命令杀死驱动
+        # os.popen('taskkill /f /t /im  "WindowsDriver.exe"')
+        
+        # 关闭驱动 方法四  cmd终端直接输入杀死驱动
+        # taskkill /f /t /im  "WindowsDriver.exe"
 
 
 
@@ -275,8 +285,11 @@ class CustomWinScript(HumanBotMain):
         self.new_metahuman_add_background(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Backgroun\1.mp4")
 
 
-
-
+        # 关闭驱动 方法一
+        # os.popen('taskkill /f /t /im  "AiDriver.exe"')
+        
+        # 关闭驱动 方法二  终端直接输入
+        # taskkill /f /t /im  "AiDriver.exe"
 
 
 
