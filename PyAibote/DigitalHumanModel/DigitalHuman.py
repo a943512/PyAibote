@@ -7,7 +7,7 @@ class NewDigitalHumanOperation:
         New Digital human
     """
 
-    def init_new_metahuman(self, model_folder: str, scale: int, is_paly_media_audio: bool, push_stream_url: bool) -> bool:
+    def init_new_metahuman(self, model_folder: str, scale: int, is_paly_media_audio: bool, enable_random_param: bool, push_stream_url: bool) -> bool:
         """
             初始化数字人
             Initialize digital person
@@ -15,16 +15,19 @@ class NewDigitalHumanOperation:
             model_folder: 模型文件夹
             scale: 缩放，1原始大小，0.5缩小一半
             is_paly_media_audio: 是否播放素材中的音频
+            enable_random_param: 是否开启随机参数，随机内容：音频随机(不含数字人说话声音随机) 和 画面随机(包含平移、旋转、缩放、动作泛化)
             push_stream_url: 推流地址，默认为 "" 不推流，仅支持rtmp，例如： rtmp://your_server_ip/live/stream
             return: 成功返回True，失败返回错误信息
 
             model_folder: model folder
             scale: scaling, 1 original size, 0.5 reduced by half
             is_paly_media_audio: whether to play the audio in the material
+            Enable_random_param: whether to turn on the random parameter, including audio random (excluding digital human voice random) 
+                                 and picture random (including translation, rotation, scaling and motion generalization).
             push_stream_url: push stream address; the default value is "",and only rtmp is supported; for example, RTMP://your _ server _ IP/live/stream
             return: Returns True on success, and returns an error message on failure
         """
-        return "true" in self.SendData("initNewHuman", model_folder, scale, is_paly_media_audio, push_stream_url) 
+        return "true" in self.SendData("initNewHuman", model_folder, scale, is_paly_media_audio, enable_random_param, push_stream_url) 
 
     def new_get_face_data(self, server_ip: str, call_api_key: str, video_path: str) -> bool:
         """
@@ -176,22 +179,23 @@ class NewDigitalHumanOperation:
             return None
         return response
     
-    def new_metahuman_human_speak(self, audio_path: str, wait_play_sound: bool, enable_random_param: bool = False) -> bool:
+    def new_metahuman_human_speak(self, audio_path: str, wait_play_sound: bool) -> bool:
         """
             数字人说话
             Digital people speak
 
             audio_path: 音频路径，需要提前生成lab文件
             wait_play_sound: 是否等待播报完毕
-            enable_random_param: 是否启用随机参数，默认不启用
             return: 成功返回true，失败返回错误信息
 
             audio_path: audio path. lab files need to be generated in advance
             wait_play_sound: Do you want to wait for the broadcast to finish
-            enable_random_param: whether to enable random parameters; it is not enabled by default
             return: Returns true on success, and returns an error message on failure
         """
-        return "true" in self.SendData("humanSpeak", audio_path, wait_play_sound, enable_random_param) 
+        response = self.SendData("humanSpeak", audio_path, wait_play_sound) 
+        if "true" in response:
+            return True
+        return response
     
     def new_metahuman_stop_speak(self) -> bool:
         """

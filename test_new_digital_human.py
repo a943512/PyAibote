@@ -22,7 +22,7 @@ class CustomWinScript(HumanBotMain):
     def script_main(self):
 
         # 初始化数字人
-        self.init_new_metahuman(r"D:\Project\Aibote\2024-4-11\NewHuman\model", 0.5, False, "")
+        self.init_new_metahuman(r"D:\Project\Aibote\2024-4-11\NewHuman\model", 0.5, False, False, "")
 
         # 切换数字人形象
         self.new_metahuman_switch_action(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Img\666.mp4", 0.5, False)
