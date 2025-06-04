@@ -230,7 +230,7 @@ class NewDigitalHumanOperation:
         """
         return "true" in self.SendData("stopRecord") 
 
-    def train_voice_ex(self, appid: str, token: str, spk_id: str, refer_audio_path: str) -> bool:
+    def new_metahuman_train_voice_ex(self, appid: str, token: str, spk_id: str, refer_audio_path: str) -> bool:
         """
             云端算力训练声音
             Cloud computing power training voice
@@ -252,7 +252,7 @@ class NewDigitalHumanOperation:
             return True
         return response
     
-    def get_train_status_ex(self, appid: str, token: str, spk_id: str) -> str:
+    def new_metahuman_get_train_status_ex(self, appid: str, token: str, spk_id: str) -> str:
         """
             获取 trainVoiceEx 训练状态
             Get the trainVoiceEx training status
@@ -270,7 +270,7 @@ class NewDigitalHumanOperation:
         response = self.SendData("getTrainStatusEx", appid, token, spk_id) 
         return response
     
-    def text_to_audio_ex(self, appid: str, token: str, spk_id: str, cluster: str, text: str, speed_ratio: str, save_audio_path: str) -> bool:
+    def new_metahuman_text_to_audio_ex(self, appid: str, token: str, spk_id: str, cluster: str, text: str, speed_ratio: str, save_audio_path: str) -> bool:
         """
             云端算力文本转语音
             Cloud computing power text-to-speech
@@ -294,6 +294,57 @@ class NewDigitalHumanOperation:
             return: Returns true on success, and returns an error message on failure
         """
         response = self.SendData("textToAudioEx", appid, token, spk_id, cluster, text, speed_ratio, save_audio_path) 
+        if "true" in response:
+            return True
+        return response
+
+    def new_metahuman_get_extend_param(self) -> str:
+        """
+            获取驱动程序命令行参数(不包含ip和port)
+            Get the driver command line parameters (excluding ip and port)
+
+            return: 成功返回参数，失败返回None
+            return: parameter is returned successfully, and None is returned on failure.
+        """
+        response = self.SendData("getExtendParam")
+        if response == "null":
+            return None
+        return response
+    
+    def new_metahuman_get_driver_folder(self) -> str:
+        """
+            获取驱动程序 所在的文件夹路径
+            Gets the folder path where the driver is located
+
+            return: 返回AiDriver.exe所在的文件夹路径 
+            return: Returns the folder path where AiDriver.exe is located
+        """
+        response = self.SendData("getDriverFolder") 
+        return response
+
+    def new_metahuman_close_driver(self) -> str:
+        """
+            关闭驱动
+            Turn off drive
+
+            return: 返回true
+            return: Return true
+        """
+        response = self.SendData("closeDriver") 
+        return response
+
+    def new_metahuman_insert_video(self, video_path: str) -> bool:
+        """
+            插入特写视频
+            Insert close-up video
+
+            video_path: 要播放的视频
+            return: 成功返回true，失败返回错误信息
+
+            video_path: the video to play
+            return: Returns true on success, and returns an error message on failure
+        """
+        response = self.SendData("insertVideo", video_path) 
         if "true" in response:
             return True
         return response

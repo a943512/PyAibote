@@ -291,15 +291,16 @@ class CustomWinScript(HumanBotMain):
         # 关闭驱动 方法二  终端直接输入
         # taskkill /f /t /im  "AiDriver.exe"
 
-
+        # 关闭驱动 方法三  驱动端关闭 [适用于多进程开发]
+        # result = self.new_metahuman_close_driver()
 
 if __name__ == '__main__':
     # 3. IP为:0.0.0.0, 监听 9999 号端口
     # 3. IP: 0.0.0, listening to port 9999.
     # 3.1. 在远端部署脚本时，请设置 Debug=False，客户端手动启动 WindowsDriver.exe 时需指定远端 IP 或端口号
     # 3.1. When deploying the script remotely, please set Debug=False, and the client needs to specify the remote IP or port number when manually starting the WindowsDriver.exe.
-    # 3.2. 命令行启动示例：AiDriver.exe "127.0.0.1" 9999 
-    # 3.2. Command line startup example: AiDriver.exe "127.0.0.1" 9999 
+    # 3.2. 命令行启动示例：AiDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
+    # 3.2. Command line startup example: AiDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
     # 3.3 Qt 使用线程启动时传递的Qt对象用来和Qt UI窗口通信
     # 3.3 Qt Use the Qt object passed when the Qt thread starts to communicate with the Qt UI window
     CustomWinScript.execute("0.0.0.0", 9999, Debug=True, Qt = None)
