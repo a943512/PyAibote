@@ -179,20 +179,22 @@ class NewDigitalHumanOperation:
             return None
         return response
     
-    def new_metahuman_human_speak(self, audio_path: str, wait_play_sound: bool) -> bool:
+    def new_metahuman_human_speak(self, audio_path: str, wait_play_sound: bool, insert_head: bool = False) -> bool:
         """
             数字人说话
             Digital people speak
 
             audio_path: 音频路径，需要提前生成lab文件
             wait_play_sound: 是否等待播报完毕
+            insert_head: 插入队列头部,优先播报
             return: 成功返回true，失败返回错误信息
 
             audio_path: audio path. lab files need to be generated in advance
             wait_play_sound: Do you want to wait for the broadcast to finish
+            insert_head: Insert the head of the queue and broadcast first
             return: Returns true on success, and returns an error message on failure
         """
-        response = self.SendData("humanSpeak", audio_path, wait_play_sound) 
+        response = self.SendData("humanSpeak", audio_path, wait_play_sound, insert_head) 
         if "true" in response:
             return True
         return response
@@ -345,6 +347,40 @@ class NewDigitalHumanOperation:
             return: Returns true on success, and returns an error message on failure
         """
         response = self.SendData("insertVideo", video_path) 
+        if "true" in response:
+            return True
+        return response
+    
+    def new_metahuman_get_human_speak_queue_count(self) -> str:
+        """
+            获取数字人说话 队列存入的数量
+            Get the number of digital people talking queues
+
+            return: 返回队列存入的数量
+            return: Returns the amount deposited in the queue
+        """
+        response = self.SendData("getHumanSpeakQueueCount") 
+        return response
+    
+    def new_metahuman_train_base_model(self, server_ip: str, call_api_key: str, video_or_image_path: str, save_folder: str) -> bool:
+        """
+            训练基础模型
+            Training basic model
+
+            server_ip: 服务端IP
+            call_api_key: 调用密钥
+            video_or_image_path: 人脸 图片/视频 路径，图片/视频 第一帧必须包含人脸且正脸对着摄像头
+            save_folder: 模型保存的文件夹路径
+            return: 失败返回错误信息，成功返回true。模型保存在 saveFolder 文件夹下。一般耗时60分钟左右
+
+            server_ip: server IP
+            call_api_key: call key
+            video_or_image_path: the path of face picture/video. The first frame of picture/video must contain face and face the camera
+            save_folder: the folder path where the model is saved
+            return: failure returns an error message, and success returns true
+                    he model is saved in the saveFolder folder. It usually takes about 60 minutes
+        """
+        response = self.SendData("trainBaseModel", server_ip, call_api_key, video_or_image_path, save_folder) 
         if "true" in response:
             return True
         return response
