@@ -23,12 +23,16 @@ class CustomWinScript(HumanBotMain):
 
         # 初始化数字人
         self.init_new_metahuman(r"D:\Project\Aibote\2024-4-11\NewHuman\model", 0.5, False, False, "")
+        time.sleep(2)
+        # self.new_metahuman_hide_human_window(True)
+        # time.sleep(2)
+        self.new_metahuman_del_human_window_border(True)
 
         # 切换数字人形象
-        self.new_metahuman_switch_action(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Img\666.mp4", 0.5, False, False)
+        # self.new_metahuman_switch_action(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Img\666.mp4", 0.5, False, False)
 
         # 添加数字人背景
-        self.new_metahuman_add_background(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Backgroun\1.mp4")
+        # self.new_metahuman_add_background(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Backgroun\1.mp4")
 
 
         # 关闭驱动 方法一

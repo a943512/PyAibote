@@ -65,18 +65,25 @@ class NewDigitalHumanOperation:
         """
         return "true" in self.SendData("switchAction", figure_video_path, scale, is_paly_media_audio, is_swap_color) 
 
-    def new_metahuman_add_background(self, bg_path: str) -> bool:
+    def new_metahuman_add_background(self, bg_path: str, x: int, y: int) -> bool:
         """
             添加视频/图片背景 (使用前需要先调用 init_new_metahuman 初始化数字人)
             Add video/picture background
 
             bg_path: 背景视频/图片路径
+            x: 人物起始横坐标, 默认为0
+            y: 人物起始纵坐标, 默认为0
             return: 成功返回True，失败返回错误信息
 
             bg_path: background video/picture path
+            x: horizontal coordinate of character start, which is 0 by default
+            y: the starting ordinate of the character, which is 0 by default
             return: Returns True on success, and returns an error message on failure
         """
-        return "true" in self.SendData("addBackground", bg_path) 
+        response = self.SendData("addBackground", bg_path, x, y) 
+        if "true" in response:
+            return True
+        return response
 
     def new_metahuman_del_background(self) -> bool:
         """
@@ -86,7 +93,7 @@ class NewDigitalHumanOperation:
             return: 成功返回True，失败返回错误信息
             return: Returns True on success, and returns an error message on failure
         """
-        return "true" in self.SendData("addBackground") 
+        return "true" in self.SendData("delBackground") 
 
     def new_metahuman_generate_human_video(self, audio_path: str) -> bool:
         """
@@ -102,7 +109,7 @@ class NewDigitalHumanOperation:
         """
         return "true" in self.SendData("generateHumanVideo", audio_path) 
 
-    def new_metahuman_generate_human_video_ex(self, server_ip: str, call_api_key: str, audio_path: str, video_path: str, save_video_path: str) -> bool:
+    def new_metahuman_generate_human_video_ex(self, server_ip: str, call_api_key: str, audio_path: str, video_path: str, save_video_path: str, is_music: bool = False) -> bool:
         """
             云端算力生成短视频
             Cloud computing generates short videos
@@ -112,16 +119,18 @@ class NewDigitalHumanOperation:
             audio_path: 驱动口型的音频路径
             video_path: 原视频路径
             save_video_path: 保存的合成结果路径
-            return: 失败返回错误信息，成功返回true
+            is_music: 生成唱歌视频，要求 audio_path 音乐音频
+            return: 失败返回错误信息，成功返回True
 
             server_ip: server IP
             call_api_key: call key
             audio_path: the audio path of the driving mouth
             video_path: original video path
             save_video_path: the saved composition result path
+            is_music: to generate singing video, audio_path music audio is required
             return: failure returns an error message, and success returns true
         """
-        return "true" in self.SendData("generateHumanVideoEx", server_ip, call_api_key, audio_path, video_path, save_video_path) 
+        return "true" in self.SendData("generateHumanVideoEx", server_ip, call_api_key, audio_path, video_path, save_video_path, is_music) 
 
     def new_metahuman_audio_to_lab(self, server_ip: str, audio_path: str) -> bool:
         """
@@ -272,7 +281,7 @@ class NewDigitalHumanOperation:
         response = self.SendData("getTrainStatusEx", appid, token, spk_id) 
         return response
     
-    def new_metahuman_text_to_audio_ex(self, appid: str, token: str, spk_id: str, cluster: str, text: str, speed_ratio: str, save_audio_path: str) -> bool:
+    def new_metahuman_text_to_audio_ex(self, appid: str, token: str, spk_id: str, cluster: str, text: str, speed_ratio: str, save_audio_path: str, language: str = 'zh-cn') -> bool:
         """
             云端算力文本转语音
             Cloud computing power text-to-speech
@@ -295,7 +304,7 @@ class NewDigitalHumanOperation:
             save_audio_path: the saved audio path, and a lab file will be generated in the same audio directory
             return: Returns true on success, and returns an error message on failure
         """
-        response = self.SendData("textToAudioEx", appid, token, spk_id, cluster, text, speed_ratio, save_audio_path) 
+        response = self.SendData("textToAudioEx", appid, token, spk_id, cluster, text, speed_ratio, save_audio_path, language) 
         if "true" in response:
             return True
         return response
@@ -371,7 +380,7 @@ class NewDigitalHumanOperation:
             call_api_key: 调用密钥
             video_or_image_path: 人脸 图片/视频 路径，图片/视频 第一帧必须包含人脸且正脸对着摄像头
             save_folder: 模型保存的文件夹路径
-            return: 失败返回错误信息，成功返回true。模型保存在 saveFolder 文件夹下。一般耗时60分钟左右
+            return: 失败返回错误信息，成功返回True。模型保存在 saveFolder 文件夹下。一般耗时60分钟左右
 
             server_ip: server IP
             call_api_key: call key
@@ -384,3 +393,228 @@ class NewDigitalHumanOperation:
         if "true" in response:
             return True
         return response
+    
+    def new_metahuman_audio_to_lab_ex(self, access_key_id: str, access_key_secret: str, app_key: str, audio_path: str) -> str:
+        """
+            云端生成lab文件(对接阿里云语音识别极速版)
+            Cloud Generation lab File (Docking Alibaba Cloud Speech Recognition Extreme Edition)
+
+            access_key_id: 密钥ID
+            access_key_secret: 密钥
+            app_key: app密钥
+            audio_path: 音频文件路径
+            return: 失败返回错误信息，成功返回True，并在audioPath同级目录下生成同名 .lab 后缀的lab文件  
+
+            access_key_ID: key id
+            access_key_secret: key
+            app_key: app key
+            audio_path: audio file path
+            return: failure returns an error message, success returns true, and a lab file with the same name. 
+                    lab suffix is generated in the same directory of audioPath
+        """
+        response = self.SendData("audioToLabEx", access_key_id, access_key_secret, app_key, audio_path) 
+        if "true" in response:
+            return True
+        return response
+    
+    def new_metahuman_hide_human_window(self, is_hide) -> bool:
+        """
+            隐藏数字人窗口
+            Hidden numbers ren Chuang kou
+
+            is_hide: 是否隐藏, True 隐藏, False 显示
+            return: 返回True
+
+            is_hide: whether to hide, True to hide, false to display
+            return: Returns True
+        """
+        return "true" in self.SendData("hideHumanWindow", is_hide) 
+    
+    def new_metahuman_del_human_window_border(self, is_no_border) -> bool:
+        """
+            删除数字人窗口标题栏边框
+            Delete the title bar border of the Digital Man window
+
+            is_no_border: 是否删除标题栏边框, True 删除标题栏, False 恢复
+            return: 返回True
+
+            is_no_border: whether to delete the title bar border, true to delete the title bar, false to restore
+            return: returns true
+        """
+        return "true" in self.SendData("delHumanWindowBorder", is_no_border) 
+    
+    def new_metahuman_llm(self, app_id: str, api_key: str, prompt: str) -> str:
+        """
+            通义千问(应用)
+            General meaning and thousand questions (application)
+
+            app_id: 应用ID
+            api_key: API密钥
+            prompt: 提问
+            return: 成功输出语言模型答案，失败返回错误信息 
+
+            app_id: application ID
+            api_key: API key
+            prompt: ask questions
+            return: the language model answer is successfully output, 
+                     and an error message is returned if it fails
+        """
+        response = self.SendData("llm", app_id, api_key, prompt) 
+        return response
+    
+    def new_metahuman_get_face_data_service(self, video_path: str) -> str:
+        """
+            获取脸部数据(中转服务)
+            Get face data (transit service)
+
+            video_path: 人脸视频路径
+            return: 失败返回错误信息，成功返回True。并在videoPath同级目录下生成.pt 后缀的人脸数据文件 
+
+            video_path: face video path.
+            return: failure returns an error message, and success returns true. 
+                    And generate a face data file with. pt suffix in the same level directory of videoPath.
+        """
+        response = self.SendData("getFaceData_Service", video_path) 
+        if "true" in response:
+            return True
+        return response
+
+    def new_metahuman_train_base_model_service(self, video_or_image_path: str, save_folder: str) -> str:
+        """
+            训练基础模型(中转服务)
+            Training basic model (transit service)
+
+            video_or_image_path: 人脸 图片/视频 路径，图片/视频 第一帧必须包含人脸且正脸对着摄像头
+            save_folder: 模型保存的文件夹路径
+            return: 失败返回错误信息，成功返回True。模型保存在 saveFolder 文件夹下。一般耗时60分钟左右
+
+            video_or_image_path: the path of face picture/video. The first frame of picture/video must contain face and face the camera.
+            save_folder: the folder path where the model is saved.
+            return: failure returns an error message, and success returns true. 
+                    The model is saved in the saveFolder folder. It usually takes about 60 minutes.
+        """
+        response = self.SendData("trainBaseModel_Service", video_or_image_path, save_folder) 
+        if "true" in response:
+            return True
+        return response
+    
+    def new_metahuman_generate_human_video_ex_service(self, audio_path: str, video_path: str, save_video_path: str, is_music: bool = False) -> str:
+        """
+            云端算力生成短视频(中转服务)
+            Cloud computing generates short video (transit service)
+
+            audio_path: 驱动口型的音频路径
+            video_path: 原视频路径
+            save_video_path: 保存的合成结果路径
+            is_music: 生成唱歌视频，要求 audio_path 音乐音频
+            return: 失败返回错误信息，成功返回True
+
+            audio_path: the audio path of the driving mouth.
+            video_path: original video path.
+            save_video_path: the saved composition result path.
+            is_music: to generate singing video, audio_path music audio is required.
+            return: failure returns an error message, and success returns true.
+        """
+        response = self.SendData("generateHumanVideoEx_Service", audio_path, video_path, save_video_path, is_music) 
+        if "true" in response:
+            return True
+        return response
+    
+    def new_metahuman_train_voice_ex_service(self, refer_audio_path: str) -> str:
+        """
+            云端算力训练声音(火山引擎)(中转服务)
+            Cloud Computing Training Voice (Volcano Engine) (Transit Service)
+
+            refer_audio_path: 参考音频
+            return: 训练成功返回True，失败返回错误信息
+
+            refer_audio_path: reference audio.
+            return: training success returns true, failure returns an error message.
+        """
+        response = self.SendData("trainVoiceEx_Service", refer_audio_path) 
+        if "true" in response:
+            return True
+        return response
+
+    def new_metahuman_text_to_audio_ex_service(self, spk_id: str, cluster: str, text: str, speed_ratio: str, save_audio_path: str, language: str = 'zh-cn') -> str:
+        """
+            云端算力文本转语音(火山引擎)(中转服务)
+            Cloud Computing Text-to-Speech (Volcano Engine) (Transit Service)
+
+            spk_id: 声音复刻大模型的声音ID 语音合成大模型的Voice_type
+            cluster: Cluster ID  声音复刻大模型："volcano_icl"     语音合成大模型："volcano_tts"
+            text: 合成的文本
+            speed_ratio: 语速，正常为1
+            save_audio_path: 保存的音频路径， 同时会在音频同目录下生成lab文件
+            language: 语言，中文（zh-cn）、英语（en）、西班牙语（es）、法语（fr）、德语（de）、俄语（ru）、日语（ja）、阿拉伯语（ar）、印地语（hi）、葡萄牙语（pt）
+            return: 失败返回错误信息，成功返回True
+
+            spk_ID: the voice id of the voice reproduction model and the Voice_type of the speech synthesis model.
+            cluster: Cluster ID sound reproduction model: "volcano_icl" speech synthesis model: "volcano_tts"
+            text: synthesized text
+            speed_ratio: speech speed, which is normally 1.
+            save_audio_path: the saved audio path, and a lab file will be generated in the same audio directory.
+            language: languages: Chinese (zh-cn), English (en), Spanish (es), 
+                     French (fr), German (de), Russian (ru), Japanese (ja), Arabic (ar), hindi (Hi) and Portuguese (pt).
+            return: failure returns an error message, and success returns true.
+        """
+        response = self.SendData("textToAudioEx_Service", spk_id, cluster, text, speed_ratio, save_audio_path, language) 
+        if "true" in response:
+            return True
+        return response
+
+    def new_metahuman_audio_to_lab_ex_service(self, audio_path: str) -> str:
+        """
+            云端生成lab文件(对接阿里云语音识别极速版)(中转服务)
+            Cloud-generated lab file (connected to Alibaba Cloud Speech Recognition Extreme Edition) (transit service)
+
+            audio_path: 音频文件路径
+            return: 失败返回错误信息，成功返回True，并在audioPath同级目录下生成同名 .lab 后缀的lab文件
+
+            audio_path: audio file path.
+            return: failure returns an error message, success returns true, and a lab file with the same name. 
+                    lab suffix is generated in the same directory of audioPath.
+        """
+        response = self.SendData("audioToLabEx_Service", audio_path) 
+        if "true" in response:
+            return True
+        return response
+
+    def new_metahuman_llm_service(self, prompt: str) -> str:
+        """
+            通义千问(应用)(中转服务)
+            Tong yi Qian Wen (application) (transit service)
+
+            prompt: 提问
+            return: 成功输出语言模型答案，失败返回错误信息
+
+            prompt: ask questions
+            return: successfully output the language model answer, and return an error message if it fails.
+        """
+        response = self.SendData("llm_Service", prompt) 
+        return response
+    
+    def new_metahuman_get_windows_id(self) -> str:
+        """
+            获取 windows ID
+            get windows ID
+
+            return: 成功返回windows Id
+            return: successfully returned windows Id
+        """
+        response = self.SendData("getWindowsId") 
+        return response
+    
+    def new_metahuman_blur_mouth(self, is_blur_mouth: str) -> str:
+        """
+            高斯模糊嘴型，优化嘴型细节瑕疵
+            Gaussian fuzzy mouth shape, optimizing mouth shape detail defects
+
+            isBlurMouth: 开启后淡化口型瑕疵细节，嘴型清晰度会降低
+            return: 成功返回true
+
+            isBlurMouth: After opening, the details of the mouth defects will be diluted, 
+                        and the mouth definition will be reduced
+            return: returned true successfully
+        """
+        return "true" in self.SendData("blurMouth", is_blur_mouth) 
