@@ -38,7 +38,8 @@ class WebBotMain(
         ChatGenerative,
         DataBaseHandle,
         Sqlite3DataBaseHandle,
-        IframeOperation
+        IframeOperation,
+        WebSocketServerUse
     ):
 
     def __init__(self,*args):
@@ -101,7 +102,7 @@ class WebBotMain(
         self.script_main()
 
     @classmethod
-    def execute(self, IP: str, Port: int, Debug: bool = True, Driver_Params: dict = None, Qt = None):
+    def execute(self, IP: str, Port: int, Debug: bool = True, Driver_Params: dict = None, Qt = None, WebsocketSwitch = False, WebsocketPort = 8888):
         try:
             if Port < 0 or Port > 65535:
                 raise OSError("`listen_port` must be in 0-65535.")
@@ -111,6 +112,11 @@ class WebBotMain(
 
             if Debug:
                 Driver.WebDriverStart(Port, Driver_Params)
+
+            if WebsocketSwitch:
+                server = WebSocketServerThread(IP, WebsocketPort, self.Websocket_Log_Level)
+                server.start()
+
             ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
         except KeyboardInterrupt as e:
             sys.exit(self)

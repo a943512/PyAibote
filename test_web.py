@@ -8,9 +8,10 @@ import time,os
 # 2. Customize a script class and inherit WebBotMain
 class CustomWebScript(WebBotMain):
 
-    # 3. 设置是否终端打印输出 DEBUG：输出， INFO：不输出, 默认打印输出
+    # 3. 设置是否终端打印输出 DEBUG ：输出， INFO ：不输出, 默认打印输出
     # 3. Set whether the terminal prints output DEBUG: output, INFO: no output, and print output by default
-    Log_Level = "DEBUG"  # "INFO"
+    Log_Level = "DEBUG" 
+    Websocket_Log_Level = "DEBUG"
 
 
     # 4. 终端打印信息是否存储LOG文件 True： 储存， False：不存储
@@ -36,8 +37,7 @@ class CustomWebScript(WebBotMain):
     # 6. 注意：此方法是脚本执行入口
     # 6. Note: This method is a script execution portal.
     def script_main(self):
-    # 使用示例 [Demo]
-
+       
         result = self.goto("https://baidu.com")
         print(result)
         result = self.get_extend_param()
@@ -61,6 +61,32 @@ class CustomWebScript(WebBotMain):
 
 
 
+        # 主函数死循环时web驱动连接断开异常捕获跳出死循环demo示例代码
+        # while True:
+        #     try:
+        #         # 死循环中必须加入aibote函数代码
+        #         result = self.get_current_page_id()
+        #         print("我是个死循环")       
+        #         time.sleep(2)
+
+        #     # 服务端捕获客户端断开异常跳出线程循环结束连接
+        #     except OSError as e:
+        #         break
+            
+        #     # 捕获其他非连接断开异常
+        #     except Exception as e:
+        #         print(e)
+
+
+
+        # 关闭驱动 方法一  终端命令杀死驱动
+        # self.close_driver()
+
+        # 关闭驱动 方法二  终端命令杀死驱动
+        # os.popen('taskkill /f /t /im  "WebDriver.exe"')
+        
+        # 关闭驱动 方法三  cmd终端直接输入杀死驱动
+        # taskkill /f /t /im  "WebDriver.exe"
 
 
 
@@ -71,7 +97,8 @@ if __name__ == '__main__':
 
     # 7.1. Debug=True 时，是本地运行脚本，会自动启动 WebDriver.exe 驱动
     # 7.1. When debug = true, the script is run locally, and the WebDriver.exe driver will be started automatically
-    # 7.2. 打开终端输入：start chrome.exe --remote-debugging-port=8989 即可创建一个8989的端口浏览器， "debugPort" 参数改为8989即可接管浏览器操作
+    # 7.2. 打开终端输入：start chrome.exe --remote-debugging-port=8989 --user-data-dir="C:/AppData/PyAibote"  即可创建一个8989的端口浏览器， 
+    #      "debugPort" 参数改为8989即可接管浏览器操作，"user-data-dir" 参数为用户目录数据目录，默认是当前目录下的 UserData 文件夹
     # 7.2. Open the terminal and enter: start chrome.exe-remote-debugging-port = 8989 to create an 8989 port browser, and change the "debugPort" parameter to 8989 to take over the browser operation
     # 在远端部署脚本时，请设置 Debug=False，手动启动 WebDriver.exe，启动 WebDriver.exe 时需指定远端 IP 或端口号
     # When deploying the script remotely, please set Debug=False to manually start WebDriver.exe, and specify the remote IP or port number when starting WebDriver.exe
@@ -85,13 +112,20 @@ if __name__ == '__main__':
     if not os.path.exists(UserDataPath):
         os.mkdir(UserDataPath)
 
+    message = {
+            "Action": "Authentication",
+            "Data": {
+                "Token": "PyAibote",
+            }
+        }
+    
     driver_params = {
         "browserName": "chrome",
         "debugPort": 0,
         "userDataDir": "C:/AppData/PyAibote",
         "browserPath": None,
         "argument": None,   # 无头模式(后台运行浏览器)启动参数: --headless   浏览器版本大于112 的无头模式:--headless=new，多个启动参数空格隔开，示例: "argument": "--headless=new"
-        "extendParam":"{'Name':'PyAibote'}"  
+        "extendParam":f"{message}"  
     }
     # browserName 浏览器名称，默认 chrome 浏览器。edge和chrome会自动寻找浏览器路径，其他浏览器需要指定browserPath。
     # debugPort 调试端口。默认 0 随机端口。指定端口则接管已打开的浏览器。启动浏览器指定的参数 --remote-debugging-port=19222 --user-data-dir=C:\\Users\\电脑用户名\\AppData\\Local\\Google\\Chrome\\User Data
@@ -100,4 +134,4 @@ if __name__ == '__main__':
     # argument 浏览器启动参数。例如：设置代理：--proxy-server=127.0.0.1:8080  无头模式: --headless   浏览器版本>112 的无头模式:--headless=new，多个启动参数空格隔开
     # extendParam 扩展参数，一般用作脚本远程部署场景，WebDriver.exe驱动程序传递参数给脚本服务端。使用 await webBot.getExtendParam(); 函数获取
 
-    CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params, Qt=None)
+    CustomWebScript.execute("0.0.0.0", 9999, Debug=True, Driver_Params=driver_params, Qt=None, WebsocketSwitch=False, WebsocketPort=8888)

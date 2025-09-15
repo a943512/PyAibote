@@ -46,7 +46,8 @@ class AndroidBotMain(
         VerificationCodeOperation,
         ChatGenerative,
         DataBaseHandle,
-        Sqlite3DataBaseHandle
+        Sqlite3DataBaseHandle,
+        WebSocketServerUse
     ):
 
     @abstractmethod
@@ -60,9 +61,13 @@ class AndroidBotMain(
 
 
     @classmethod
-    def execute(self, IP: str, Port, Qt = None):
+    def execute(self, IP: str, Port, Qt = None, WebsocketSwitch = False, WebsocketPort = 8888):
         if Qt:
             self.Qt = Qt
+        
+        if WebsocketSwitch:
+            server = WebSocketServerThread(IP, WebsocketPort, self.Websocket_Log_Level)
+            server.start()
 
         ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
 

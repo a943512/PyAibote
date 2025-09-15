@@ -8,9 +8,10 @@ import time,os
 # 2. Customize a script class and inherit HumanBotMain.
 class CustomWinScript(HumanBotMain):
 
-    # 2.1. 设置是否终端打印输出 DEBUG：输出， INFO：不输出, 默认打印输出
+    # 2.1. 设置是否终端打印输出 DEBUG ：输出， INFO ：不输出, 默认打印输出
     # 2.1. Set whether the terminal prints output DEBUG: output, INFO: no output, and print output by default.
     Log_Level = "DEBUG" 
+    Websocket_Log_Level = "DEBUG"
 
     # 2.2. 终端打印信息是否存储LOG文件 True： 储存， False：不存储
     # 2.2. Does the terminal print information store the LOG file? True: yes, False: no.
@@ -23,16 +24,12 @@ class CustomWinScript(HumanBotMain):
 
         # 初始化数字人
         self.init_new_metahuman(r"D:\Project\Aibote\2024-4-11\NewHuman\model", 0.5, False, False, "")
-        time.sleep(2)
-        # self.new_metahuman_hide_human_window(True)
-        # time.sleep(2)
-        self.new_metahuman_del_human_window_border(True)
 
         # 切换数字人形象
-        # self.new_metahuman_switch_action(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Img\666.mp4", 0.5, False, False)
+        self.new_metahuman_switch_action(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Img\666.mp4", 0.5, False)
 
         # 添加数字人背景
-        # self.new_metahuman_add_background(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Backgroun\1.mp4")
+        self.new_metahuman_add_background(r"D:\Project\CompanyInformation\PaidItem\DigitalHuman\Static\Backgroun\1.mp4")
 
 
         # 关闭驱动 方法一
@@ -44,6 +41,38 @@ class CustomWinScript(HumanBotMain):
         # 关闭驱动 方法三  驱动端关闭 [适用于多进程开发]
         # result = self.new_metahuman_close_driver()
 
+
+
+
+        # 主函数死循环时数字人驱动连接断开异常捕获跳出死循环demo示例代码
+        # while True:
+        #     try:
+        #         # 死循环中必须加入aibote函数代码
+        #         result = self.new_metahuman_get_windows_id()
+        #         print("我是个死循环")       
+        #         time.sleep(2)
+
+        #     # 服务端捕获客户端断开异常跳出线程循环结束连接
+        #     except OSError as e:
+        #         break
+            
+        #     # 捕获其他非连接断开异常
+        #     except Exception as e:
+        #         print(e)
+
+
+        # 关闭驱动 方法一
+        # os.popen('taskkill /f /t /im  "AiDriver.exe"')
+        
+        # 关闭驱动 方法二  终端直接输入
+        # taskkill /f /t /im  "AiDriver.exe"
+
+        # 关闭驱动 方法三  驱动端关闭 [适用于多进程开发]
+        # result = self.new_metahuman_close_driver()
+
+
+
+
 if __name__ == '__main__':
     # 3. IP为:0.0.0.0, 监听 9999 号端口
     # 3. IP: 0.0.0, listening to port 9999.
@@ -53,4 +82,4 @@ if __name__ == '__main__':
     # 3.2. Command line startup example: AiDriver.exe "127.0.0.1" 9999 {'Name':'PyAibote'}
     # 3.3 Qt 使用线程启动时传递的Qt对象用来和Qt UI窗口通信
     # 3.3 Qt Use the Qt object passed when the Qt thread starts to communicate with the Qt UI window
-    CustomWinScript.execute("0.0.0.0", 9999, Debug=True, Qt = None)
+    CustomWinScript.execute("0.0.0.0", 9999, Debug=True, Qt = None, WebsocketSwitch=False, WebsocketPort=8888)

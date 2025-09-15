@@ -45,7 +45,13 @@ class Driver:
                 if major_version < 10:
                     DriverName = "WindowsDriver_win7.exe"
                 print("Debug Model Start WinDriver ...")
-                os.popen(f"{DriverName} 127.0.0.1 {Port}")
+                args = {
+                            "Action": "Authentication",
+                            "Data": {
+                                "Token": "PyAibote",
+                            }
+                    }
+                os.popen(f"{DriverName} 127.0.0.1 {Port} {args}")
                 print("Start WinDriver Successful，Execute Script")
         except FileNotFoundError as e:
             err_msg = "\nStart local WinDriver.exe fail Exception elimination step：\n1. Check WebDriver.exe Path；\n2. WebDriver.exe Add to system environment variable?"
@@ -58,7 +64,13 @@ class Driver:
             if system_info == "Windows":
                 DriverName = "AiDriver.exe"
                 print("Debug Model Start AiDriver ...")
-                os.popen(f"{DriverName} 127.0.0.1 {Port}")
+                message = {
+                        "Action": "Authentication",
+                        "Data": {
+                            "Token": "PyAibote",
+                        }
+                }
+                os.popen(f"{DriverName} 127.0.0.1 {Port} {message}")
                 print("Start AiDriver Successful，Execute Script")
         except FileNotFoundError as e:
             err_msg = "\nStart local WinDriver.exe fail Exception elimination step：\n1. Check WebDriver.exe Path；\n2. WebDriver.exe Add to system environment variable?"

@@ -27,7 +27,7 @@ class Sqlite3DataBaseHandle(WriteReadFile):
 						"Sqlite3_DB":"D:\\Project\\Coding\\PyAibote\\DB\\Pyaibote.db"
 					}
 				""")
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 	def dict_factory(self, cursor, row) -> list:
@@ -70,7 +70,7 @@ class Sqlite3DataBaseHandle(WriteReadFile):
 			self.conn.commit()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 	def select_sqlite3(self,sql)  -> list: 
@@ -90,7 +90,7 @@ class Sqlite3DataBaseHandle(WriteReadFile):
 			data = self.dict_factory(cur, data)
 			return data
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 	def close_sqlite3(self)  -> bool:
@@ -105,7 +105,7 @@ class Sqlite3DataBaseHandle(WriteReadFile):
 			self.conn.close()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 

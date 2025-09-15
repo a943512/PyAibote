@@ -44,7 +44,8 @@ class WinBotMain(
         WinHidCorrelation,
         ChatGenerative,
         DataBaseHandle,
-        Sqlite3DataBaseHandle
+        Sqlite3DataBaseHandle,
+        WebSocketServerUse
     ):
 
     def __init__(self,*args):
@@ -99,7 +100,7 @@ class WinBotMain(
         self.script_main()
 
     @classmethod
-    def execute(self, IP: str, Port: int, Debug: bool = True, Qt = None):
+    def execute(self, IP: str, Port: int, Debug: bool = True, Qt = None, WebsocketSwitch = False, WebsocketPort = 8888):
         try:
             if Port < 0 or Port > 65535:
                 raise OSError("`listen_port` must be in 0-65535.")
@@ -109,6 +110,10 @@ class WinBotMain(
 
             if Debug:
                 Driver.WindowsDriverStart(IP, Port)
+
+            if WebsocketSwitch:
+                server = WebSocketServerThread(IP, WebsocketPort, self.Websocket_Log_Level)
+                server.start()
 
             ThreadingTCPServer.StartThreadingTCPServer(self, IP, Port)
         except KeyboardInterrupt as e:

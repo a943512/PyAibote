@@ -27,7 +27,7 @@ class WriteReadFile(LoggerRecord):
                 w.write(data)
             return True
         except Exception as e:
-            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
             return False
 
     def ReadFile(self,path) -> str or bool:
@@ -47,7 +47,7 @@ class WriteReadFile(LoggerRecord):
                 Data = r.read()
             return Data
         except Exception as e:
-            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
             return False
 
     def WriteFileAddTo(self,path,data)  -> bool:
@@ -69,7 +69,7 @@ class WriteReadFile(LoggerRecord):
                 w.write(data)
             return True
         except Exception as e:
-            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
             return False
 
     def ReadJsonFile(self, path, key=None, Key2=None, Key3=None, Key4=None, Key5=None) -> str or bool:
@@ -104,7 +104,7 @@ class WriteReadFile(LoggerRecord):
                 ResultData = ResultData[key]
             return ResultData
         except Exception as e:
-            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+            WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
             return False
 
 

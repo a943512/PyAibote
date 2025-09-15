@@ -36,14 +36,14 @@ class DataBaseHandle(WriteReadFile):
 						}
 					}
 				""")
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 	def Checkconnect(self)  -> None:
 		try:
 			self.db.ping()
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 
 
 	def insert_mysql(self,sql) -> bool:
@@ -67,7 +67,7 @@ class DataBaseHandle(WriteReadFile):
 			else:
 				return False
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 
@@ -91,7 +91,7 @@ class DataBaseHandle(WriteReadFile):
 			self.db.commit()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 			
 	def delete_mysql(self,sql) -> bool:
@@ -113,7 +113,7 @@ class DataBaseHandle(WriteReadFile):
 			self.db.commit()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 	def update_mysql(self,sql)  -> bool:
@@ -135,7 +135,7 @@ class DataBaseHandle(WriteReadFile):
 			self.db.commit()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 	def select_mysql(self,sql)  -> dict:
@@ -158,7 +158,7 @@ class DataBaseHandle(WriteReadFile):
 			return data
 
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
 			
@@ -168,6 +168,6 @@ class DataBaseHandle(WriteReadFile):
 				self.db.close()
 			return True
 		except Exception as e:
-			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,f"{traceback.format_exc()}")
+			WriteReadFile.Custom_Write_logger(self,"",f"{os.getcwd()}/AiBotRunLOG/{time.strftime(r'%Y-%m-%d',time.localtime(time.time()))}/","SysModeError.log",False,"error",f"{traceback.format_exc()}")
 			return False
 
