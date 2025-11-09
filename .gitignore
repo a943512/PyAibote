@@ -1,5 +1,6 @@
 .history/
 build/
 dist/
+AiBotRunLOG/
 .vscode/
 __pycache__/

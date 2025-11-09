@@ -7,12 +7,14 @@ install_requires = [
     "psutil",
     "Pillow",
     "requests",
-    "pymysql"
+    "pymysql",
+    "websockets",
+    "asyncio"
 ]
 
 setup(
     name="PyAibote", 
-    version="1.9.6", 
+    version="1.9.8", 
     author="Riven", 
     author_email="pyaibote@163.com", 
     description="A pure code RPA office automation framework, which supports Android, Browser and Windows", 

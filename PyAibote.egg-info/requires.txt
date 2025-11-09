@@ -1,0 +1,7 @@
+loguru
+psutil
+Pillow
+requests
+pymysql
+websockets
+asyncio

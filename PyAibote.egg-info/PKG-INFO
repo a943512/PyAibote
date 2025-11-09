@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: PyAibote
+Version: 1.9.7
+Summary: A pure code RPA office automation framework, which supports Android, Browser and Windows
+Home-page: https://www.pyaibote.com
+Author: Riven
+Author-email: pyaibote@163.com
+License: UNKNOWN
+Platform: UNKNOWN
+Requires-Python: >=3.5,<4.0
+Description-Content-Type: text/markdown
+
+Support Android native APP and H5 interface elements and color positioning. The speed of element location is 10 times that of Appium framework, and the color location of 2340*1080 image only takes 50 milliseconds, It supports the positioning of window interface elements and colors developed by Windows applications,. NET, WinForm, WPF, QT, Java (GUI libraries such JAVA(Swing and AWT) and Electron. The exclusive xpath algorithm is concise and rapid, and the positioning speed of elements/colors is 3 times and 20 times that of visual RPA, respectively, All browsers and applications that support the chromium kernel. A web automation framework developed by C/C++ language based on browser kernel protocol. Ten times faster than Selenium
+
