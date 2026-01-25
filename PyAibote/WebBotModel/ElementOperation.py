@@ -317,3 +317,34 @@ class ElementOperation:
             return: always True
         """
         return "true" in self.SendData("showXpath")
+
+    def show_xpath(self) -> bool:
+        """
+            显示元素xpath路径，页面加载完毕再调用。
+            调用此函数后，可在页面移动鼠标会显示元素区域。移动并按下ctrl键，会在浏览器控制台打印相对xpath 和 绝对xpath路径
+            ifrmae 内的元素，需要先调用 switchFrame 切入进去，再调用showXpath函数
+
+            return: 总是True
+
+            Displays the xpath path of the element, and then calls it after the page is loaded.
+            After calling this function, you can move the mouse on the page to display the element area. 
+            Moving and pressing the ctrl key will print the relative xpath and absolute xpath paths on the browser console.
+            Elements in ifrmae need to be cut in by calling switchFrame first, and then calling the showXpath function.
+
+            return: always True
+        """
+        return "true" in self.SendData("showXpath")
+
+    def get_elements(self) -> json:
+        """
+            获取可见区域内的所有元素信息
+            return: 成功返回数组json格式的元素信息，失败返回null
+
+            Get information of all elements in the visible area
+            return: element information in json format of array is returned successfully, and null is returned if it fails
+        """
+        response = self.SendData("getElements")
+        if response == "null":
+            return None
+        return json.loads(response)
+

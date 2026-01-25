@@ -5,11 +5,6 @@ PyAibote/DigitalHumanBot.py
 PyAibote/WebBot.py
 PyAibote/WindowsBot.py
 PyAibote/__init__.py
-PyAibote.egg-info/PKG-INFO
-PyAibote.egg-info/SOURCES.txt
-PyAibote.egg-info/dependency_links.txt
-PyAibote.egg-info/requires.txt
-PyAibote.egg-info/top_level.txt
 PyAibote/AndroidBotModel/AndroidHidCorrelation.py
 PyAibote/AndroidBotModel/AndroidLoadWait.py
 PyAibote/AndroidBotModel/ColorFindingOperation.py
@@ -70,3 +65,8 @@ PyAibote/WindowsBotModel/WinLoadWait.py
 PyAibote/WindowsBotModel/WindowOperation.py
 PyAibote/WindowsBotModel/YoloOperation.py
 PyAibote/WindowsBotModel/__init__.py
+pyaibote.egg-info/PKG-INFO
+pyaibote.egg-info/SOURCES.txt
+pyaibote.egg-info/dependency_links.txt
+pyaibote.egg-info/requires.txt
+pyaibote.egg-info/top_level.txt

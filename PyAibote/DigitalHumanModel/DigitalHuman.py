@@ -46,7 +46,7 @@ class NewDigitalHumanOperation:
         """
         return "true" in self.SendData("getFaceData", server_ip, call_api_key, video_path) 
 
-    def new_metahuman_switch_action(self, figure_video_path: str, scale: int, is_paly_media_audio: bool, is_swap_color: bool) -> bool:
+    def new_metahuman_switch_action(self, figure_video_path: str, scale: int, is_paly_media_audio: bool, is_swap_color: bool, wait_play_end: bool) -> bool:
         """
             切换人物形象动作 (使用前需要先调用 init_new_metahuman 初始化数字人)
             Switch character image action
@@ -55,15 +55,17 @@ class NewDigitalHumanOperation:
             scale: 缩放，1原始大小，0.5缩小一半
             is_paly_media_audio: 是否播放素材中的音频
             is_swap_color: 是否更换基础嘴型颜色
+            wait_play_end: 等待素材播放完毕再切换，保证动作无缝衔接
             return: 成功返回True，失败返回错误信息
 
             figure_video_path: model folder
             scale: scaling, 1 original size, 0.5 reduced by half
             is_paly_media_audio: whether to play the audio in the material
             is_swap_color: Do you want to change the basic mouth color
+            wait_play_end: Wait for the material to be played before switching to ensure the seamless connection of actions
             return: Returns True on success, and returns an error message on failure
         """
-        return "true" in self.SendData("switchAction", figure_video_path, scale, is_paly_media_audio, is_swap_color) 
+        return "true" in self.SendData("switchAction", figure_video_path, scale, is_paly_media_audio, is_swap_color, wait_play_end) 
 
     def new_metahuman_add_background(self, bg_path: str, x: int, y: int) -> bool:
         """

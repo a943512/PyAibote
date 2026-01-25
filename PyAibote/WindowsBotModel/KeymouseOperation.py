@@ -122,11 +122,11 @@ class KeymouseOperation:
             输入虚拟键值(VK)
             Enter the virtual key value (VK)
 
-            vk: VK键值  按键对照表: http://www.atoolbox.net/Tool.php?Id=815
+            vk: VK键值  按键对照表: https://blog.csdn.net/qq_42372031/article/details/105178789
             typ: 输入类型，按下弹起:1 按下:2 弹起:3
             return: 总是返回True
 
-            vk: VK key value key table: http://www.atoolbox.net/Tool.php?Id=815
+            vk: VK key value key table: https://blog.csdn.net/qq_42372031/article/details/105178789
             typ: Enter the type, press and pop up: 1 press: 2 pop up: 3
             return: Always returns True
         """

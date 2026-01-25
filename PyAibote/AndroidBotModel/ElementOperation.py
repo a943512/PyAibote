@@ -1,5 +1,5 @@
 import re
-import time
+import time,json
 
 
 class ElementOperation:
@@ -307,4 +307,15 @@ class ElementOperation:
 
         return False
 
+    def get_elements(self) -> json:
+        """
+            获取可见区域内的所有元素信息
+            return: 成功返回数组json格式的元素信息，失败返回null
 
+            Get information of all elements in the visible area
+            return: element information in json format of array is returned successfully, and null is returned if it fails
+        """
+        response = self.SendData("getElements")
+        if response == "null":
+            return None
+        return json.loads(response)

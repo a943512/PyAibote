@@ -97,6 +97,11 @@ class ExcelOperation:
             读取excel表格数字
             Read excel table numbers
 
+            excel_object: excel对象
+            row: 行
+            col: 列
+            return: 读取的数字
+
             excel_object: Excel object
             row: row
             col: col
@@ -109,6 +114,11 @@ class ExcelOperation:
         """
             读取excel表格字符串
             Read excel table string
+
+            excel_object: excel对象
+            row: 行
+            col: 列
+            return: 读取的字符串
 
             excel_object: Excel object
             row: row

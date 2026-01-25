@@ -48,7 +48,7 @@ class KeymouseOperation:
             offset_y: Distance the vertical scroll bar moves.
             return: bool
         """
-        return "true" in self.SendData("wheelMouseByXpath", offset_x, offset_y, xpath)
+        return "true" in self.SendData("wheelMouseByXpath", xpath, offset_x, offset_y)
 
     def click_mouse(self, point: tuple, typ: int) -> bool:
         """

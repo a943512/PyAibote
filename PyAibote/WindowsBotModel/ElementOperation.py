@@ -1,5 +1,5 @@
 import re
-import time
+import time,json
 
 
 class ElementOperation:
@@ -331,3 +331,19 @@ class ElementOperation:
             return: Returns True successfully, and returns False if it fails
         """
         return "true" in self.SendData('setWindowState', hwnd, xpath, state)
+    
+    def get_elements(self, hwnd) -> json:
+        """
+            获取可见区域内的所有元素信息
+            Get information of all elements in the visible area
+
+            hwnd: 窗口句柄
+            return: 成功返回数组json格式的元素信息，失败返回null
+
+            hwnd: window handle
+            return: element information in json format of array is returned successfully, and null is returned if it fails
+        """
+        response = self.SendData("getElements", hwnd)
+        if response == "null":
+            return None
+        return json.loads(response)
