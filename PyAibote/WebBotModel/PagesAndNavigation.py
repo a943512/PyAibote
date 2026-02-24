@@ -132,6 +132,7 @@ class PagesNavigation:
     def get_current_title(self) -> str:
         """
             获取当前页面标题
+            Get the current page title
 
             return：当前页面标题 或 None
             return：current page title or None
@@ -142,9 +143,37 @@ class PagesNavigation:
             return None
         return response
 
+    def enable_network(self, url: str, method: str) -> bool:
+        """
+            启用网络数据监听，此函数一般在goto、点击跳转等操作 前调用。可多次调用监听多个目标
+            Enable network data monitoring. This function is generally called before operations such as goto and click jump
+            Multiple calls can be made to monitor multiple targets
 
+            url: 监听的url
+            method: 监听的请求类型。'GET'或'POST'
+            return: 总是返回 true
 
+            url: url for listening
+            method: the type of request to listen to. GET' or' POST'
+            return: always returns true
 
+        """
+        return "true" in self.SendData("enableNetwork", url, method)
+
+    def wait_network_data(self, timeout : int = 10) -> str:
+        """
+            等待获取网络数据，此函数必须在 goto、点击跳转等操作后立刻执行。执行完自动关闭 enableNetwork 设置的监听目标
+            Waiting to obtain network data, this function must be executed immediately after goto, click jump and other operations
+            After performing automatic shutdown of the listening target set by enableNetwork
+
+            timeout: 等待超时,单位毫秒。默认10秒
+            return: 成功返回json数组格式的数据，失败返回null
+
+            timeout: Wait timeout, in milliseconds. Default 10 seconds
+            return: data in jsons array format is returned successfully, and null is returned if it fails
+
+        """
+        return self.SendData("waitNetworkData", timeout*1000)
 
 
 
